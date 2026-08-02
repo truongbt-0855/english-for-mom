@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mẹ nói tiếng Anh với con — Một ngày của bé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFF2E9; --card:#FFF; --ink:#1C332C; --soft:#5C7169; --line:#DCE3D6;
+  --sun:#D9930F; --leaf:#2E8B72; --sky:#2F6C97; --plum:#6E4E96; --berry:#C33C63;
+  --accent:var(--leaf); --shadow:0 1px 0 rgba(28,51,44,.06),0 8px 20px -16px rgba(28,51,44,.55);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%;padding-bottom:50px}
+h1,h2,h3{font-family:"Baloo 2","Be Vietnam Pro",sans-serif;font-weight:800;line-height:1.2;margin:0}
+button,select,input{font-family:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--berry);outline-offset:2px;border-radius:6px}
+
+.bar{position:sticky;top:0;z-index:40;background:rgba(239,242,233,.95);backdrop-filter:blur(8px) saturate(140%);border-bottom:1px solid var(--line);padding:9px 12px 0;padding-top:calc(9px + env(safe-area-inset-top))}
+.brandrow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.mark{width:31px;height:31px;flex:none;border-radius:11px;background:var(--sun);display:grid;place-items:center;font-size:17px;transform:rotate(-6deg)}
+.brand{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:17px;line-height:1.15;flex:1}
+.brand small{display:block;font-family:"Be Vietnam Pro",sans-serif;font-weight:400;font-size:11px;color:var(--soft)}
+.icobtn{border:1.5px solid var(--line);background:var(--card);width:34px;height:34px;border-radius:11px;font-size:16px;display:grid;place-items:center;flex:none}
+.tools{display:flex;gap:7px}
+.search{position:relative;flex:1}
+.search .mag{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.4}
+#q{width:100%;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:9px 34px 9px 34px;font-size:14px;color:var(--ink)}
+#q:focus{border-color:var(--leaf);outline:none}
+.clear{position:absolute;right:5px;top:50%;transform:translateY(-50%);border:0;background:var(--line);width:24px;height:24px;border-radius:50%;font-size:14px;display:none;place-items:center}
+.clear.on{display:grid}
+.menubtn{border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:9px 13px;font-size:13.5px;font-weight:600;white-space:nowrap}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:9px 0 10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500;white-space:nowrap;flex:none}
+.chip[aria-current="true"]{color:#fff}
+
+main{max-width:1000px;margin:0 auto;padding:14px 12px 0}
+.intro{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:20px;font-size:13px;color:var(--soft);box-shadow:var(--shadow)}
+.intro b{color:var(--ink)}
+
+.group{margin-bottom:26px;scroll-margin-top:132px}
+.ghead{display:flex;align-items:center;gap:10px;margin:0 0 4px}
+.ghead .ge{font-size:22px}
+.ghead h2{font-size:19px;color:var(--accent)}
+.gsub{font-size:12px;color:var(--soft);margin:0 0 14px}
+.grule{height:2px;background:var(--accent);opacity:.25;border-radius:2px;margin-bottom:14px}
+
+.topic{margin-bottom:20px;scroll-margin-top:132px}
+.thead{display:flex;align-items:baseline;gap:8px;margin-bottom:9px;flex-wrap:wrap}
+.tstep{font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:2px 6px}
+.tname{font-size:17px}
+.ten{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--soft);font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:10px 11px 9px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+.ctop{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.ci{font-size:19px;line-height:1}
+.when{font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:var(--soft);font-weight:600;line-height:1.25;min-width:0}
+.en{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:16px;line-height:1.28;margin:0 0 4px;overflow-wrap:break-word}
+.ipa{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;color:var(--accent);margin:0 0 5px;overflow-wrap:break-word;line-height:1.35}
+.vi{font-size:12.5px;margin:0;color:var(--soft);flex:1}
+.acts{display:flex;gap:6px;margin-top:8px}
+.play{border:1.5px solid var(--accent);background:var(--accent);color:#fff;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:600;line-height:1.4}
+.play.ghost{background:transparent;color:var(--accent)}
+.play.speaking{animation:pulse .9s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45}}
+
+.vocab{margin-top:11px}
+.vlabel{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.vlabel::after{content:"";flex:1;height:1.5px;background:var(--line)}
+.vgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.word{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px 9px;display:flex;gap:8px;align-items:center;text-align:left;min-width:0}
+.word .wi{font-size:20px;flex:none}
+.word .wt{min-width:0}
+.word b{display:block;font-family:"Baloo 2",sans-serif;font-size:14px;font-weight:700;overflow-wrap:break-word}
+.word .wp{display:block;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--accent);overflow-wrap:break-word}
+.word .wv{display:block;font-size:11.5px;color:var(--soft)}
+
+.scrim{position:fixed;inset:0;background:rgba(28,51,44,.45);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);border-radius:20px 20px 0 0;padding:6px 14px calc(20px + env(safe-area-inset-bottom));transform:translateY(102%);transition:transform .26s cubic-bezier(.3,.8,.3,1);max-height:84vh;overflow:auto}
+.sheet.on{transform:translateY(0)}
+.grab{width:40px;height:4px;border-radius:99px;background:var(--line);margin:6px auto 12px}
+.sheet h2{font-size:17px;margin-bottom:4px}
+.sheet .note{font-size:12px;color:var(--soft);margin:0 0 12px}
+.sgroup{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:14px 0 7px}
+.slist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.sitem{display:flex;align-items:center;gap:8px;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:9px 10px;font-size:13px;font-weight:500;color:var(--ink);text-align:left;min-width:0}
+.sitem .n{font-size:17px;flex:none}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;margin-bottom:5px}
+select,.slider{width:100%;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px;font-size:14px;color:var(--ink)}
+.tip{background:#FFF7E2;border:1.5px solid #F0DCA8;border-radius:12px;padding:11px 12px;font-size:12.5px;line-height:1.5}
+.tip b{display:block;margin-bottom:4px}
+.testbtn{border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px;font-size:13.5px;font-weight:600;width:100%;margin-bottom:14px}
+.empty{text-align:center;padding:40px 16px;color:var(--soft)}
+.empty b{display:block;font-family:"Baloo 2",sans-serif;font-size:18px;color:var(--ink);margin-bottom:5px}
+footer{max-width:1000px;margin:0 auto;padding:6px 14px 26px;color:var(--soft);font-size:11.5px;text-align:center}
+
+@media (min-width:700px){
+  body{font-size:16px}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+  .vgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .slist{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .en{font-size:17px}.ipa{font-size:11.5px}.vi{font-size:13.5px}
+  .tname{font-size:19px}.ghead h2{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="brandrow">
+    <div class="mark">🧸</div>
+    <div class="brand">Một ngày của bé — bằng tiếng Anh
+      <small>32 chủ đề, xếp theo trình tự sinh hoạt trong ngày</small>
+    </div>
+    <button class="icobtn" id="setBtn" aria-label="Cài đặt giọng đọc">⚙️</button>
+  </div>
+  <div class="tools">
+    <div class="search">
+      <svg class="mag" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+      <input id="q" type="search" placeholder="Tìm: tắm, sữa, milk, cẩn thận…" autocomplete="off">
+      <button class="clear" id="clear" aria-label="Xoá">×</button>
+    </div>
+    <button class="menubtn" id="menuBtn">Mục lục</button>
+  </div>
+  <nav class="chips" id="chips" aria-label="Các buổi trong ngày"></nav>
+</header>
+
+<main>
+  <div class="intro"><b>Cách dùng:</b> các chủ đề nối tiếp nhau đúng như một ngày thật — sáng dậy → vệ sinh → ăn sáng → đi chơi → tắm → uống sữa → đi ngủ. Mẹ nói câu tiếng Anh ngay lúc đang làm việc đó, rồi nhắc lại tiếng Việt. Bé 2 tuổi chỉ cần 2–3 câu lặp đi lặp lại mỗi ngày. Giọng đọc nghe chưa hay thì bấm ⚙️ để đổi giọng.</div>
+  <div id="content"></div>
+  <div class="empty" id="empty" hidden><b>Không tìm thấy câu nào</b>Thử từ ngắn hơn: ăn, ngủ, tắm, milk…</div>
+</main>
+
+<footer>Bấm vào ô từ mới cũng nghe được phát âm</footer>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Mục lục">
+  <div class="grab"></div><h2>Mục lục</h2>
+  <p class="note">Theo thứ tự thời gian trong ngày</p>
+  <div id="slist"></div>
+</div>
+
+<div class="sheet" id="vsheet" role="dialog" aria-modal="true" aria-label="Giọng đọc">
+  <div class="grab"></div><h2>Giọng đọc</h2>
+  <p class="note">Danh sách giọng lấy từ chính điện thoại của mẹ. Giọng có dấu ⭐ thường nghe tự nhiên nhất.</p>
+  <div class="field">
+    <label for="voiceSel">Chọn giọng</label>
+    <select id="voiceSel"></select>
+  </div>
+  <div class="field">
+    <label for="rateSel">Tốc độ nói: <span id="rateVal">0.9</span></label>
+    <input class="slider" id="rateSel" type="range" min="0.5" max="1.1" step="0.05" value="0.9">
+  </div>
+  <button class="testbtn" id="testBtn">🔊 Nghe thử câu mẫu</button>
+  <div class="tip"><b>Muốn giọng thật sự giống người?</b>
+  Giọng mặc định của máy thường khô và máy móc. Tải thêm giọng chất lượng cao một lần là dùng mãi:<br>
+  · <b>iPhone:</b> Cài đặt → Trợ năng → Nội dung nói → Giọng nói → English → tải giọng <i>Enhanced</i> hoặc <i>Premium</i> (Ava, Samantha, Zoe).<br>
+  · <b>Android:</b> Cài đặt → Ngôn ngữ → Đầu ra văn bản thành giọng nói → Google Speech Services → tải <i>English (US)</i>, chọn giọng nữ.<br>
+  Tải xong quay lại trang này, bấm ⚙️ chọn lại giọng mới.</div>
+</div>
+
+<script>
+const G = [
+{id:"g1",e:"🌅",name:"Buổi sáng",sub:"Từ lúc mở mắt tới khi ra khỏi nhà",c:"var(--sun)",topics:[
+ {id:"t1",e:"🌞",vi:"Thức dậy",en:"Waking up",
+  L:[
+   {i:"🌞",w:"Khi mở rèm",e:"Good morning, baby!",p:"/ɡʊd ˈmɔːrnɪŋ ˈbeɪbi/",v:"Chào buổi sáng, con yêu!"},
+   {i:"⏰",w:"Bé còn ngái ngủ",e:"Wake up, sleepyhead.",p:"/weɪk ʌp ˈsliːpihed/",v:"Dậy nào, cu tí ngủ nướng."},
+   {i:"😴",w:"Hỏi thăm bé",e:"Did you sleep well?",p:"/dɪd juː sliːp wel/",v:"Con ngủ ngon không?"},
+   {i:"🤗",w:"Bế bé dậy",e:"Come here, give me a hug.",p:"/kʌm hɪr ɡɪv miː ə hʌɡ/",v:"Lại đây, ôm mẹ cái nào."},
+   {i:"☀️",w:"Chỉ ra cửa sổ",e:"Look, the sun is up!",p:"/lʊk ðə sʌn ɪz ʌp/",v:"Nhìn kìa, mặt trời lên rồi!"},
+   {i:"🛏️",w:"Rời giường",e:"Let's get out of bed.",p:"/lets ɡet aʊt əv bed/",v:"Mình ra khỏi giường nào."}],
+  V:[{i:"🌞",w:"morning",p:"/ˈmɔːrnɪŋ/",v:"buổi sáng"},{i:"⏰",w:"wake up",p:"/weɪk ʌp/",v:"thức dậy"},{i:"🤗",w:"hug",p:"/hʌɡ/",v:"cái ôm"},{i:"🛏️",w:"bed",p:"/bed/",v:"giường"}]},
+
+ {id:"t2",e:"🚽",vi:"Đi vệ sinh, thay bỉm",en:"Potty & diaper",
+  L:[
+   {i:"🚽",w:"Hỏi bé",e:"Do you need to pee?",p:"/duː juː niːd tuː piː/",v:"Con muốn tè không?"},
+   {i:"🧷",w:"Bỉm ướt",e:"Your diaper is wet.",p:"/jɔːr ˈdaɪpər ɪz wet/",v:"Bỉm ướt rồi này."},
+   {i:"🪑",w:"Tập ngồi bô",e:"Sit on the potty.",p:"/sɪt ɑːn ðə ˈpɑːti/",v:"Ngồi lên bô đi con."},
+   {i:"⏳",w:"Đừng giục bé",e:"Take your time.",p:"/teɪk jɔːr taɪm/",v:"Cứ từ từ nhé."},
+   {i:"🎉",w:"Bé làm được",e:"You did it! Well done!",p:"/juː dɪd ɪt wel dʌn/",v:"Con làm được rồi! Giỏi lắm!"},
+   {i:"🧼",w:"Xong xuôi",e:"Now let's wash our hands.",p:"/naʊ lets wɑːʃ ˈaʊər hændz/",v:"Giờ mình đi rửa tay nào."}],
+  V:[{i:"🚽",w:"potty",p:"/ˈpɑːti/",v:"cái bô"},{i:"🧷",w:"diaper",p:"/ˈdaɪpər/",v:"bỉm"},{i:"💧",w:"pee",p:"/piː/",v:"tè"},{i:"🧼",w:"wash",p:"/wɑːʃ/",v:"rửa"}]},
+
+ {id:"t3",e:"🪥",vi:"Đánh răng, rửa mặt",en:"Getting clean",
+  L:[
+   {i:"🪥",w:"Bắt đầu",e:"Let's brush your teeth.",p:"/lets brʌʃ jɔːr tiːθ/",v:"Mình đánh răng nào."},
+   {i:"😮",w:"Đưa bàn chải vào",e:"Open your mouth, wide.",p:"/ˈoʊpən jɔːr maʊθ waɪd/",v:"Há miệng to ra nào."},
+   {i:"💦",w:"Súc miệng",e:"Spit it out.",p:"/spɪt ɪt aʊt/",v:"Nhổ ra nào."},
+   {i:"🧴",w:"Rửa mặt",e:"Let me wash your face.",p:"/let miː wɑːʃ jɔːr feɪs/",v:"Để mẹ rửa mặt cho con."},
+   {i:"🤲",w:"Lau khô",e:"Dry your hands with the towel.",p:"/draɪ jɔːr hændz wɪð ðə ˈtaʊəl/",v:"Lau tay bằng khăn nhé."},
+   {i:"✨",w:"Khen bé",e:"All clean! Good job!",p:"/ɔːl kliːn ɡʊd dʒɑːb/",v:"Sạch sẽ rồi! Con giỏi quá!"}],
+  V:[{i:"🦷",w:"teeth",p:"/tiːθ/",v:"răng"},{i:"🪥",w:"toothbrush",p:"/ˈtuːθbrʌʃ/",v:"bàn chải"},{i:"🧼",w:"soap",p:"/soʊp/",v:"xà phòng"},{i:"🧺",w:"towel",p:"/ˈtaʊəl/",v:"khăn"}]},
+
+ {id:"t4",e:"👕",vi:"Mặc quần áo",en:"Getting dressed",
+  L:[
+   {i:"👕",w:"Bắt đầu thay đồ",e:"Let's get dressed.",p:"/lets ɡet drest/",v:"Mình mặc quần áo nào."},
+   {i:"🙆",w:"Chui áo qua đầu",e:"Arms up!",p:"/ɑːrmz ʌp/",v:"Giơ tay lên nào!"},
+   {i:"👖",w:"Mặc quần",e:"Put on your pants.",p:"/pʊt ɑːn jɔːr pænts/",v:"Mặc quần vào con."},
+   {i:"🧦",w:"Tìm đồ cùng bé",e:"Where are your socks?",p:"/wer ɑːr jɔːr sɑːks/",v:"Tất của con đâu rồi?"},
+   {i:"🎨",w:"Cho bé chọn",e:"The blue shirt or the red one?",p:"/ðə bluː ʃɜːrt ɔːr ðə red wʌn/",v:"Áo xanh hay áo đỏ nào?"},
+   {i:"😍",w:"Khen bé",e:"You look so handsome!",p:"/juː lʊk soʊ ˈhænsəm/",v:"Con đẹp trai quá!"}],
+  V:[{i:"👕",w:"shirt",p:"/ʃɜːrt/",v:"áo"},{i:"👖",w:"pants",p:"/pænts/",v:"quần"},{i:"🧦",w:"socks",p:"/sɑːks/",v:"tất"},{i:"👟",w:"shoes",p:"/ʃuːz/",v:"giày"}]},
+
+ {id:"t5",e:"🍳",vi:"Bữa sáng",en:"Breakfast",
+  L:[
+   {i:"🍽️",w:"Gọi bé vào bàn",e:"Breakfast is ready!",p:"/ˈbrekfəst ɪz ˈredi/",v:"Bữa sáng xong rồi!"},
+   {i:"🪑",w:"Vào chỗ ngồi",e:"Sit down, please.",p:"/sɪt daʊn pliːz/",v:"Con ngồi xuống nào."},
+   {i:"🍜",w:"Cho bé chọn món",e:"Noodles or bread?",p:"/ˈnuːdlz ɔːr bred/",v:"Con ăn phở hay bánh mì?"},
+   {i:"😋",w:"Đút cho bé",e:"Open wide. Yum yum!",p:"/ˈoʊpən waɪd jʌm jʌm/",v:"Há to nào. Ngon ngon!"},
+   {i:"🥛",w:"Uống thêm sữa",e:"Drink some milk.",p:"/drɪŋk sʌm mɪlk/",v:"Uống chút sữa nào."},
+   {i:"👏",w:"Ăn hết",e:"All done! Good boy!",p:"/ɔːl dʌn ɡʊd bɔɪ/",v:"Hết sạch rồi! Giỏi quá!"}],
+  V:[{i:"🍳",w:"breakfast",p:"/ˈbrekfəst/",v:"bữa sáng"},{i:"🍞",w:"bread",p:"/bred/",v:"bánh mì"},{i:"🍜",w:"noodles",p:"/ˈnuːdlz/",v:"mì, phở"},{i:"🥛",w:"milk",p:"/mɪlk/",v:"sữa"}]},
+
+ {id:"t6",e:"🎒",vi:"Đi lớp, tạm biệt",en:"Off to school",
+  L:[
+   {i:"🎒",w:"Chuẩn bị đi",e:"Time to go to school.",p:"/taɪm tuː ɡoʊ tuː skuːl/",v:"Đến giờ đi lớp rồi."},
+   {i:"👟",w:"Ở cửa",e:"Put on your shoes.",p:"/pʊt ɑːn jɔːr ʃuːz/",v:"Đi giày vào nào."},
+   {i:"👋",w:"Chào bố",e:"Say bye bye to daddy.",p:"/seɪ baɪ baɪ tuː ˈdædi/",v:"Chào tạm biệt bố đi con."},
+   {i:"😘",w:"Trước khi rời tay",e:"Give me a kiss.",p:"/ɡɪv miː ə kɪs/",v:"Thơm mẹ một cái nào."},
+   {i:"🚗",w:"Bé lo lắng",e:"Mommy will pick you up later.",p:"/ˈmɑːmi wɪl pɪk juː ʌp ˈleɪtər/",v:"Lát mẹ đón con nhé."},
+   {i:"🥲",w:"Bé mếu",e:"Don't be sad. I love you.",p:"/doʊnt biː sæd aɪ lʌv juː/",v:"Đừng buồn nhé. Mẹ yêu con."}],
+  V:[{i:"🏫",w:"school",p:"/skuːl/",v:"trường, lớp"},{i:"👩‍🏫",w:"teacher",p:"/ˈtiːtʃər/",v:"cô giáo"},{i:"🎒",w:"backpack",p:"/ˈbækpæk/",v:"ba lô"},{i:"😘",w:"kiss",p:"/kɪs/",v:"nụ hôn"}]}
+]},
+
+{id:"g2",e:"🏠",name:"Ban ngày ở nhà",sub:"Chơi, học, ăn trưa rồi ngủ trưa",c:"var(--leaf)",topics:[
+ {id:"t7",e:"⚽",vi:"Chơi cùng mẹ",en:"Play time",
+  L:[
+   {i:"🎈",w:"Rủ bé chơi",e:"Let's play together!",p:"/lets pleɪ təˈɡeðər/",v:"Mình chơi cùng nhau nào!"},
+   {i:"❓",w:"Dạy gọi tên đồ vật",e:"What's this? It's a ball.",p:"/wʌts ðɪs ɪts ə bɔːl/",v:"Cái gì đây? Quả bóng đó."},
+   {i:"⚽",w:"Ném bóng qua lại",e:"Throw the ball to mommy.",p:"/θroʊ ðə bɔːl tuː ˈmɑːmi/",v:"Ném bóng cho mẹ nào."},
+   {i:"🙋",w:"Dạy bé chờ lượt",e:"Your turn!",p:"/jɔːr tɜːrn/",v:"Đến lượt con!"},
+   {i:"🔢",w:"Đếm trước khi chạy",e:"One, two, three. Go!",p:"/wʌn tuː θriː ɡoʊ/",v:"Một, hai, ba. Đi nào!"},
+   {i:"⚠️",w:"Bé chạy nhanh quá",e:"Be careful, slow down.",p:"/biː ˈkerfl sloʊ daʊn/",v:"Cẩn thận, chậm thôi con."}],
+  V:[{i:"⚽",w:"ball",p:"/bɔːl/",v:"quả bóng"},{i:"🚗",w:"car",p:"/kɑːr/",v:"ô tô"},{i:"🧸",w:"teddy bear",p:"/ˈtedi ber/",v:"gấu bông"},{i:"🧱",w:"blocks",p:"/blɑːks/",v:"xếp hình"}]},
+
+ {id:"t8",e:"🧺",vi:"Cất dọn đồ chơi",en:"Clean up",
+  L:[
+   {i:"🧺",w:"Hết giờ chơi",e:"Time to clean up.",p:"/taɪm tuː kliːn ʌp/",v:"Đến giờ dọn dẹp rồi."},
+   {i:"📦",w:"Chỉ chỗ cất",e:"Put the toys in the box.",p:"/pʊt ðə tɔɪz ɪn ðə bɑːks/",v:"Cất đồ chơi vào hộp nhé."},
+   {i:"🤝",w:"Làm cùng bé",e:"Let's do it together.",p:"/lets duː ɪt təˈɡeðər/",v:"Mình cùng làm nào."},
+   {i:"🔍",w:"Hỏi để bé nghĩ",e:"Where does this go?",p:"/wer dʌz ðɪs ɡoʊ/",v:"Cái này để đâu nhỉ?"},
+   {i:"✨",w:"Dọn xong",e:"The room is tidy now.",p:"/ðə ruːm ɪz ˈtaɪdi naʊ/",v:"Phòng gọn gàng rồi."},
+   {i:"👏",w:"Cảm ơn bé",e:"Thank you for helping!",p:"/ˈθæŋk juː fɔːr ˈhelpɪŋ/",v:"Cảm ơn con đã giúp mẹ!"}],
+  V:[{i:"🧺",w:"clean up",p:"/kliːn ʌp/",v:"dọn dẹp"},{i:"📦",w:"box",p:"/bɑːks/",v:"cái hộp"},{i:"🧸",w:"toy",p:"/tɔɪ/",v:"đồ chơi"},{i:"🛋️",w:"room",p:"/ruːm/",v:"căn phòng"}]},
+
+ {id:"t9",e:"📖",vi:"Đọc sách cùng mẹ",en:"Reading together",
+  L:[
+   {i:"📖",w:"Rủ bé đọc",e:"Let's read a book.",p:"/lets riːd ə bʊk/",v:"Mình đọc sách nào."},
+   {i:"🫱",w:"Ngồi cùng nhau",e:"Come sit on my lap.",p:"/kʌm sɪt ɑːn maɪ læp/",v:"Lại ngồi vào lòng mẹ nào."},
+   {i:"👉",w:"Cho bé tương tác",e:"Point to the dog.",p:"/pɔɪnt tuː ðə dɔːɡ/",v:"Chỉ con chó xem nào."},
+   {i:"❓",w:"Hỏi về tranh",e:"What is the bear doing?",p:"/wʌt ɪz ðə ber ˈduːɪŋ/",v:"Bạn gấu đang làm gì thế?"},
+   {i:"📄",w:"Cho bé lật trang",e:"Turn the page.",p:"/tɜːrn ðə peɪdʒ/",v:"Lật trang đi con."},
+   {i:"🔚",w:"Đọc hết",e:"The end. Read it again?",p:"/ði end riːd ɪt əˈɡen/",v:"Hết rồi. Đọc lại nữa nhé?"}],
+  V:[{i:"📖",w:"book",p:"/bʊk/",v:"quyển sách"},{i:"📄",w:"page",p:"/peɪdʒ/",v:"trang"},{i:"🖼️",w:"picture",p:"/ˈpɪktʃər/",v:"bức tranh"},{i:"📚",w:"story",p:"/ˈstɔːri/",v:"câu chuyện"}]},
+
+ {id:"t10",e:"🎨",vi:"Màu sắc, hình khối, đếm số",en:"Colors & counting",
+  L:[
+   {i:"🔴",w:"Chỉ vào đồ vật",e:"What color is this? It's red.",p:"/wʌt ˈkʌlər ɪz ðɪs ɪts red/",v:"Màu gì đây? Màu đỏ."},
+   {i:"🔵",w:"Cho bé đi tìm",e:"Show me something blue.",p:"/ʃoʊ miː ˈsʌmθɪŋ bluː/",v:"Tìm đồ màu xanh cho mẹ nào."},
+   {i:"🔢",w:"Đếm đồ chơi",e:"Let's count: one, two, three.",p:"/lets kaʊnt wʌn tuː θriː/",v:"Mình đếm nào: một, hai, ba."},
+   {i:"⭕",w:"Dạy hình khối",e:"This is a circle.",p:"/ðɪs ɪz ə ˈsɜːrkl/",v:"Đây là hình tròn."},
+   {i:"📏",w:"So sánh",e:"Big or small?",p:"/bɪɡ ɔːr smɔːl/",v:"To hay nhỏ?"},
+   {i:"🎉",w:"Bé trả lời đúng",e:"You are so smart!",p:"/juː ɑːr soʊ smɑːrt/",v:"Con thông minh quá!"}],
+  V:[{i:"🔴",w:"red",p:"/red/",v:"màu đỏ"},{i:"🔵",w:"blue",p:"/bluː/",v:"màu xanh"},{i:"🟡",w:"yellow",p:"/ˈjeloʊ/",v:"màu vàng"},{i:"🔢",w:"count",p:"/kaʊnt/",v:"đếm"}]},
+
+ {id:"t11",e:"🎵",vi:"Hát và nhảy",en:"Sing & dance",
+  L:[
+   {i:"🎵",w:"Bắt đầu",e:"Let's sing a song.",p:"/lets sɪŋ ə sɔːŋ/",v:"Mình hát một bài nào."},
+   {i:"👏",w:"Theo nhịp",e:"Clap your hands!",p:"/klæp jɔːr hændz/",v:"Vỗ tay nào!"},
+   {i:"💃",w:"Nhảy cùng bé",e:"Dance with mommy.",p:"/dæns wɪð ˈmɑːmi/",v:"Nhảy với mẹ nào."},
+   {i:"🦶",w:"Vận động",e:"Stomp your feet!",p:"/stɑːmp jɔːr fiːt/",v:"Giậm chân nào!"},
+   {i:"🔁",w:"Bé đòi thêm",e:"One more time!",p:"/wʌn mɔːr taɪm/",v:"Thêm lần nữa nào!"},
+   {i:"🤩",w:"Kết thúc",e:"That was fun!",p:"/ðæt wɑːz fʌn/",v:"Vui quá đi mất!"}],
+  V:[{i:"🎤",w:"sing",p:"/sɪŋ/",v:"hát"},{i:"🎵",w:"song",p:"/sɔːŋ/",v:"bài hát"},{i:"👏",w:"clap",p:"/klæp/",v:"vỗ tay"},{i:"💃",w:"dance",p:"/dæns/",v:"nhảy múa"}]},
+
+ {id:"t12",e:"🧹",vi:"Giúp mẹ việc nhà",en:"Helping mommy",
+  L:[
+   {i:"🧹",w:"Rủ bé giúp",e:"Can you help mommy?",p:"/kæn juː help ˈmɑːmi/",v:"Con giúp mẹ được không?"},
+   {i:"🧦",w:"Phơi, gấp đồ",e:"Put this in the basket.",p:"/pʊt ðɪs ɪn ðə ˈbæskɪt/",v:"Bỏ cái này vào giỏ nhé."},
+   {i:"🍽️",w:"Dọn bàn ăn",e:"Give me the bowl, please.",p:"/ɡɪv miː ðə boʊl pliːz/",v:"Đưa mẹ cái bát nào."},
+   {i:"🚪",w:"Việc nhỏ vừa sức",e:"Close the door, please.",p:"/kloʊz ðə dɔːr pliːz/",v:"Đóng cửa giúp mẹ nhé."},
+   {i:"💪",w:"Khen bé",e:"You are a big helper!",p:"/juː ɑːr ə bɪɡ ˈhelpər/",v:"Con là trợ thủ của mẹ đó!"},
+   {i:"🙏",w:"Cảm ơn",e:"Thank you so much.",p:"/ˈθæŋk juː soʊ mʌtʃ/",v:"Cảm ơn con nhiều nhé."}],
+  V:[{i:"🤝",w:"help",p:"/help/",v:"giúp đỡ"},{i:"🧺",w:"basket",p:"/ˈbæskɪt/",v:"cái giỏ"},{i:"🚪",w:"door",p:"/dɔːr/",v:"cửa"},{i:"🥣",w:"bowl",p:"/boʊl/",v:"cái bát"}]},
+
+ {id:"t13",e:"🍚",vi:"Bữa trưa",en:"Lunch",
+  L:[
+   {i:"🍽️",w:"Đến bữa",e:"Time to eat!",p:"/taɪm tuː iːt/",v:"Đến giờ ăn rồi!"},
+   {i:"🤔",w:"Hỏi bé",e:"Are you hungry?",p:"/ɑːr juː ˈhʌŋɡri/",v:"Con đói bụng chưa?"},
+   {i:"🥣",w:"Giới thiệu món",e:"This is rice and soup.",p:"/ðɪs ɪz raɪs ænd suːp/",v:"Đây là cơm và canh."},
+   {i:"🥄",w:"Tập tự xúc",e:"Hold your spoon.",p:"/hoʊld jɔːr spuːn/",v:"Cầm cái thìa đi con."},
+   {i:"🍲",w:"Bé ăn hết",e:"Do you want more?",p:"/duː juː wɑːnt mɔːr/",v:"Con ăn thêm không?"},
+   {i:"🧻",w:"Ăn xong",e:"Let me wipe your mouth.",p:"/let miː waɪp jɔːr maʊθ/",v:"Để mẹ lau miệng cho con."}],
+  V:[{i:"🍚",w:"rice",p:"/raɪs/",v:"cơm"},{i:"🍲",w:"soup",p:"/suːp/",v:"canh, súp"},{i:"🥄",w:"spoon",p:"/spuːn/",v:"cái thìa"},{i:"😋",w:"yummy",p:"/ˈjʌmi/",v:"ngon"}]},
+
+ {id:"t14",e:"😴",vi:"Ngủ trưa",en:"Nap time",
+  L:[
+   {i:"😴",w:"Báo giờ ngủ",e:"It's nap time.",p:"/ɪts næp taɪm/",v:"Đến giờ ngủ trưa rồi."},
+   {i:"🛏️",w:"Đặt bé xuống",e:"Lie down here.",p:"/laɪ daʊn hɪr/",v:"Nằm xuống đây nào."},
+   {i:"🧸",w:"Đồ ngủ quen thuộc",e:"Do you want your teddy bear?",p:"/duː juː wɑːnt jɔːr ˈtedi ber/",v:"Con muốn ôm gấu bông không?"},
+   {i:"🤫",w:"Bé còn nghịch",e:"Shh, be quiet.",p:"/ʃ biː ˈkwaɪət/",v:"Suỵt, im lặng nào."},
+   {i:"🤱",w:"Bé bám mẹ",e:"Mommy will stay with you.",p:"/ˈmɑːmi wɪl steɪ wɪð juː/",v:"Mẹ nằm cạnh con nhé."},
+   {i:"😌",w:"Ru bé",e:"Close your eyes. Sleep well.",p:"/kloʊz jɔːr aɪz sliːp wel/",v:"Nhắm mắt lại. Ngủ ngon nhé."}],
+  V:[{i:"😴",w:"nap",p:"/næp/",v:"giấc ngủ ngắn"},{i:"🤫",w:"quiet",p:"/ˈkwaɪət/",v:"yên lặng"},{i:"🛌",w:"pillow",p:"/ˈpɪloʊ/",v:"cái gối"},{i:"👀",w:"eyes",p:"/aɪz/",v:"mắt"}]}
+]},
+
+{id:"g3",e:"🌳",name:"Chiều: ra ngoài chơi",sub:"Chuẩn bị, đi đường, công viên, siêu thị rồi về nhà",c:"var(--sky)",topics:[
+ {id:"t15",e:"🛵",vi:"Chuẩn bị ra ngoài",en:"Getting ready to go",
+  L:[
+   {i:"🚪",w:"Rủ bé đi",e:"Let's go outside.",p:"/lets ɡoʊ ˌaʊtˈsaɪd/",v:"Mình ra ngoài nào."},
+   {i:"👟",w:"Ở cửa",e:"Shoes on, please.",p:"/ʃuːz ɑːn pliːz/",v:"Đi giày vào nào."},
+   {i:"🪖",w:"Trước khi lên xe máy",e:"Wear your helmet.",p:"/wer jɔːr ˈhelmɪt/",v:"Đội mũ bảo hiểm vào con."},
+   {i:"🧴",w:"Trời nắng",e:"Let me put on sunscreen.",p:"/let miː pʊt ɑːn ˈsʌnskriːn/",v:"Để mẹ bôi kem chống nắng."},
+   {i:"🛵",w:"Ngồi lên xe",e:"Sit still on the bike.",p:"/sɪt stɪl ɑːn ðə baɪk/",v:"Ngồi yên trên xe nhé."},
+   {i:"🤗",w:"Trước khi chạy xe",e:"Hold mommy tight.",p:"/hoʊld ˈmɑːmi taɪt/",v:"Ôm chặt mẹ vào."}],
+  V:[{i:"🪖",w:"helmet",p:"/ˈhelmɪt/",v:"mũ bảo hiểm"},{i:"🛵",w:"motorbike",p:"/ˈmoʊtərbaɪk/",v:"xe máy"},{i:"🌳",w:"outside",p:"/ˌaʊtˈsaɪd/",v:"bên ngoài"},{i:"🧢",w:"hat",p:"/hæt/",v:"cái mũ"}]},
+
+ {id:"t16",e:"🚦",vi:"An toàn trên đường",en:"Street safety",
+  L:[
+   {i:"🤝",w:"Vừa xuống xe",e:"Hold my hand.",p:"/hoʊld maɪ hænd/",v:"Nắm tay mẹ nào."},
+   {i:"🛑",w:"Trước khi sang đường",e:"Stop! Look both ways.",p:"/stɑːp lʊk boʊθ weɪz/",v:"Dừng lại! Nhìn hai bên nào."},
+   {i:"🚦",w:"Đèn đỏ",e:"The light is red. We wait.",p:"/ðə laɪt ɪz red wiː weɪt/",v:"Đèn đỏ rồi. Mình chờ nhé."},
+   {i:"💚",w:"Đèn xanh",e:"Green light. Let's walk.",p:"/ɡriːn laɪt lets wɔːk/",v:"Đèn xanh. Mình đi thôi."},
+   {i:"🛵",w:"Xe lao tới",e:"Watch out for the motorbike!",p:"/wɑːtʃ aʊt fɔːr ðə ˈmoʊtərbaɪk/",v:"Coi chừng xe máy!"},
+   {i:"🚶",w:"Bé chạy xa",e:"Stay close to me.",p:"/steɪ kloʊs tuː miː/",v:"Đi sát mẹ nhé."}],
+  V:[{i:"🛑",w:"stop",p:"/stɑːp/",v:"dừng lại"},{i:"⏳",w:"wait",p:"/weɪt/",v:"chờ"},{i:"🚦",w:"light",p:"/laɪt/",v:"đèn giao thông"},{i:"🚶",w:"walk",p:"/wɔːk/",v:"đi bộ"}]},
+
+ {id:"t17",e:"🛝",vi:"Công viên, sân chơi",en:"Park & playground",
+  L:[
+   {i:"🌳",w:"Đến nơi",e:"Let's go to the park.",p:"/lets ɡoʊ tuː ðə pɑːrk/",v:"Mình vào công viên nào."},
+   {i:"🛝",w:"Rủ chơi cầu trượt",e:"Do you want to go on the slide?",p:"/duː juː wɑːnt tuː ɡoʊ ɑːn ðə slaɪd/",v:"Con chơi cầu trượt không?"},
+   {i:"🪅",w:"Bé leo cao",e:"Hold on tight!",p:"/hoʊld ɑːn taɪt/",v:"Bám chắc vào nhé!"},
+   {i:"🧒",w:"Gặp bạn",e:"Say hi to your friend.",p:"/seɪ haɪ tuː jɔːr frend/",v:"Chào bạn đi con."},
+   {i:"🤲",w:"Chơi chung đồ",e:"Let's take turns.",p:"/lets teɪk tɜːrnz/",v:"Mình chơi lần lượt nhé."},
+   {i:"🏃",w:"Chơi đuổi bắt",e:"Run! I will catch you!",p:"/rʌn aɪ wɪl kætʃ juː/",v:"Chạy đi! Mẹ bắt được con này!"}],
+  V:[{i:"🌳",w:"park",p:"/pɑːrk/",v:"công viên"},{i:"🛝",w:"slide",p:"/slaɪd/",v:"cầu trượt"},{i:"🎠",w:"swing",p:"/swɪŋ/",v:"xích đu"},{i:"🧒",w:"friend",p:"/frend/",v:"bạn"}]},
+
+ {id:"t18",e:"☀️",vi:"Thời tiết",en:"Weather",
+  L:[
+   {i:"☀️",w:"Bước ra sân",e:"It's sunny today.",p:"/ɪts ˈsʌni təˈdeɪ/",v:"Hôm nay trời nắng."},
+   {i:"🥵",w:"Trời oi",e:"It's very hot. Drink water.",p:"/ɪts ˈveri hɑːt drɪŋk ˈwɔːtər/",v:"Trời nóng lắm. Uống nước đi con."},
+   {i:"🌧️",w:"Mưa xuống",e:"It's raining. Take the umbrella.",p:"/ɪts ˈreɪnɪŋ teɪk ði ʌmˈbrelə/",v:"Trời mưa rồi. Cầm ô nhé."},
+   {i:"🌬️",w:"Gió to",e:"It's windy today.",p:"/ɪts ˈwɪndi təˈdeɪ/",v:"Hôm nay trời gió quá."},
+   {i:"🥶",w:"Trời lạnh",e:"It's cold. Wear your jacket.",p:"/ɪts koʊld wer jɔːr ˈdʒækɪt/",v:"Trời lạnh. Mặc áo khoác vào."},
+   {i:"🌈",w:"Sau cơn mưa",e:"Look, a rainbow!",p:"/lʊk ə ˈreɪnboʊ/",v:"Nhìn kìa, cầu vồng!"}],
+  V:[{i:"☀️",w:"sunny",p:"/ˈsʌni/",v:"nắng"},{i:"🌧️",w:"rain",p:"/reɪn/",v:"mưa"},{i:"🥵",w:"hot",p:"/hɑːt/",v:"nóng"},{i:"☂️",w:"umbrella",p:"/ʌmˈbrelə/",v:"cái ô"}]},
+
+ {id:"t19",e:"🐕",vi:"Con vật, cây cỏ",en:"Animals & plants",
+  L:[
+   {i:"🐕",w:"Thấy con chó",e:"Look! A dog. Woof woof!",p:"/lʊk ə dɔːɡ wʊf wʊf/",v:"Nhìn kìa! Con chó. Gâu gâu!"},
+   {i:"🐈",w:"Thấy con mèo",e:"That's a cat. It says meow.",p:"/ðæts ə kæt ɪt sez miˈaʊ/",v:"Kia là con mèo. Nó kêu meo meo."},
+   {i:"🐦",w:"Nghe tiếng chim",e:"Can you hear the bird?",p:"/kæn juː hɪr ðə bɜːrd/",v:"Con nghe tiếng chim không?"},
+   {i:"🌸",w:"Ngắm hoa",e:"The flower smells nice.",p:"/ðə ˈflaʊər smelz naɪs/",v:"Bông hoa thơm quá."},
+   {i:"🍃",w:"Bé ngắt lá",e:"Don't pick the leaves.",p:"/doʊnt pɪk ðə liːvz/",v:"Đừng ngắt lá con nhé."},
+   {i:"🐜",w:"Quan sát nhỏ",e:"Look at the little ant!",p:"/lʊk æt ðə ˈlɪtl ænt/",v:"Nhìn con kiến bé xíu kìa!"}],
+  V:[{i:"🐕",w:"dog",p:"/dɔːɡ/",v:"con chó"},{i:"🐈",w:"cat",p:"/kæt/",v:"con mèo"},{i:"🐦",w:"bird",p:"/bɜːrd/",v:"con chim"},{i:"🌸",w:"flower",p:"/ˈflaʊər/",v:"bông hoa"}]},
+
+ {id:"t20",e:"🛒",vi:"Đi chợ, siêu thị",en:"At the market",
+  L:[
+   {i:"🛒",w:"Trên đường đi",e:"We are going to the market.",p:"/wiː ɑːr ˈɡoʊɪŋ tuː ðə ˈmɑːrkɪt/",v:"Mẹ con mình đi chợ nhé."},
+   {i:"🍎",w:"Cho bé tham gia",e:"Can you find the apples?",p:"/kæn juː faɪnd ði ˈæplz/",v:"Con tìm quả táo giúp mẹ nhé?"},
+   {i:"🚫",w:"Bé sờ đồ",e:"Don't touch that, please.",p:"/doʊnt tʌtʃ ðæt pliːz/",v:"Đừng sờ vào đó con nhé."},
+   {i:"🍌",w:"Bỏ hàng vào xe",e:"Put the bananas in the cart.",p:"/pʊt ðə bəˈnænəz ɪn ðə kɑːrt/",v:"Bỏ chuối vào xe đẩy nào."},
+   {i:"💵",w:"Ra quầy",e:"Now we pay.",p:"/naʊ wiː peɪ/",v:"Giờ mình trả tiền nhé."},
+   {i:"🙋",w:"Dạy bé lễ phép",e:"Say thank you to the lady.",p:"/seɪ ˈθæŋk juː tuː ðə ˈleɪdi/",v:"Cảm ơn cô đi con."}],
+  V:[{i:"🛒",w:"market",p:"/ˈmɑːrkɪt/",v:"chợ"},{i:"🍎",w:"apple",p:"/ˈæpl/",v:"quả táo"},{i:"🍌",w:"banana",p:"/bəˈnænə/",v:"quả chuối"},{i:"💵",w:"pay",p:"/peɪ/",v:"trả tiền"}]},
+
+ {id:"t21",e:"🏠",vi:"Về đến nhà",en:"Back home",
+  L:[
+   {i:"🏠",w:"Vừa vào cửa",e:"We are home!",p:"/wiː ɑːr hoʊm/",v:"Về đến nhà rồi!"},
+   {i:"👟",w:"Ở cửa",e:"Take off your shoes.",p:"/teɪk ɔːf jɔːr ʃuːz/",v:"Cởi giày ra nào."},
+   {i:"🧼",w:"Việc đầu tiên",e:"Wash your hands and feet.",p:"/wɑːʃ jɔːr hændz ænd fiːt/",v:"Rửa tay chân đi con."},
+   {i:"🎒",w:"Cất đồ",e:"Put your bag here.",p:"/pʊt jɔːr bæɡ hɪr/",v:"Để cặp vào đây nhé."},
+   {i:"🥤",w:"Sau khi chơi",e:"Are you thirsty?",p:"/ɑːr juː ˈθɜːrsti/",v:"Con khát nước không?"},
+   {i:"😊",w:"Trò chuyện với bé",e:"Did you have fun today?",p:"/dɪd juː hæv fʌn təˈdeɪ/",v:"Hôm nay con chơi vui không?"}],
+  V:[{i:"🏠",w:"home",p:"/hoʊm/",v:"nhà"},{i:"🖐️",w:"hands",p:"/hændz/",v:"đôi tay"},{i:"🦶",w:"feet",p:"/fiːt/",v:"đôi chân"},{i:"🥤",w:"thirsty",p:"/ˈθɜːrsti/",v:"khát nước"}]}
+]},
+
+{id:"g4",e:"🌙",name:"Buổi tối",sub:"Ăn tối, tắm, thay đồ ngủ, uống sữa rồi đi ngủ",c:"var(--plum)",topics:[
+ {id:"t22",e:"🍲",vi:"Bữa tối cả nhà",en:"Family dinner",
+  L:[
+   {i:"🍲",w:"Dọn cơm xong",e:"Dinner is ready.",p:"/ˈdɪnər ɪz ˈredi/",v:"Cơm tối xong rồi."},
+   {i:"🪑",w:"Gọi bé",e:"Come to the table.",p:"/kʌm tuː ðə ˈteɪbl/",v:"Lại bàn ăn nào."},
+   {i:"🙏",w:"Dạy bé mời cả nhà",e:"Let's eat, everyone!",p:"/lets iːt ˈevriwʌn/",v:"Con mời cả nhà ăn cơm."},
+   {i:"🥄",w:"Bé bốc tay",e:"Use your spoon, not your hands.",p:"/juːz jɔːr spuːn nɑːt jɔːr hændz/",v:"Dùng thìa nhé, đừng bốc tay."},
+   {i:"🥦",w:"Bé kén rau",e:"Try one bite of vegetables.",p:"/traɪ wʌn baɪt əv ˈvedʒtəblz/",v:"Ăn thử một miếng rau nào."},
+   {i:"😊",w:"Khen bé",e:"You ate so well tonight!",p:"/juː eɪt soʊ wel təˈnaɪt/",v:"Tối nay con ăn giỏi quá!"}],
+  V:[{i:"🍲",w:"dinner",p:"/ˈdɪnər/",v:"bữa tối"},{i:"🪑",w:"table",p:"/ˈteɪbl/",v:"cái bàn"},{i:"🥦",w:"vegetables",p:"/ˈvedʒtəblz/",v:"rau"},{i:"🐟",w:"fish",p:"/fɪʃ/",v:"cá"}]},
+
+ {id:"t23",e:"🛁",vi:"Giờ tắm",en:"Bath time",
+  L:[
+   {i:"🛁",w:"Gọi bé đi tắm",e:"Bath time!",p:"/bæθ taɪm/",v:"Đến giờ tắm rồi!"},
+   {i:"👕",w:"Cởi đồ",e:"Take off your clothes.",p:"/teɪk ɔːf jɔːr kloʊðz/",v:"Cởi quần áo ra nào."},
+   {i:"♨️",w:"Thử nước cùng bé",e:"The water is warm.",p:"/ðə ˈwɔːtər ɪz wɔːrm/",v:"Nước ấm rồi này."},
+   {i:"🧴",w:"Gội đầu",e:"Close your eyes. I'll wash your hair.",p:"/kloʊz jɔːr aɪz aɪl wɑːʃ jɔːr her/",v:"Nhắm mắt lại. Mẹ gội đầu cho con."},
+   {i:"🦆",w:"Bé nghịch nước",e:"Splash splash! So fun!",p:"/splæʃ splæʃ soʊ fʌn/",v:"Té nước, té nước! Vui quá!"},
+   {i:"🧺",w:"Ra khỏi bồn",e:"Let's dry you off.",p:"/lets draɪ juː ɔːf/",v:"Mình lau khô người nào."}],
+  V:[{i:"🛁",w:"bath",p:"/bæθ/",v:"tắm"},{i:"💧",w:"water",p:"/ˈwɔːtər/",v:"nước"},{i:"🧴",w:"shampoo",p:"/ʃæmˈpuː/",v:"dầu gội"},{i:"🦆",w:"duck",p:"/dʌk/",v:"con vịt"}]},
+
+ {id:"t24",e:"🩳",vi:"Thay đồ ngủ, sấy tóc",en:"Pajamas time",
+  L:[
+   {i:"🩳",w:"Ngay sau khi tắm",e:"Time for pajamas.",p:"/taɪm fɔːr pəˈdʒɑːməz/",v:"Đến giờ mặc đồ ngủ rồi."},
+   {i:"💨",w:"Sấy tóc",e:"Let me dry your hair.",p:"/let miː draɪ jɔːr her/",v:"Để mẹ sấy tóc cho con."},
+   {i:"🧴",w:"Bôi kem",e:"Let me put on some lotion.",p:"/let miː pʊt ɑːn sʌm ˈloʊʃn/",v:"Để mẹ bôi kem dưỡng nhé."},
+   {i:"🙆",w:"Chui áo",e:"Arms up, one more time.",p:"/ɑːrmz ʌp wʌn mɔːr taɪm/",v:"Giơ tay lên, một lần nữa nào."},
+   {i:"🧦",w:"Kiểm tra bé",e:"Do you feel warm now?",p:"/duː juː fiːl wɔːrm naʊ/",v:"Con thấy ấm chưa?"},
+   {i:"🥰",w:"Ôm bé",e:"You smell so good!",p:"/juː smel soʊ ɡʊd/",v:"Con thơm quá đi!"}],
+  V:[{i:"🩳",w:"pajamas",p:"/pəˈdʒɑːməz/",v:"đồ ngủ"},{i:"💇",w:"hair",p:"/her/",v:"tóc"},{i:"💨",w:"dry",p:"/draɪ/",v:"làm khô"},{i:"♨️",w:"warm",p:"/wɔːrm/",v:"ấm"}]},
+
+ {id:"t25",e:"🍼",vi:"Uống sữa tối",en:"Evening milk",
+  L:[
+   {i:"🍼",w:"Đưa bình sữa",e:"Here's your milk.",p:"/hɪrz jɔːr mɪlk/",v:"Sữa của con đây."},
+   {i:"🤲",w:"Dạy bé cầm",e:"Hold it with two hands.",p:"/hoʊld ɪt wɪð tuː hændz/",v:"Cầm bằng hai tay nào."},
+   {i:"🐌",w:"Bé uống vội",e:"Drink slowly.",p:"/drɪŋk ˈsloʊli/",v:"Uống từ từ thôi."},
+   {i:"🥛",w:"Hỏi bé",e:"Is it warm enough?",p:"/ɪz ɪt wɔːrm ɪˈnʌf/",v:"Sữa đủ ấm chưa con?"},
+   {i:"🎉",w:"Uống hết",e:"All gone! Great job!",p:"/ɔːl ɡɔːn ɡreɪt dʒɑːb/",v:"Hết sạch rồi! Giỏi lắm!"},
+   {i:"🪥",w:"Việc cuối cùng",e:"Now we brush our teeth.",p:"/naʊ wiː brʌʃ ˈaʊər tiːθ/",v:"Giờ mình đánh răng nhé."}],
+  V:[{i:"🍼",w:"milk",p:"/mɪlk/",v:"sữa"},{i:"🥛",w:"cup",p:"/kʌp/",v:"cái cốc"},{i:"🥤",w:"drink",p:"/drɪŋk/",v:"uống"},{i:"🐌",w:"slowly",p:"/ˈsloʊli/",v:"từ từ"}]},
+
+ {id:"t26",e:"📚",vi:"Kể chuyện trước khi ngủ",en:"Story time",
+  L:[
+   {i:"📚",w:"Lên giường",e:"Story time!",p:"/ˈstɔːri taɪm/",v:"Đến giờ kể chuyện rồi!"},
+   {i:"🛏️",w:"Cho bé chọn",e:"Which book do you want?",p:"/wɪtʃ bʊk duː juː wɑːnt/",v:"Con muốn đọc quyển nào?"},
+   {i:"🌜",w:"Mở đầu truyện",e:"Once upon a time...",p:"/wʌns əˈpɑːn ə taɪm/",v:"Ngày xửa ngày xưa…"},
+   {i:"🤫",w:"Bé nói chen",e:"Listen quietly.",p:"/ˈlɪsn ˈkwaɪətli/",v:"Nghe mẹ kể nhé."},
+   {i:"😴",w:"Bé đòi thêm",e:"One more page, then sleep.",p:"/wʌn mɔːr peɪdʒ ðen sliːp/",v:"Thêm một trang rồi ngủ nhé."},
+   {i:"🔚",w:"Gấp sách",e:"The end. Time to sleep.",p:"/ði end taɪm tuː sliːp/",v:"Hết chuyện rồi. Đi ngủ thôi."}],
+  V:[{i:"📚",w:"story",p:"/ˈstɔːri/",v:"câu chuyện"},{i:"👂",w:"listen",p:"/ˈlɪsn/",v:"lắng nghe"},{i:"📄",w:"page",p:"/peɪdʒ/",v:"trang sách"},{i:"😴",w:"sleep",p:"/sliːp/",v:"ngủ"}]},
+
+ {id:"t27",e:"🌙",vi:"Đi ngủ",en:"Bedtime",
+  L:[
+   {i:"🌙",w:"Tắt hết trò chơi",e:"It's bedtime.",p:"/ɪts ˈbedtaɪm/",v:"Đến giờ đi ngủ rồi."},
+   {i:"🛏️",w:"Đắp chăn",e:"Here's your blanket.",p:"/hɪrz jɔːr ˈblæŋkɪt/",v:"Chăn của con đây."},
+   {i:"💡",w:"Tắt đèn",e:"Turn off the light.",p:"/tɜːrn ɔːf ðə laɪt/",v:"Tắt đèn nhé."},
+   {i:"🤱",w:"Bé sợ tối",e:"Mommy is right here.",p:"/ˈmɑːmi ɪz raɪt hɪr/",v:"Có mẹ ngay đây rồi."},
+   {i:"❤️",w:"Ôm bé",e:"I love you so much.",p:"/aɪ lʌv juː soʊ mʌtʃ/",v:"Mẹ yêu con nhiều lắm."},
+   {i:"✨",w:"Câu cuối trong ngày",e:"Good night. Sweet dreams.",p:"/ɡʊd naɪt swiːt driːmz/",v:"Ngủ ngon, mơ giấc mơ đẹp nhé."}],
+  V:[{i:"🛏️",w:"bed",p:"/bed/",v:"giường"},{i:"🧣",w:"blanket",p:"/ˈblæŋkɪt/",v:"cái chăn"},{i:"💡",w:"light",p:"/laɪt/",v:"đèn"},{i:"🌙",w:"moon",p:"/muːn/",v:"mặt trăng"}]}
+]},
+
+{id:"g5",e:"💛",name:"Dùng được mọi lúc",sub:"Lễ phép, cảm xúc, cơ thể, người thân, lúc ốm đau",c:"var(--berry)",topics:[
+ {id:"t28",e:"🙏",vi:"Lễ phép: chào, cảm ơn, xin lỗi",en:"Good manners",
+  L:[
+   {i:"👋",w:"Gặp người quen",e:"Say hello!",p:"/seɪ heˈloʊ/",v:"Con chào đi nào!"},
+   {i:"🙏",w:"Được cho quà",e:"Say thank you.",p:"/seɪ ˈθæŋk juː/",v:"Con nói cảm ơn đi."},
+   {i:"😔",w:"Bé làm sai",e:"Say sorry, please.",p:"/seɪ ˈsɑːri pliːz/",v:"Con xin lỗi nhé."},
+   {i:"🤲",w:"Bé đòi đồ",e:"Say please first.",p:"/seɪ pliːz fɜːrst/",v:"Nói làm ơn trước đã nào."},
+   {i:"🚪",w:"Chen qua người lớn",e:"Say excuse me.",p:"/seɪ ɪkˈskjuːz miː/",v:"Nói xin phép đi con."},
+   {i:"👋",w:"Ra về",e:"Bye bye! See you later.",p:"/baɪ baɪ siː juː ˈleɪtər/",v:"Tạm biệt! Hẹn gặp lại nhé."}],
+  V:[{i:"👋",w:"hello",p:"/heˈloʊ/",v:"xin chào"},{i:"🙏",w:"thank you",p:"/ˈθæŋk juː/",v:"cảm ơn"},{i:"😔",w:"sorry",p:"/ˈsɑːri/",v:"xin lỗi"},{i:"🤲",w:"please",p:"/pliːz/",v:"làm ơn"}]},
+
+ {id:"t29",e:"😊",vi:"Cảm xúc của con",en:"Feelings",
+  L:[
+   {i:"😊",w:"Bé đang vui",e:"Are you happy?",p:"/ɑːr juː ˈhæpi/",v:"Con vui không?"},
+   {i:"😢",w:"Bé khóc",e:"Don't cry. Mommy is here.",p:"/doʊnt kraɪ ˈmɑːmi ɪz hɪr/",v:"Đừng khóc. Có mẹ đây rồi."},
+   {i:"😠",w:"Bé ăn vạ",e:"Are you angry? Tell me.",p:"/ɑːr juː ˈæŋɡri tel miː/",v:"Con giận à? Nói mẹ nghe."},
+   {i:"🫂",w:"Ôm bé lại",e:"It's okay. I understand.",p:"/ɪts oʊˈkeɪ aɪ ˌʌndərˈstænd/",v:"Không sao đâu. Mẹ hiểu mà."},
+   {i:"😨",w:"Bé sợ",e:"Don't be scared.",p:"/doʊnt biː skerd/",v:"Đừng sợ nhé."},
+   {i:"😄",w:"Bé nguôi",e:"Give me a big smile!",p:"/ɡɪv miː ə bɪɡ smaɪl/",v:"Cười thật tươi nào!"}],
+  V:[{i:"😊",w:"happy",p:"/ˈhæpi/",v:"vui"},{i:"😢",w:"sad",p:"/sæd/",v:"buồn"},{i:"😠",w:"angry",p:"/ˈæŋɡri/",v:"tức giận"},{i:"😨",w:"scared",p:"/skerd/",v:"sợ hãi"}]},
+
+ {id:"t30",e:"👨‍👩‍👦",vi:"Gia đình, người thân",en:"My family",
+  L:[
+   {i:"👩",w:"Chỉ vào mẹ",e:"This is mommy.",p:"/ðɪs ɪz ˈmɑːmi/",v:"Đây là mẹ."},
+   {i:"👨",w:"Hỏi bé",e:"Where's daddy?",p:"/werz ˈdædi/",v:"Bố đâu rồi nhỉ?"},
+   {i:"👴",w:"Gặp ông",e:"Say hi to grandpa.",p:"/seɪ haɪ tuː ˈɡrænpɑː/",v:"Con chào ông đi."},
+   {i:"😘",w:"Ông bà về",e:"Give grandma a kiss.",p:"/ɡɪv ˈɡrænmɑː ə kɪs/",v:"Thơm bà một cái nào."},
+   {i:"❤️",w:"Cả nhà quây quần",e:"We are a family.",p:"/wiː ɑːr ə ˈfæməli/",v:"Chúng ta là một gia đình."},
+   {i:"📞",w:"Gọi video cho ông bà",e:"Wave and say hi!",p:"/weɪv ænd seɪ haɪ/",v:"Vẫy tay chào đi con!"}],
+  V:[{i:"👩",w:"mommy",p:"/ˈmɑːmi/",v:"mẹ"},{i:"👨",w:"daddy",p:"/ˈdædi/",v:"bố"},{i:"👵",w:"grandma",p:"/ˈɡrænmɑː/",v:"bà"},{i:"👴",w:"grandpa",p:"/ˈɡrænpɑː/",v:"ông"}]},
+
+ {id:"t31",e:"👶",vi:"Cơ thể của con",en:"My body",
+  L:[
+   {i:"👃",w:"Trò chơi chỉ bộ phận",e:"Where is your nose?",p:"/wer ɪz jɔːr noʊz/",v:"Mũi con đâu?"},
+   {i:"👀",w:"Cho bé sờ",e:"Touch your eyes.",p:"/tʌtʃ jɔːr aɪz/",v:"Sờ vào mắt nào."},
+   {i:"👂",w:"Dạy từ mới",e:"These are your ears.",p:"/ðiːz ɑːr jɔːr ɪrz/",v:"Đây là tai của con."},
+   {i:"✋",w:"Trước khi rửa tay",e:"Show me your hands.",p:"/ʃoʊ miː jɔːr hændz/",v:"Đưa tay ra mẹ xem nào."},
+   {i:"🦶",w:"Lúc thay tất",e:"Wiggle your toes!",p:"/ˈwɪɡl jɔːr toʊz/",v:"Ngọ nguậy ngón chân nào!"},
+   {i:"🎉",w:"Bé chỉ đúng hết",e:"Good job! You know them all.",p:"/ɡʊd dʒɑːb juː noʊ ðem ɔːl/",v:"Giỏi quá! Con biết hết rồi."}],
+  V:[{i:"👃",w:"nose",p:"/noʊz/",v:"mũi"},{i:"👀",w:"eyes",p:"/aɪz/",v:"mắt"},{i:"👂",w:"ears",p:"/ɪrz/",v:"tai"},{i:"👄",w:"mouth",p:"/maʊθ/",v:"miệng"}]},
+
+ {id:"t32",e:"🤒",vi:"Khi con đau, con ốm",en:"When you feel sick",
+  L:[
+   {i:"🤕",w:"Bé ngã, bé khóc",e:"Where does it hurt?",p:"/wer dʌz ɪt hɜːrt/",v:"Con đau chỗ nào?"},
+   {i:"🫂",w:"Trấn an bé",e:"Let me see. It's okay.",p:"/let miː siː ɪts oʊˈkeɪ/",v:"Để mẹ xem nào. Không sao đâu."},
+   {i:"🩹",w:"Xoa dịu",e:"Mommy will kiss it better.",p:"/ˈmɑːmi wɪl kɪs ɪt ˈbetər/",v:"Mẹ thơm cho hết đau nhé."},
+   {i:"🌡️",w:"Bé sốt",e:"You feel a little hot.",p:"/juː fiːl ə ˈlɪtl hɑːt/",v:"Người con hơi nóng."},
+   {i:"💊",w:"Cho uống thuốc",e:"Take your medicine, please.",p:"/teɪk jɔːr ˈmedəsn pliːz/",v:"Uống thuốc đi con."},
+   {i:"😴",w:"Sau khi uống thuốc",e:"Rest now. You will feel better.",p:"/rest naʊ juː wɪl fiːl ˈbetər/",v:"Nghỉ đi con. Rồi sẽ đỡ thôi."}],
+  V:[{i:"🤕",w:"hurt",p:"/hɜːrt/",v:"đau"},{i:"👨‍⚕️",w:"doctor",p:"/ˈdɑːktər/",v:"bác sĩ"},{i:"💊",w:"medicine",p:"/ˈmedəsn/",v:"thuốc"},{i:"🌡️",w:"fever",p:"/ˈfiːvər/",v:"sốt"}]}
+]}
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const content = document.getElementById("content");
+const chips = document.getElementById("chips");
+const slist = document.getElementById("slist");
+let step = 0;
+
+G.forEach(g => {
+  const chip = document.createElement("button");
+  chip.className = "chip"; chip.type = "button";
+  chip.textContent = g.e + " " + g.name;
+  chip.dataset.g = g.id;
+  chip.style.setProperty("--c", g.c);
+  chip.onclick = () => jump(g.id);
+  chips.appendChild(chip);
+
+  const lab = document.createElement("p");
+  lab.className = "sgroup"; lab.textContent = g.e + " " + g.name;
+  slist.appendChild(lab);
+  const box = document.createElement("div");
+  box.className = "slist";
+  slist.appendChild(box);
+
+  const sec = document.createElement("section");
+  sec.className = "group"; sec.id = g.id; sec.style.setProperty("--accent", g.c);
+  let html = '<div class="ghead"><span class="ge">' + g.e + '</span><h2>' + esc(g.name) + '</h2></div>' +
+             '<p class="gsub">' + esc(g.sub) + '</p><div class="grule"></div>';
+
+  g.topics.forEach(t => {
+    step++;
+    const n = String(step).padStart(2, "0");
+    const it = document.createElement("button");
+    it.className = "sitem"; it.type = "button";
+    it.innerHTML = '<span class="n">' + t.e + '</span>' + esc(t.vi);
+    it.onclick = () => { closeAll(); jump(t.id); };
+    box.appendChild(it);
+
+    html += '<section class="topic" id="' + t.id + '">' +
+      '<div class="thead"><span class="tstep">' + n + '</span><h3 class="tname">' + esc(t.vi) + '</h3><span class="ten">' + esc(t.en) + '</span></div>' +
+      '<div class="grid">' +
+      t.L.map(l =>
+        '<article class="card" data-s="' + esc((l.e + " " + l.v + " " + l.w + " " + t.vi + " " + t.en).toLowerCase()) + '">' +
+          '<div class="ctop"><span class="ci">' + l.i + '</span><span class="when">' + esc(l.w) + '</span></div>' +
+          '<p class="en">' + esc(l.e) + '</p>' +
+          '<p class="ipa">' + esc(l.p) + '</p>' +
+          '<p class="vi">' + esc(l.v) + '</p>' +
+          '<div class="acts">' +
+            '<button class="play" data-say="' + esc(l.e) + '">🔊 Nghe</button>' +
+            '<button class="play ghost" data-say="' + esc(l.e) + '" data-slow="1">🐢</button>' +
+          '</div></article>').join("") +
+      '</div>' +
+      '<div class="vocab"><p class="vlabel">Từ mới</p><div class="vgrid">' +
+        t.V.map(v =>
+          '<button class="word" data-say="' + esc(v.w) + '" data-s="' + esc((v.w + " " + v.v + " " + t.vi).toLowerCase()) + '">' +
+            '<span class="wi">' + v.i + '</span><span class="wt"><b>' + esc(v.w) + '</b>' +
+            '<span class="wp">' + esc(v.p) + '</span><span class="wv">' + esc(v.v) + '</span></span></button>').join("") +
+      '</div></div></section>';
+  });
+  sec.innerHTML = html;
+  content.appendChild(sec);
+});
+
+function jump(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+function markChip(gid){
+  [...chips.children].forEach(c => {
+    const on = c.dataset.g === gid;
+    c.setAttribute("aria-current", on ? "true" : "false");
+    c.style.background = on ? c.style.getPropertyValue("--c") : "var(--card)";
+    c.style.borderColor = on ? c.style.getPropertyValue("--c") : "var(--line)";
+  });
+  const a = [...chips.children].find(c => c.dataset.g === gid);
+  if(a) a.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+}
+
+/* ---------- Giọng đọc ---------- */
+const GOOD = /natural|neural|enhanced|premium|siri|samantha|ava|allison|zoe|serena|nicky|aria|jenny|emma|libby|sonia|google us english|google uk english/i;
+const BAD  = /compact|espeak|pico|robot/i;
+let voices = [], voice = null, rate = 0.9;
+const sel = document.getElementById("voiceSel");
+
+function score(v){
+  let s = 0;
+  if(GOOD.test(v.name)) s += 10;
+  if(BAD.test(v.name)) s -= 8;
+  if(/en[-_]US/i.test(v.lang)) s += 3;
+  if(/en[-_]GB/i.test(v.lang)) s += 2;
+  if(v.localService === false) s += 2;
+  return s;
+}
+function loadVoices(){
+  voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+  voices.sort((a,b) => score(b) - score(a));
+  sel.innerHTML = voices.map((v,i) =>
+    '<option value="' + i + '">' + (score(v) >= 10 ? "⭐ " : "") + esc(v.name) + " — " + esc(v.lang) + "</option>"
+  ).join("") || '<option>Máy chưa có giọng tiếng Anh nào</option>';
+  voice = voices[0] || null;
+}
+if("speechSynthesis" in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+sel.onchange = () => { voice = voices[+sel.value] || null; speak("Good morning, baby!"); };
+
+const rateEl = document.getElementById("rateSel"), rateVal = document.getElementById("rateVal");
+rateEl.oninput = () => { rate = +rateEl.value; rateVal.textContent = rate.toFixed(2); };
+
+function speak(text, slow, btn){
+  if(!("speechSynthesis" in window)){ alert("Trình duyệt này không đọc được. Thử mở bằng Chrome hoặc Safari."); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = (voice && voice.lang) || "en-US";
+  u.rate = slow ? Math.max(0.4, rate - 0.3) : rate;
+  u.pitch = 1;
+  if(voice) u.voice = voice;
+  if(btn){ btn.classList.add("speaking"); u.onend = u.onerror = () => btn.classList.remove("speaking"); }
+  speechSynthesis.speak(u);
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-say]");
+  if(!b) return;
+  speak(b.dataset.say, b.dataset.slow, b);
+});
+document.getElementById("testBtn").onclick = () => speak("Good morning, baby! Did you sleep well?");
+
+/* ---------- Tìm kiếm ---------- */
+const q = document.getElementById("q"), clearBtn = document.getElementById("clear"), empty = document.getElementById("empty");
+q.addEventListener("input", () => {
+  const k = q.value.trim().toLowerCase();
+  clearBtn.classList.toggle("on", !!k);
+  let total = 0;
+  document.querySelectorAll(".group").forEach(gsec => {
+    let gHits = 0;
+    gsec.querySelectorAll(".topic").forEach(t => {
+      let hits = 0;
+      t.querySelectorAll(".card").forEach(el => {
+        const ok = !k || el.dataset.s.includes(k);
+        el.style.display = ok ? "" : "none";
+        if(ok) hits++;
+      });
+      let vHits = 0;
+      t.querySelectorAll(".word").forEach(el => {
+        const ok = !k || el.dataset.s.includes(k);
+        el.style.display = ok ? "" : "none";
+        if(ok) vHits++;
+      });
+      t.querySelector(".vocab").style.display = vHits ? "" : "none";
+      const show = hits + vHits > 0;
+      t.style.display = show ? "" : "none";
+      if(show) gHits++;
+      total += hits + vHits;
+    });
+    gsec.style.display = gHits ? "" : "none";
+  });
+  empty.hidden = total > 0;
+});
+clearBtn.onclick = () => { q.value = ""; q.dispatchEvent(new Event("input")); q.focus(); };
+
+/* ---------- Sheets ---------- */
+const sheet = document.getElementById("sheet"), vsheet = document.getElementById("vsheet"), scrim = document.getElementById("scrim");
+function closeAll(){ sheet.classList.remove("on"); vsheet.classList.remove("on"); scrim.classList.remove("on"); }
+document.getElementById("menuBtn").onclick = () => { closeAll(); sheet.classList.add("on"); scrim.classList.add("on"); };
+document.getElementById("setBtn").onclick = () => { closeAll(); vsheet.classList.add("on"); scrim.classList.add("on"); };
+scrim.onclick = closeAll;
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeAll(); });
+
+const obs = new IntersectionObserver(es => {
+  es.forEach(en => { if(en.isIntersecting) markChip(en.target.id); });
+}, {rootMargin:"-140px 0px -70% 0px"});
+document.querySelectorAll(".group").forEach(s => obs.observe(s));
+markChip("g1");
+</script>
+</body>
+</html>
