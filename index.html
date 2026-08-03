@@ -18,7 +18,7 @@ html,body{margin:0}
 body{background:var(--paper);color:var(--ink);font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%;padding-bottom:50px}
 h1,h2,h3{font-family:"Baloo 2","Be Vietnam Pro",sans-serif;font-weight:800;line-height:1.2;margin:0}
 button,select,input{font-family:inherit}
-button{cursor:pointer}
+button{cursor:pointer;color:var(--ink)}
 :focus-visible{outline:3px solid var(--berry);outline-offset:2px;border-radius:6px}
 
 .bar{position:sticky;top:0;z-index:40;background:rgba(239,242,233,.95);backdrop-filter:blur(8px) saturate(140%);border-bottom:1px solid var(--line);padding:9px 12px 0;padding-top:calc(9px + env(safe-area-inset-top))}
@@ -44,14 +44,14 @@ main{max-width:1000px;margin:0 auto;padding:14px 12px 0}
 .intro{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:20px;font-size:13px;color:var(--soft);box-shadow:var(--shadow)}
 .intro b{color:var(--ink)}
 
-.group{margin-bottom:26px;scroll-margin-top:132px}
+.group{margin-bottom:26px;scroll-margin-top:170px}
 .ghead{display:flex;align-items:center;gap:10px;margin:0 0 4px}
-.ghead .ge{font-size:22px}
+.ge{font-size:22px}
 .ghead h2{font-size:19px;color:var(--accent)}
 .gsub{font-size:12px;color:var(--soft);margin:0 0 14px}
 .grule{height:2px;background:var(--accent);opacity:.25;border-radius:2px;margin-bottom:14px}
 
-.topic{margin-bottom:20px;scroll-margin-top:132px}
+.topic{margin-bottom:20px;scroll-margin-top:170px}
 .thead{display:flex;align-items:baseline;gap:8px;margin-bottom:9px;flex-wrap:wrap}
 .tstep{font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:2px 6px}
 .tname{font-size:17px}
@@ -74,13 +74,13 @@ main{max-width:1000px;margin:0 auto;padding:14px 12px 0}
 .vocab{margin-top:11px}
 .vlabel{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0 0 8px;display:flex;align-items:center;gap:8px}
 .vlabel::after{content:"";flex:1;height:1.5px;background:var(--line)}
-.vgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
-.word{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px 9px;display:flex;gap:8px;align-items:center;text-align:left;min-width:0}
-.word .wi{font-size:20px;flex:none}
+.vgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.word{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px 4px;display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;min-width:0}
+.word .wi{font-size:19px;flex:none;line-height:1.1}
 .word .wt{min-width:0}
-.word b{display:block;font-family:"Baloo 2",sans-serif;font-size:14px;font-weight:700;overflow-wrap:break-word}
-.word .wp{display:block;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--accent);overflow-wrap:break-word}
-.word .wv{display:block;font-size:11.5px;color:var(--soft)}
+.word b{display:block;font-family:"Baloo 2",sans-serif;font-size:11.5px;font-weight:700;line-height:1.2;overflow-wrap:anywhere}
+.word .wp{display:block;font-family:ui-monospace,Menlo,monospace;font-size:8.5px;line-height:1.2;color:var(--accent);overflow-wrap:anywhere}
+.word .wv{display:block;font-size:10px;line-height:1.25;color:var(--soft)}
 
 .scrim{position:fixed;inset:0;background:rgba(28,51,44,.45);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
 .scrim.on{opacity:1;pointer-events:auto}
@@ -97,16 +97,167 @@ main{max-width:1000px;margin:0 auto;padding:14px 12px 0}
 .field label{display:block;font-size:12px;font-weight:600;margin-bottom:5px}
 select,.slider{width:100%;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px;font-size:14px;color:var(--ink)}
 .tip{background:#FFF7E2;border:1.5px solid #F0DCA8;border-radius:12px;padding:11px 12px;font-size:12.5px;line-height:1.5}
-.tip b{display:block;margin-bottom:4px}
+.tip b{display:inline}
+.tip > b:first-child{display:block;margin-bottom:6px}
+.tip ul{margin:6px 0 0;padding-left:17px}
+.tip li{margin-bottom:6px}
+.tip li:last-child{margin-bottom:0}
 .testbtn{border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px;font-size:13.5px;font-weight:600;width:100%;margin-bottom:14px}
 .empty{text-align:center;padding:40px 16px;color:var(--soft)}
 .empty b{display:block;font-family:"Baloo 2",sans-serif;font-size:18px;color:var(--ink);margin-bottom:5px}
 footer{max-width:1000px;margin:0 auto;padding:6px 14px 26px;color:var(--soft);font-size:11.5px;text-align:center}
 
+/* ---------- Dark mode ---------- */
+[data-theme="dark"]{
+  --paper:#141C1A; --card:#1D2926; --ink:#E7EFE9; --soft:#9BB1A8; --line:#2C3B36;
+  --sun:#E5B152; --leaf:#4FC0A1; --sky:#69AADB; --plum:#AE8ADD; --berry:#EC7A9D;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 8px 20px -16px #000;
+}
+body{transition:background .2s,color .2s}
+[data-theme="dark"] .bar{background:rgba(20,28,26,.95)}
+[data-theme="dark"] .tip{background:#2A2519;border-color:#4B4128;color:#EADFC6}
+[data-theme="dark"] .chip[aria-current="true"],
+[data-theme="dark"] .tstep,
+[data-theme="dark"] .play{color:#11201C}
+[data-theme="dark"] .play.ghost{color:var(--accent)}
+[data-theme="dark"] .menubtn,[data-theme="dark"] .testbtn{background:var(--ink);color:#11201C;border-color:var(--ink)}
+
+/* ---------- Điều khiển của chủ đề ---------- */
+.tctl{display:flex;gap:5px;align-items:center;margin-left:auto}
+.ctl{border:1.5px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;padding:4px 9px;font-size:11.5px;font-weight:600;line-height:1.5}
+.ctl.fav{font-size:14px;padding:2px 8px;color:var(--soft)}
+.ctl.fav.on{color:var(--sun);border-color:var(--sun);background:color-mix(in srgb,var(--sun) 12%,transparent)}
+.ctl.shuffle{font-size:13px;padding:3px 9px}
+.ctl:active{transform:translateY(1px)}
+/* nút quay một vòng rồi nảy nhẹ */
+.spin{animation:spin .85s cubic-bezier(.34,1.35,.5,1)}
+@keyframes spin{
+  0%{transform:rotate(0) scale(1)}
+  65%{transform:rotate(378deg) scale(1.15)}
+  100%{transform:rotate(360deg) scale(1)}
+}
+/* thẻ câu nảy vào, so le nhau như quân bài được chia */
+@keyframes cardIn{
+  0%{opacity:0;transform:translateY(18px) scale(.9) rotate(var(--rot,0deg))}
+  60%{opacity:1;transform:translateY(-4px) scale(1.02) rotate(0deg)}
+  82%{transform:translateY(1px) scale(.995)}
+  100%{opacity:1;transform:none}
+}
+.card.pop{animation:cardIn .78s cubic-bezier(.25,.9,.35,1) both}
+.card.pop:nth-child(odd){--rot:-2.5deg}
+.card.pop:nth-child(even){--rot:2.5deg}
+/* emoji bật ra sau thẻ một nhịp */
+@keyframes emojiPop{
+  0%{transform:scale(0) rotate(-30deg)}
+  55%{transform:scale(1.28) rotate(10deg)}
+  78%{transform:scale(.95) rotate(-3deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+.card.pop .ci{display:inline-block;animation:emojiPop .8s .16s cubic-bezier(.3,1.3,.5,1) both}
+/* chữ tiếng Anh hiện dần */
+@keyframes enGlow{0%{opacity:.2}100%{opacity:1}}
+.card.pop .en{animation:enGlow .7s .18s ease-out both}
+
+/* ---------- Khu yêu thích ---------- */
+#favSec[hidden]{display:none}
+#favSec{margin-bottom:26px;--accent:var(--sun)}
+.favhead{display:flex;align-items:center;gap:9px;margin-bottom:3px}
+.favhead h2{font-size:19px;color:var(--sun)}
+.gempty{display:none}
+.sitem{padding:0;overflow:hidden}
+.sgo{flex:1;display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--ink);font-size:13px;font-weight:500;padding:9px 4px 9px 10px;text-align:left;min-width:0;font-family:inherit}
+.sfav{border:0;background:none;color:var(--soft);font-size:15px;padding:9px 10px 9px 4px;flex:none}
+.sfav.on{color:var(--sun)}
+.emptyfav{font-size:12.5px;color:var(--soft);margin:0 0 4px}
+
+/* ---------- Đánh dấu câu đã nói ---------- */
+.chk{margin-left:auto;border:1.5px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;min-width:32px;height:27px;font-size:13px;font-weight:700;display:grid;place-items:center;flex:none;padding:0}
+.chk.on{background:var(--leaf);border-color:var(--leaf);color:#fff}
+[data-theme="dark"] .chk.on{color:#11201C}
+.card.done{border-color:color-mix(in srgb,var(--leaf) 50%,var(--line));background:color-mix(in srgb,var(--leaf) 6%,var(--card))}
+.card.done .en{opacity:.7}
+.tdone{font-size:10.5px;font-weight:700;color:var(--leaf);border:1.5px solid color-mix(in srgb,var(--leaf) 40%,transparent);border-radius:999px;padding:2px 7px;white-space:nowrap}
+.tdone[hidden]{display:none}
+
+/* ---------- Thanh hôm nay ---------- */
+.today{display:flex;align-items:center;gap:11px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:11px 13px;margin-bottom:20px;box-shadow:var(--shadow)}
+.tnum{font-family:"Baloo 2",sans-serif;font-size:24px;font-weight:800;color:var(--leaf);line-height:1;flex:none;min-width:26px;text-align:center}
+.tlab{flex:1;min-width:0}
+.tlab b{display:block;font-size:13px}
+.tlab small{display:block;font-size:11.5px;color:var(--soft)}
+.histbtn{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:600;white-space:nowrap;flex:none}
+
+/* ---------- Bảng lịch sử ---------- */
+.tabs{display:flex;gap:7px;margin-bottom:12px}
+.tab{flex:1;border:1.5px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;padding:8px;font-size:13px;font-weight:600}
+.tab.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hdate{font-size:12.5px;font-weight:700}
+.hdate span{font-weight:400;color:var(--soft);font-size:11.5px}
+.hitem{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;margin-bottom:6px;overflow:hidden}
+.hitem b{font-family:"Baloo 2",sans-serif;font-size:14px;display:block;line-height:1.3}
+.hitem span{font-size:11.5px;color:var(--soft);display:block}
+.hcnt{float:right;font-size:11px;font-weight:700;color:var(--leaf);margin-left:8px}
+.hdates{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;margin-top:2px}
+
+/* ---------- Lịch tổng quan ---------- */
+.cal{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:10px 10px 12px;margin-bottom:16px}
+.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.calhead b{font-family:"Baloo 2",sans-serif;font-size:15px}
+.calnav{border:1.5px solid var(--line);background:transparent;color:var(--ink);width:28px;height:28px;border-radius:9px;font-size:15px;line-height:1}
+.calnav[disabled]{opacity:.3}
+.caldow,.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+/* khoá cứng chiều cao mỗi hàng: ô có dữ liệu hay không cũng cao bằng nhau */
+.calgrid{grid-auto-rows:46px;align-content:start;align-items:stretch}
+.caldow span{text-align:center;font-size:10px;font-weight:600;color:var(--soft);padding-bottom:3px}
+.calcell{position:relative;height:100%;min-height:0;padding:0;border:1.5px solid transparent;background:var(--paper);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--ink);overflow:visible}
+.calcell.empty{background:transparent;border-color:transparent;pointer-events:none}
+.calcell[disabled]{opacity:.55}
+.cnum{font-size:13.5px;font-weight:600;line-height:1;color:var(--soft)}
+/* số câu: huy hiệu tròn nổi ở góc trên phải */
+.ccount{
+  position:absolute;top:-6px;right:-5px;min-width:18px;height:18px;padding:0 4px;
+  border-radius:999px;background:var(--berry);color:#fff;
+  font-size:9.5px;font-weight:700;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--card);
+}
+.calcell.lv1,.callegend i.lv1{background:color-mix(in srgb,var(--leaf) 15%,var(--paper))}
+.calcell.lv2,.callegend i.lv2{background:color-mix(in srgb,var(--leaf) 34%,var(--paper))}
+.calcell.lv3,.callegend i.lv3{background:color-mix(in srgb,var(--leaf) 58%,var(--paper))}
+.calcell.lv4,.callegend i.lv4{background:color-mix(in srgb,var(--leaf) 85%,var(--paper))}
+.calcell.lv1 .cnum,.calcell.lv2 .cnum{color:var(--ink)}
+.calcell.lv3 .cnum,.calcell.lv4 .cnum{color:#fff}
+.calcell.istoday{border-color:var(--berry)}
+.calcell[data-d]{cursor:pointer}
+.callegend{display:flex;align-items:center;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:12px;font-size:9.5px;color:var(--soft)}
+.callegend span{display:flex;align-items:center;gap:4px}
+.callegend i{width:14px;height:14px;border-radius:5px;display:inline-block;border:1px solid var(--line)}
+
+/* ---------- Danh sách ngày đóng mở ---------- */
+.hdate{width:100%;text-align:left;background:transparent;border:0;padding:7px 2px;display:flex;align-items:center;gap:6px;color:var(--ink);font-family:inherit}
+.hchev{display:inline-block;transition:transform .18s;font-size:10px;color:var(--soft)}
+.hday.open .hchev{transform:rotate(90deg)}
+.hday:not(.open) .hdaybody{display:none}
+.hday{margin-bottom:6px;border-bottom:1.5px solid var(--line);padding-bottom:4px}
+.hday.flash{animation:flash 1s ease}
+@keyframes flash{0%,100%{background:transparent}25%{background:color-mix(in srgb,var(--sun) 22%,transparent)}}
+.hclear{border:1.5px solid var(--berry);background:transparent;color:var(--berry);border-radius:999px;padding:9px 14px;font-size:12.5px;font-weight:600;width:100%;margin-top:8px}
+
+
+/* ---------- Bảng hướng dẫn ---------- */
+.howto{display:grid;gap:8px;margin-bottom:4px}
+.hrow{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 11px}
+.hrow .hi{font-size:18px;flex:none;line-height:1.4}
+.hrow b{display:block;font-family:"Baloo 2",sans-serif;font-size:14px;font-weight:700;margin-bottom:1px}
+.hrow div{font-size:12.5px;color:var(--soft);line-height:1.45;min-width:0}
+#isheet .tip{margin-bottom:6px}
+@media (min-width:700px){ .howto{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
 @media (min-width:700px){
   body{font-size:16px}
   .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
-  .vgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .vgrid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+  .word b{font-size:13px}.word .wp{font-size:9.5px}.word .wv{font-size:11px}.word .wi{font-size:21px}
   .slist{grid-template-columns:repeat(3,minmax(0,1fr))}
   .en{font-size:17px}.ipa{font-size:11.5px}.vi{font-size:13.5px}
   .tname{font-size:19px}.ghead h2{font-size:21px}
@@ -120,8 +271,10 @@ footer{max-width:1000px;margin:0 auto;padding:6px 14px 26px;color:var(--soft);fo
   <div class="brandrow">
     <div class="mark">🧸</div>
     <div class="brand">Một ngày của bé — bằng tiếng Anh
-      <small>32 chủ đề, xếp theo trình tự sinh hoạt trong ngày</small>
+      <small>34 chủ đề, xếp theo trình tự sinh hoạt trong ngày</small>
     </div>
+    <button class="icobtn" id="infoBtn" aria-label="Hướng dẫn sử dụng">ℹ️</button>
+    <button class="icobtn" id="themeBtn" aria-label="Đổi nền sáng tối">🌙</button>
     <button class="icobtn" id="setBtn" aria-label="Cài đặt giọng đọc">⚙️</button>
   </div>
   <div class="tools">
@@ -136,7 +289,17 @@ footer{max-width:1000px;margin:0 auto;padding:6px 14px 26px;color:var(--soft);fo
 </header>
 
 <main>
-  <div class="intro"><b>Cách dùng:</b> các chủ đề nối tiếp nhau đúng như một ngày thật — sáng dậy → vệ sinh → ăn sáng → đi chơi → tắm → uống sữa → đi ngủ. Mẹ nói câu tiếng Anh ngay lúc đang làm việc đó, rồi nhắc lại tiếng Việt. Bé 2 tuổi chỉ cần 2–3 câu lặp đi lặp lại mỗi ngày. Giọng đọc nghe chưa hay thì bấm ⚙️ để đổi giọng.</div>
+  <div class="today">
+    <span class="tnum" id="todayNum">0</span>
+    <div class="tlab"><b>câu đã nói hôm nay</b><small id="todaySub">Nói xong câu nào thì bấm ✓ ở câu đó</small></div>
+    <button class="histbtn" id="histBtn">📅 Lịch sử</button>
+  </div>
+  <section id="favSec" hidden>
+    <div class="favhead"><span class="ge">⭐</span><h2>Chủ đề yêu thích</h2></div>
+    <p class="gsub">Bấm ngôi sao ở chủ đề bất kỳ để ghim lên đây</p>
+    <div class="grule"></div>
+    <div id="favWrap"></div>
+  </section>
   <div id="content"></div>
   <div class="empty" id="empty" hidden><b>Không tìm thấy câu nào</b>Thử từ ngắn hơn: ăn, ngủ, tắm, milk…</div>
 </main>
@@ -148,7 +311,51 @@ footer{max-width:1000px;margin:0 auto;padding:6px 14px 26px;color:var(--soft);fo
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Mục lục">
   <div class="grab"></div><h2>Mục lục</h2>
   <p class="note">Theo thứ tự thời gian trong ngày</p>
+  <div id="favList"></div>
   <div id="slist"></div>
+</div>
+
+<div class="sheet" id="isheet" role="dialog" aria-modal="true" aria-label="Hướng dẫn sử dụng">
+  <div class="grab"></div><h2>Hướng dẫn sử dụng</h2>
+  <p class="note">34 chủ đề xếp đúng theo trình tự một ngày: sáng dậy → vệ sinh → ăn sáng → đi lớp → chơi → ra ngoài → tắm → uống sữa → đi ngủ.</p>
+
+  <p class="sgroup">Tìm và di chuyển</p>
+  <div class="howto">
+    <div class="hrow"><span class="hi">🔎</span><div><b>Ô tìm kiếm</b>Gõ tiếng Việt hoặc tiếng Anh đều được: tắm, sữa, cần cẩu, milk. Lúc đang tìm, mỗi chủ đề hiện hết câu khớp.</div></div>
+    <div class="hrow"><span class="hi">📑</span><div><b>Mục lục</b>Nhảy nhanh tới bất kỳ chủ đề nào. Chủ đề đã ghim nằm trên cùng.</div></div>
+    <div class="hrow"><span class="hi">🌅</span><div><b>Thanh buổi trong ngày</b>Cuộn ngang ngay dưới ô tìm kiếm, bấm để nhảy tới buổi đó.</div></div>
+  </div>
+
+  <p class="sgroup">Trong mỗi chủ đề</p>
+  <div class="howto">
+    <div class="hrow"><span class="hi">6️⃣</span><div><b>Mặc định hiện 6 câu</b>Để mẹ không bị ngợp. Chủ đề nhiều nhất có tới 20 câu.</div></div>
+    <div class="hrow"><span class="hi">🔄</span><div><b>Đổi câu khác</b>Bốc ngẫu nhiên 6 câu khác trong cùng chủ đề. Mỗi ngày bấm một lần để không bị nhàm.</div></div>
+    <div class="hrow"><span class="hi">👀</span><div><b>Xem tất cả</b>Mở hết câu của chủ đề, bấm lại để thu gọn.</div></div>
+    <div class="hrow"><span class="hi">⭐</span><div><b>Ghim chủ đề</b>Bấm ngôi sao để đưa chủ đề hay dùng lên đầu trang. Máy nhớ cả sau khi tắt.</div></div>
+  </div>
+
+  <p class="sgroup">Phát âm</p>
+  <div class="howto">
+    <div class="hrow"><span class="hi">🔊</span><div><b>Nghe</b>Đọc câu mẫu với tốc độ bình thường.</div></div>
+    <div class="hrow"><span class="hi">🐢</span><div><b>Chậm</b>Đọc chậm hẳn để bé nói theo từng chữ.</div></div>
+    <div class="hrow"><span class="hi">🔤</span><div><b>Ô từ mới</b>Bấm thẳng vào ô từ mới cũng nghe được phát âm.</div></div>
+    <div class="hrow"><span class="hi">⚙️</span><div><b>Giọng đọc</b>Đổi giọng và tốc độ. Trong đó có hướng dẫn tải giọng chất lượng cao cho máy.</div></div>
+    <div class="hrow"><span class="hi">🌙</span><div><b>Nền sáng / tối</b>Dùng nền tối khi dỗ bé ngủ cho đỡ chói mắt.</div></div>
+  </div>
+
+  <p class="sgroup">Mẹo dạy bé 2 tuổi</p>
+  <div class="tip"><b>Bốn điều quan trọng nhất</b><ul><li><b>Nói đúng lúc đang làm việc đó.</b> Nói “Bath time!” khi đang bế bé vào nhà tắm — bé hiểu qua bối cảnh chứ không cần dịch.</li><li><b>Nói tiếng Anh trước, rồi nhắc lại tiếng Việt</b> một lần. Đừng dịch từng từ.</li><li><b>Mỗi ngày chỉ 2–3 câu, lặp lại suốt cả tuần.</b> Bé cần nghe rất nhiều lần trước khi bật ra được.</li><li><b>Bé chưa nói lại là bình thường.</b> Giai đoạn này bé đang hấp thụ. Đừng ép bé nói, chỉ cần khen khi bé thử.</li></ul></div>
+</div>
+
+<div class="sheet" id="hsheet" role="dialog" aria-modal="true" aria-label="Lịch sử luyện tập">
+  <div class="grab"></div><h2>Lịch sử luyện tập</h2>
+  <p class="note" id="hstat"></p>
+  <div class="tabs">
+    <button class="tab on" data-tab="day">Theo ngày</button>
+    <button class="tab" data-tab="sent">Theo câu</button>
+  </div>
+  <div id="hbody"></div>
+  <button class="hclear" id="hclear">Xoá toàn bộ lịch sử</button>
 </div>
 
 <div class="sheet" id="vsheet" role="dialog" aria-modal="true" aria-label="Giọng đọc">
@@ -163,11 +370,7 @@ footer{max-width:1000px;margin:0 auto;padding:6px 14px 26px;color:var(--soft);fo
     <input class="slider" id="rateSel" type="range" min="0.5" max="1.1" step="0.05" value="0.9">
   </div>
   <button class="testbtn" id="testBtn">🔊 Nghe thử câu mẫu</button>
-  <div class="tip"><b>Muốn giọng thật sự giống người?</b>
-  Giọng mặc định của máy thường khô và máy móc. Tải thêm giọng chất lượng cao một lần là dùng mãi:<br>
-  · <b>iPhone:</b> Cài đặt → Trợ năng → Nội dung nói → Giọng nói → English → tải giọng <i>Enhanced</i> hoặc <i>Premium</i> (Ava, Samantha, Zoe).<br>
-  · <b>Android:</b> Cài đặt → Ngôn ngữ → Đầu ra văn bản thành giọng nói → Google Speech Services → tải <i>English (US)</i>, chọn giọng nữ.<br>
-  Tải xong quay lại trang này, bấm ⚙️ chọn lại giọng mới.</div>
+  <div class="tip"><b>Muốn giọng thật sự giống người?</b>Giọng mặc định của máy thường khô và máy móc. Tải thêm giọng chất lượng cao một lần là dùng mãi:<ul><li><b>iPhone:</b> Cài đặt → Trợ năng → Nội dung nói → Giọng nói → English → tải giọng <i>Enhanced</i> hoặc <i>Premium</i>.</li><li><b>Android:</b> Cài đặt → Quản lý chung → Chuyển văn bản thành lời nói → chọn Google, bấm bánh răng → Cài đặt dữ liệu giọng nói → English (US).</li><li>Tải xong <b>đóng hẳn trình duyệt</b> rồi mở lại trang.</li></ul></div>
 </div>
 
 <script>
@@ -180,7 +383,22 @@ const G = [
    {i:"😴",w:"Hỏi thăm bé",e:"Did you sleep well?",p:"/dɪd juː sliːp wel/",v:"Con ngủ ngon không?"},
    {i:"🤗",w:"Bế bé dậy",e:"Come here, give me a hug.",p:"/kʌm hɪr ɡɪv miː ə hʌɡ/",v:"Lại đây, ôm mẹ cái nào."},
    {i:"☀️",w:"Chỉ ra cửa sổ",e:"Look, the sun is up!",p:"/lʊk ðə sʌn ɪz ʌp/",v:"Nhìn kìa, mặt trời lên rồi!"},
-   {i:"🛏️",w:"Rời giường",e:"Let's get out of bed.",p:"/lets ɡet aʊt əv bed/",v:"Mình ra khỏi giường nào."}],
+   {i:"🛏️",w:"Rời giường",e:"Let's get out of bed.",p:"/lets ɡet aʊt əv bed/",v:"Mình ra khỏi giường nào."},
+   {i:"🪟",w:"Kéo rèm",e:"Let's open the curtains.",p:"/lets ˈoʊpən ðə ˈkɜːrtnz/",v:"Mình mở rèm ra nào."},
+   {i:"🐦",w:"Nghe tiếng chim",e:"Listen. The birds are singing.",p:"/ˈlɪsn ðə bɜːrdz ɑːr ˈsɪŋɪŋ/",v:"Nghe kìa. Chim đang hót."},
+   {i:"😊",w:"Trò chuyện với bé",e:"Did you have a good dream?",p:"/dɪd juː hæv ə ɡʊd driːm/",v:"Con mơ thấy gì đẹp không?"},
+   {i:"🙆",w:"Vươn vai",e:"Let's stretch. Big and tall!",p:"/lets stretʃ bɪɡ ænd tɔːl/",v:"Vươn vai nào. Thật to, thật cao!"},
+   {i:"😗",w:"Nũng nịu buổi sáng",e:"A good morning kiss for mommy.",p:"/ə ɡʊd ˈmɔːrnɪŋ kɪs fɔːr ˈmɑːmi/",v:"Thơm mẹ một cái chào buổi sáng nào."},
+   {i:"🧸",w:"Chào đồ chơi",e:"Say good morning to teddy.",p:"/seɪ ɡʊd ˈmɔːrnɪŋ tuː ˈtedi/",v:"Chào bạn gấu buổi sáng đi con."},
+   {i:"🚼",w:"Kiểm tra bỉm",e:"Are you dry? Let me check.",p:"/ɑːr juː draɪ let miː tʃek/",v:"Con có ướt không? Để mẹ xem nào."},
+   {i:"👵",w:"Cả nhà cùng dậy",e:"Grandma is waking up too.",p:"/ˈɡrænmɑː ɪz ˈweɪkɪŋ ʌp tuː/",v:"Bà cũng dậy rồi này."},
+   {i:"🕗",w:"Dạy giờ giấc",e:"It's seven o'clock.",p:"/ɪts ˈsevn əˈklɑːk/",v:"Bảy giờ rồi đó."},
+   {i:"🥱",w:"Bé lười dậy",e:"Are you still sleepy?",p:"/ɑːr juː stɪl ˈsliːpi/",v:"Con còn buồn ngủ à?"},
+   {i:"☀️",w:"Trời đã sáng",e:"It's bright outside.",p:"/ɪts braɪt ˌaʊtˈsaɪd/",v:"Bên ngoài sáng trưng rồi."},
+   {i:"🤲",w:"Bế bé lên",e:"Up we go!",p:"/ʌp wiː ɡoʊ/",v:"Bế lên nào!"},
+   {i:"🦶",w:"Xuống giường",e:"Feet on the floor.",p:"/fiːt ɑːn ðə flɔːr/",v:"Đặt chân xuống sàn nào."},
+   {i:"😄",w:"Mở đầu ngày mới",e:"What a happy morning!",p:"/wʌt ə ˈhæpi ˈmɔːrnɪŋ/",v:"Buổi sáng vui quá!"}
+  ],
   V:[{i:"🌞",w:"morning",p:"/ˈmɔːrnɪŋ/",v:"buổi sáng"},{i:"⏰",w:"wake up",p:"/weɪk ʌp/",v:"thức dậy"},{i:"🤗",w:"hug",p:"/hʌɡ/",v:"cái ôm"},{i:"🛏️",w:"bed",p:"/bed/",v:"giường"}]},
 
  {id:"t2",e:"🚽",vi:"Đi vệ sinh, thay bỉm",en:"Potty & diaper",
@@ -190,7 +408,22 @@ const G = [
    {i:"🪑",w:"Tập ngồi bô",e:"Sit on the potty.",p:"/sɪt ɑːn ðə ˈpɑːti/",v:"Ngồi lên bô đi con."},
    {i:"⏳",w:"Đừng giục bé",e:"Take your time.",p:"/teɪk jɔːr taɪm/",v:"Cứ từ từ nhé."},
    {i:"🎉",w:"Bé làm được",e:"You did it! Well done!",p:"/juː dɪd ɪt wel dʌn/",v:"Con làm được rồi! Giỏi lắm!"},
-   {i:"🧼",w:"Xong xuôi",e:"Now let's wash our hands.",p:"/naʊ lets wɑːʃ ˈaʊər hændz/",v:"Giờ mình đi rửa tay nào."}],
+   {i:"🧼",w:"Xong xuôi",e:"Now let's wash our hands.",p:"/naʊ lets wɑːʃ ˈaʊər hændz/",v:"Giờ mình đi rửa tay nào."},
+   {i:"🗣️",w:"Dạy bé biết báo",e:"Tell mommy when you need to go.",p:"/tel ˈmɑːmi wen juː niːd tuː ɡoʊ/",v:"Khi nào con mót thì bảo mẹ nhé."},
+   {i:"🩲",w:"Cởi quần",e:"Let's take off your pants.",p:"/lets teɪk ɔːf jɔːr pænts/",v:"Mình cởi quần ra nào."},
+   {i:"🧷",w:"Đặt bé nằm",e:"Lie down for a second.",p:"/laɪ daʊn fɔːr ə ˈsekənd/",v:"Nằm xuống một chút nào."},
+   {i:"🦵",w:"Thay bỉm",e:"Legs up, please.",p:"/leɡz ʌp pliːz/",v:"Giơ chân lên nào."},
+   {i:"💩",w:"Hỏi bé",e:"Did you poop?",p:"/dɪd juː puːp/",v:"Con ị à?"},
+   {i:"🧻",w:"Lau cho bé",e:"Let's wipe. All clean.",p:"/lets waɪp ɔːl kliːn/",v:"Mình lau nào. Sạch rồi."},
+   {i:"🚿",w:"Rửa cho bé",e:"Let me clean your bottom.",p:"/let miː kliːn jɔːr ˈbɑːtəm/",v:"Để mẹ rửa mông cho con."},
+   {i:"🩳",w:"Bỉm mới",e:"Now put on a clean diaper.",p:"/naʊ pʊt ɑːn ə kliːn ˈdaɪpər/",v:"Giờ mặc bỉm sạch vào nhé."},
+   {i:"🗑️",w:"Cho bé phụ",e:"Throw it in the bin.",p:"/θroʊ ɪt ɪn ðə bɪn/",v:"Bỏ vào thùng rác nhé."},
+   {i:"😌",w:"Xong xuôi",e:"All dry and comfy.",p:"/ɔːl draɪ ænd ˈkʌmfi/",v:"Khô ráo, dễ chịu rồi."},
+   {i:"⏰",w:"Trước khi ra khỏi nhà",e:"Do you need to go before we leave?",p:"/duː juː niːd tuː ɡoʊ bɪˈfɔːr wiː liːv/",v:"Đi vệ sinh trước khi đi nhé?"},
+   {i:"👏",w:"Bé biết gọi mẹ",e:"You told mommy. Very good!",p:"/juː toʊld ˈmɑːmi ˈveri ɡʊd/",v:"Con biết báo mẹ. Giỏi lắm!"},
+   {i:"🫂",w:"Bé tè dầm",e:"It's okay. Let's clean up.",p:"/ɪts oʊˈkeɪ lets kliːn ʌp/",v:"Không sao đâu. Mình dọn nào."},
+   {i:"🧼",w:"Rửa tay",e:"Rub your hands together.",p:"/rʌb jɔːr hændz təˈɡeðər/",v:"Xoa hai tay vào nhau nào."}
+  ],
   V:[{i:"🚽",w:"potty",p:"/ˈpɑːti/",v:"cái bô"},{i:"🧷",w:"diaper",p:"/ˈdaɪpər/",v:"bỉm"},{i:"💧",w:"pee",p:"/piː/",v:"tè"},{i:"🧼",w:"wash",p:"/wɑːʃ/",v:"rửa"}]},
 
  {id:"t3",e:"🪥",vi:"Đánh răng, rửa mặt",en:"Getting clean",
@@ -200,7 +433,22 @@ const G = [
    {i:"💦",w:"Súc miệng",e:"Spit it out.",p:"/spɪt ɪt aʊt/",v:"Nhổ ra nào."},
    {i:"🧴",w:"Rửa mặt",e:"Let me wash your face.",p:"/let miː wɑːʃ jɔːr feɪs/",v:"Để mẹ rửa mặt cho con."},
    {i:"🤲",w:"Lau khô",e:"Dry your hands with the towel.",p:"/draɪ jɔːr hændz wɪð ðə ˈtaʊəl/",v:"Lau tay bằng khăn nhé."},
-   {i:"✨",w:"Khen bé",e:"All clean! Good job!",p:"/ɔːl kliːn ɡʊd dʒɑːb/",v:"Sạch sẽ rồi! Con giỏi quá!"}],
+   {i:"✨",w:"Khen bé",e:"All clean! Good job!",p:"/ɔːl kliːn ɡʊd dʒɑːb/",v:"Sạch sẽ rồi! Con giỏi quá!"},
+   {i:"🪥",w:"Đưa bàn chải",e:"Here's your toothbrush.",p:"/hɪrz jɔːr ˈtuːθbrʌʃ/",v:"Bàn chải của con đây."},
+   {i:"🧴",w:"Lấy kem",e:"A little toothpaste. Just a bit.",p:"/ə ˈlɪtl ˈtuːθpeɪst dʒʌst ə bɪt/",v:"Một chút kem đánh răng thôi."},
+   {i:"🔄",w:"Hướng dẫn chải",e:"Brush up and down.",p:"/brʌʃ ʌp ænd daʊn/",v:"Chải lên chải xuống nào."},
+   {i:"😁",w:"Kiểm tra răng",e:"Show me your teeth.",p:"/ʃoʊ miː jɔːr tiːθ/",v:"Nhe răng cho mẹ xem nào."},
+   {i:"🙅",w:"Bé nuốt kem",e:"Don't eat the toothpaste.",p:"/doʊnt iːt ðə ˈtuːθpeɪst/",v:"Đừng ăn kem đánh răng con nhé."},
+   {i:"💧",w:"Súc miệng",e:"Rinse your mouth.",p:"/rɪns jɔːr maʊθ/",v:"Súc miệng đi con."},
+   {i:"🚰",w:"Tiết kiệm nước",e:"Turn off the water.",p:"/tɜːrn ɔːf ðə ˈwɔːtər/",v:"Khoá vòi nước lại nhé."},
+   {i:"⏱️",w:"Bé sốt ruột",e:"A little more. Almost done.",p:"/ə ˈlɪtl mɔːr ˈɔːlmoʊst dʌn/",v:"Thêm chút nữa. Sắp xong rồi."},
+   {i:"🪞",w:"Cho bé soi gương",e:"Look in the mirror.",p:"/lʊk ɪn ðə ˈmɪrər/",v:"Nhìn vào gương xem nào."},
+   {i:"💦",w:"Rửa mặt",e:"Splash a little water.",p:"/splæʃ ə ˈlɪtl ˈwɔːtər/",v:"Vỗ chút nước lên mặt nào."},
+   {i:"👃",w:"Bé sổ mũi",e:"Let me wipe your nose.",p:"/let miː waɪp jɔːr noʊz/",v:"Để mẹ lau mũi cho con."},
+   {i:"✋",w:"Dạy trình tự",e:"Soap first, then water.",p:"/soʊp fɜːrst ðen ˈwɔːtər/",v:"Xà phòng trước, rồi tới nước."},
+   {i:"🌟",w:"Khen bé",e:"Your teeth are shiny!",p:"/jɔːr tiːθ ɑːr ˈʃaɪni/",v:"Răng con sáng bóng rồi!"},
+   {i:"🤗",w:"Kết thúc vui vẻ",e:"Now give mommy a smile.",p:"/naʊ ɡɪv ˈmɑːmi ə smaɪl/",v:"Giờ cười cho mẹ xem nào."}
+  ],
   V:[{i:"🦷",w:"teeth",p:"/tiːθ/",v:"răng"},{i:"🪥",w:"toothbrush",p:"/ˈtuːθbrʌʃ/",v:"bàn chải"},{i:"🧼",w:"soap",p:"/soʊp/",v:"xà phòng"},{i:"🧺",w:"towel",p:"/ˈtaʊəl/",v:"khăn"}]},
 
  {id:"t4",e:"👕",vi:"Mặc quần áo",en:"Getting dressed",
@@ -210,7 +458,22 @@ const G = [
    {i:"👖",w:"Mặc quần",e:"Put on your pants.",p:"/pʊt ɑːn jɔːr pænts/",v:"Mặc quần vào con."},
    {i:"🧦",w:"Tìm đồ cùng bé",e:"Where are your socks?",p:"/wer ɑːr jɔːr sɑːks/",v:"Tất của con đâu rồi?"},
    {i:"🎨",w:"Cho bé chọn",e:"The blue shirt or the red one?",p:"/ðə bluː ʃɜːrt ɔːr ðə red wʌn/",v:"Áo xanh hay áo đỏ nào?"},
-   {i:"😍",w:"Khen bé",e:"You look so handsome!",p:"/juː lʊk soʊ ˈhænsəm/",v:"Con đẹp trai quá!"}],
+   {i:"😍",w:"Khen bé",e:"You look so handsome!",p:"/juː lʊk soʊ ˈhænsəm/",v:"Con đẹp trai quá!"},
+   {i:"👚",w:"Cho bé chọn",e:"Which shirt do you like?",p:"/wɪtʃ ʃɜːrt duː juː laɪk/",v:"Con thích áo nào?"},
+   {i:"🙋",w:"Chui đầu qua cổ áo",e:"Head through the hole.",p:"/hed θruː ðə hoʊl/",v:"Chui đầu qua đây nào."},
+   {i:"🤲",w:"Xỏ tay áo",e:"Give me your hand.",p:"/ɡɪv miː jɔːr hænd/",v:"Đưa tay cho mẹ nào."},
+   {i:"🦵",w:"Xỏ ống quần",e:"One leg, then the other leg.",p:"/wʌn leɡ ðen ði ˈʌðər leɡ/",v:"Một chân, rồi tới chân kia."},
+   {i:"🔘",w:"Cài cúc",e:"Let me button your shirt.",p:"/let miː ˈbʌtn jɔːr ʃɜːrt/",v:"Để mẹ cài cúc áo cho con."},
+   {i:"🧦",w:"Dạy phân biệt",e:"This sock goes on this foot.",p:"/ðɪs sɑːk ɡoʊz ɑːn ðɪs fʊt/",v:"Chiếc tất này đi chân này."},
+   {i:"💪",w:"Khuyến khích tự lập",e:"Can you do it yourself?",p:"/kæn juː duː ɪt jɔːrˈself/",v:"Con tự làm được không?"},
+   {i:"🔁",w:"Mặc ngược",e:"Oops, it's backwards.",p:"/uːps ɪts ˈbækwərdz/",v:"Ối, mặc ngược rồi."},
+   {i:"🌞",w:"Trời nóng",e:"It's hot. Let's wear shorts.",p:"/ɪts hɑːt lets wer ʃɔːrts/",v:"Trời nóng. Mình mặc quần đùi nhé."},
+   {i:"🧥",w:"Trời lạnh",e:"Zip up your jacket.",p:"/zɪp ʌp jɔːr ˈdʒækɪt/",v:"Kéo khoá áo lên nào."},
+   {i:"🧺",w:"Đồ bẩn",e:"Put your dirty clothes here.",p:"/pʊt jɔːr ˈdɜːrti kloʊðz hɪr/",v:"Bỏ quần áo bẩn vào đây nhé."},
+   {i:"🪞",w:"Cho bé ngắm",e:"Look at you in the mirror!",p:"/lʊk æt juː ɪn ðə ˈmɪrər/",v:"Nhìn con trong gương kìa!"},
+   {i:"🕐",w:"Giục nhẹ",e:"Almost ready.",p:"/ˈɔːlmoʊst ˈredi/",v:"Sắp xong rồi."},
+   {i:"🎉",w:"Xong",e:"All dressed. Let's go!",p:"/ɔːl drest lets ɡoʊ/",v:"Mặc xong rồi. Đi thôi!"}
+  ],
   V:[{i:"👕",w:"shirt",p:"/ʃɜːrt/",v:"áo"},{i:"👖",w:"pants",p:"/pænts/",v:"quần"},{i:"🧦",w:"socks",p:"/sɑːks/",v:"tất"},{i:"👟",w:"shoes",p:"/ʃuːz/",v:"giày"}]},
 
  {id:"t5",e:"🍳",vi:"Bữa sáng",en:"Breakfast",
@@ -220,7 +483,22 @@ const G = [
    {i:"🍜",w:"Cho bé chọn món",e:"Noodles or bread?",p:"/ˈnuːdlz ɔːr bred/",v:"Con ăn phở hay bánh mì?"},
    {i:"😋",w:"Đút cho bé",e:"Open wide. Yum yum!",p:"/ˈoʊpən waɪd jʌm jʌm/",v:"Há to nào. Ngon ngon!"},
    {i:"🥛",w:"Uống thêm sữa",e:"Drink some milk.",p:"/drɪŋk sʌm mɪlk/",v:"Uống chút sữa nào."},
-   {i:"👏",w:"Ăn hết",e:"All done! Good boy!",p:"/ɔːl dʌn ɡʊd bɔɪ/",v:"Hết sạch rồi! Giỏi quá!"}],
+   {i:"👏",w:"Ăn hết",e:"All done! Good boy!",p:"/ɔːl dʌn ɡʊd bɔɪ/",v:"Hết sạch rồi! Giỏi quá!"},
+   {i:"🍳",w:"Hỏi món",e:"Do you want an egg?",p:"/duː juː wɑːnt ən eɡ/",v:"Con ăn trứng không?"},
+   {i:"♨️",w:"Đồ ăn còn nóng",e:"Blow on it. It's hot.",p:"/bloʊ ɑːn ɪt ɪts hɑːt/",v:"Thổi đi con. Nóng đấy."},
+   {i:"🥄",w:"Tập tự lập",e:"Can you feed yourself?",p:"/kæn juː fiːd jɔːrˈself/",v:"Con tự xúc được không?"},
+   {i:"🍌",w:"Tráng miệng",e:"Here's a banana for you.",p:"/hɪrz ə bəˈnænə fɔːr juː/",v:"Quả chuối cho con đây."},
+   {i:"😮",w:"Bé ăn chậm",e:"One more bite.",p:"/wʌn mɔːr baɪt/",v:"Thêm một miếng nữa nào."},
+   {i:"🙅",w:"Bé ném đồ ăn",e:"Don't throw your food.",p:"/doʊnt θroʊ jɔːr fuːd/",v:"Đừng ném đồ ăn con nhé."},
+   {i:"🧻",w:"Bé ăn lem nhem",e:"You are messy. Let me wipe.",p:"/juː ɑːr ˈmesi let miː waɪp/",v:"Con ăn lem nhem rồi. Để mẹ lau."},
+   {i:"💧",w:"Giữa bữa",e:"Drink some water.",p:"/drɪŋk sʌm ˈwɔːtər/",v:"Uống chút nước nào."},
+   {i:"😬",w:"Nhắc nhai",e:"Chew it well.",p:"/tʃuː ɪt wel/",v:"Nhai kỹ nhé con."},
+   {i:"🐌",w:"Bé ăn vội",e:"Slow down. Not so fast.",p:"/sloʊ daʊn nɑːt soʊ fæst/",v:"Từ từ thôi. Đừng vội."},
+   {i:"🍽️",w:"Hỏi bé",e:"Are you full?",p:"/ɑːr juː fʊl/",v:"Con no chưa?"},
+   {i:"🪑",w:"Bé đứng lên ghế",e:"Sit still, please.",p:"/sɪt stɪl pliːz/",v:"Ngồi yên nào con."},
+   {i:"👵",w:"Bà nấu cho",e:"Say thank you to grandma.",p:"/seɪ ˈθæŋk juː tuː ˈɡrænmɑː/",v:"Cảm ơn bà đi con."},
+   {i:"🧽",w:"Ăn xong",e:"Let's clean the table.",p:"/lets kliːn ðə ˈteɪbl/",v:"Mình lau bàn nào."}
+  ],
   V:[{i:"🍳",w:"breakfast",p:"/ˈbrekfəst/",v:"bữa sáng"},{i:"🍞",w:"bread",p:"/bred/",v:"bánh mì"},{i:"🍜",w:"noodles",p:"/ˈnuːdlz/",v:"mì, phở"},{i:"🥛",w:"milk",p:"/mɪlk/",v:"sữa"}]},
 
  {id:"t6",e:"🎒",vi:"Đi lớp, tạm biệt",en:"Off to school",
@@ -230,8 +508,45 @@ const G = [
    {i:"👋",w:"Chào bố",e:"Say bye bye to daddy.",p:"/seɪ baɪ baɪ tuː ˈdædi/",v:"Chào tạm biệt bố đi con."},
    {i:"😘",w:"Trước khi rời tay",e:"Give me a kiss.",p:"/ɡɪv miː ə kɪs/",v:"Thơm mẹ một cái nào."},
    {i:"🚗",w:"Bé lo lắng",e:"Mommy will pick you up later.",p:"/ˈmɑːmi wɪl pɪk juː ʌp ˈleɪtər/",v:"Lát mẹ đón con nhé."},
-   {i:"🥲",w:"Bé mếu",e:"Don't be sad. I love you.",p:"/doʊnt biː sæd aɪ lʌv juː/",v:"Đừng buồn nhé. Mẹ yêu con."}],
-  V:[{i:"🏫",w:"school",p:"/skuːl/",v:"trường, lớp"},{i:"👩‍🏫",w:"teacher",p:"/ˈtiːtʃər/",v:"cô giáo"},{i:"🎒",w:"backpack",p:"/ˈbækpæk/",v:"ba lô"},{i:"😘",w:"kiss",p:"/kɪs/",v:"nụ hôn"}]}
+   {i:"🥲",w:"Bé mếu",e:"Don't be sad. I love you.",p:"/doʊnt biː sæd aɪ lʌv juː/",v:"Đừng buồn nhé. Mẹ yêu con."},
+   {i:"🎒",w:"Tìm đồ",e:"Where's your backpack?",p:"/werz jɔːr ˈbækpæk/",v:"Ba lô của con đâu?"},
+   {i:"🍶",w:"Kiểm tra đồ",e:"Did you bring your water bottle?",p:"/dɪd juː brɪŋ jɔːr ˈwɔːtər ˈbɑːtl/",v:"Con mang bình nước chưa?"},
+   {i:"🧢",w:"Trước khi ra cửa",e:"Put on your hat.",p:"/pʊt ɑːn jɔːr hæt/",v:"Đội mũ vào con."},
+   {i:"👋",w:"Chào bà",e:"Wave bye bye to grandma.",p:"/weɪv baɪ baɪ tuː ˈɡrænmɑː/",v:"Vẫy tay chào bà đi con."},
+   {i:"🏫",w:"Động viên bé",e:"Your friends are waiting.",p:"/jɔːr frendz ɑːr ˈweɪtɪŋ/",v:"Các bạn đang chờ con đó."},
+   {i:"👩‍🏫",w:"Dặn dò",e:"Listen to your teacher.",p:"/ˈlɪsn tuː jɔːr ˈtiːtʃər/",v:"Nghe lời cô nhé."},
+   {i:"🤝",w:"Dặn chơi với bạn",e:"Play nicely with your friends.",p:"/pleɪ ˈnaɪsli wɪð jɔːr frendz/",v:"Chơi ngoan với các bạn nhé."},
+   {i:"🍚",w:"Dặn ăn",e:"Eat all your lunch.",p:"/iːt ɔːl jɔːr lʌntʃ/",v:"Ăn hết cơm trưa nhé."},
+   {i:"😴",w:"Dặn ngủ",e:"Nap well at school.",p:"/næp wel æt skuːl/",v:"Ngủ trưa ngoan ở lớp nhé."},
+   {i:"⏰",w:"Bé lo mẹ không đón",e:"I'll be back after your nap.",p:"/aɪl biː bæk ˈæftər jɔːr næp/",v:"Ngủ dậy là mẹ đón nhé."},
+   {i:"🤗",w:"Bé bịn rịn",e:"One more hug.",p:"/wʌn mɔːr hʌɡ/",v:"Ôm thêm cái nữa nào."},
+   {i:"🚪",w:"Vào lớp",e:"Go inside now.",p:"/ɡoʊ ɪnˈsaɪd naʊ/",v:"Con vào lớp đi nhé."},
+   {i:"😊",w:"Hẹn giờ về",e:"See you this afternoon.",p:"/siː juː ðɪs ˌæftərˈnuːn/",v:"Chiều gặp lại con nhé."},
+   {i:"💪",w:"Khích lệ",e:"You are a big boy now.",p:"/juː ɑːr ə bɪɡ bɔɪ naʊ/",v:"Con là chàng trai lớn rồi."}
+  ],
+  V:[{i:"🏫",w:"school",p:"/skuːl/",v:"trường, lớp"},{i:"👩‍🏫",w:"teacher",p:"/ˈtiːtʃər/",v:"cô giáo"},{i:"🎒",w:"backpack",p:"/ˈbækpæk/",v:"ba lô"},{i:"😘",w:"kiss",p:"/kɪs/",v:"nụ hôn"}]},
+
+ {id:"tw",e:"🚶",vi:"Đi bộ đến trường",en:"Walking to school",
+  L:[
+   {i:"🚶",w:"Trước khi ra cổng",e:"Let's walk to school today.",p:"/lets wɔːk tuː skuːl təˈdeɪ/",v:"Hôm nay mình đi bộ đến lớp nhé."},
+   {i:"🤝",w:"Vừa ra tới đường",e:"Hold my hand, please.",p:"/hoʊld maɪ hænd pliːz/",v:"Nắm tay mẹ nào."},
+   {i:"👟",w:"Bé chạy trước",e:"Walk with me, not too fast.",p:"/wɔːk wɪð miː nɑːt tuː fæst/",v:"Đi cạnh mẹ, đừng nhanh quá."},
+   {i:"👣",w:"Dạy bé đi đúng chỗ",e:"Walk on this side, please.",p:"/wɔːk ɑːn ðɪs saɪd pliːz/",v:"Đi bên này con nhé."},
+   {i:"🏠",w:"Đi qua nhà hàng xóm",e:"That's our neighbor's house.",p:"/ðæts ˈaʊər ˈneɪbərz haʊs/",v:"Kia là nhà bác hàng xóm."},
+   {i:"👋",w:"Gặp người quen",e:"Say hello to the auntie.",p:"/seɪ heˈloʊ tuː ði ˈænti/",v:"Chào cô đi con."},
+   {i:"🐕",w:"Thấy con chó",e:"Look at that dog. It's small.",p:"/lʊk æt ðæt dɔːɡ ɪts smɔːl/",v:"Nhìn con chó kìa. Bé xíu."},
+   {i:"🌳",w:"Chỉ cây bên đường",e:"Can you see the big tree?",p:"/kæn juː siː ðə bɪɡ triː/",v:"Con thấy cây to kia không?"},
+   {i:"🌸",w:"Ngắm hoa",e:"The flowers are so pretty.",p:"/ðə ˈflaʊərz ɑːr soʊ ˈprɪti/",v:"Hoa đẹp quá nhỉ."},
+   {i:"🚗",w:"Có xe tới gần",e:"Careful, a car is coming.",p:"/ˈkerfl ə kɑːr ɪz ˈkʌmɪŋ/",v:"Cẩn thận, có xe tới kìa."},
+   {i:"🛵",w:"Nhường đường",e:"Stop. Let the motorbike go first.",p:"/stɑːp let ðə ˈmoʊtərbaɪk ɡoʊ fɜːrst/",v:"Dừng lại. Nhường xe máy đi trước."},
+   {i:"🔢",w:"Cho bé chơi khi đi",e:"Let's count our steps: one, two, three.",p:"/lets kaʊnt ˈaʊər steps wʌn tuː θriː/",v:"Mình đếm bước chân nào: một, hai, ba."},
+   {i:"🎒",w:"Hỏi thăm bé",e:"Is your backpack heavy?",p:"/ɪz jɔːr ˈbækpæk ˈhevi/",v:"Ba lô có nặng không con?"},
+   {i:"🌧️",w:"Trời mưa nhỏ",e:"It's raining. Let's share the umbrella.",p:"/ɪts ˈreɪnɪŋ lets ʃer ði ʌmˈbrelə/",v:"Trời mưa rồi. Mình che chung ô nhé."},
+   {i:"🤱",w:"Bé kêu mỏi chân",e:"Do you want mommy to carry you?",p:"/duː juː wɑːnt ˈmɑːmi tuː ˈkæri juː/",v:"Con muốn mẹ bế không?"},
+   {i:"🏫",w:"Sắp tới nơi",e:"We are almost there.",p:"/wiː ɑːr ˈɔːlmoʊst ðer/",v:"Sắp tới nơi rồi."},
+   {i:"👩‍🏫",w:"Tới cổng trường",e:"Good morning, teacher!",p:"/ɡʊd ˈmɔːrnɪŋ ˈtiːtʃər/",v:"Con chào cô ạ!"},
+   {i:"😘",w:"Chia tay bé",e:"Have fun. Mommy will come back.",p:"/hæv fʌn ˈmɑːmi wɪl kʌm bæk/",v:"Chơi vui nhé. Lát mẹ quay lại đón."}],
+  V:[{i:"🚶",w:"walk",p:"/wɔːk/",v:"đi bộ"},{i:"🛣️",w:"street",p:"/striːt/",v:"đường phố"},{i:"🏠",w:"neighbor",p:"/ˈneɪbər/",v:"hàng xóm"},{i:"🌳",w:"tree",p:"/triː/",v:"cái cây"},{i:"👣",w:"step",p:"/step/",v:"bước chân"},{i:"☂️",w:"umbrella",p:"/ʌmˈbrelə/",v:"cái ô"},{i:"🤱",w:"carry",p:"/ˈkæri/",v:"bế, cõng"},{i:"🐢",w:"slow",p:"/sloʊ/",v:"chậm"}]}
 ]},
 
 {id:"g2",e:"🏠",name:"Ban ngày ở nhà",sub:"Chơi, học, ăn trưa rồi ngủ trưa",c:"var(--leaf)",topics:[
@@ -242,7 +557,22 @@ const G = [
    {i:"⚽",w:"Ném bóng qua lại",e:"Throw the ball to mommy.",p:"/θroʊ ðə bɔːl tuː ˈmɑːmi/",v:"Ném bóng cho mẹ nào."},
    {i:"🙋",w:"Dạy bé chờ lượt",e:"Your turn!",p:"/jɔːr tɜːrn/",v:"Đến lượt con!"},
    {i:"🔢",w:"Đếm trước khi chạy",e:"One, two, three. Go!",p:"/wʌn tuː θriː ɡoʊ/",v:"Một, hai, ba. Đi nào!"},
-   {i:"⚠️",w:"Bé chạy nhanh quá",e:"Be careful, slow down.",p:"/biː ˈkerfl sloʊ daʊn/",v:"Cẩn thận, chậm thôi con."}],
+   {i:"⚠️",w:"Bé chạy nhanh quá",e:"Be careful, slow down.",p:"/biː ˈkerfl sloʊ daʊn/",v:"Cẩn thận, chậm thôi con."},
+   {i:"🧸",w:"Bắt đầu giờ chơi",e:"What do you want to play?",p:"/wʌt duː juː wɑːnt tuː pleɪ/",v:"Con muốn chơi gì?"},
+   {i:"🚗",w:"Chơi ô tô",e:"Let's push the car. Vroom!",p:"/lets pʊʃ ðə kɑːr vruːm/",v:"Mình đẩy ô tô nào. Brừm!"},
+   {i:"🧱",w:"Xếp hình",e:"Let's build a tower.",p:"/lets bɪld ə ˈtaʊər/",v:"Mình xây tháp nào."},
+   {i:"💥",w:"Tháp đổ",e:"Oh no, it fell down!",p:"/oʊ noʊ ɪt fel daʊn/",v:"Ối, đổ mất rồi!"},
+   {i:"🙈",w:"Chơi ú oà",e:"Where are you? Peekaboo!",p:"/wer ɑːr juː ˈpiːkəbuː/",v:"Con đâu rồi? Ú oà!"},
+   {i:"🤲",w:"Dạy đưa nhận",e:"Give it to mommy, please.",p:"/ɡɪv ɪt tuː ˈmɑːmi pliːz/",v:"Đưa cho mẹ nào."},
+   {i:"🧩",w:"Dạy chia sẻ",e:"Let's share the toys.",p:"/lets ʃer ðə tɔɪz/",v:"Mình chia đồ chơi nhé."},
+   {i:"😆",w:"Bé đòi chơi nữa",e:"Again? Okay, one more time.",p:"/əˈɡen oʊˈkeɪ wʌn mɔːr taɪm/",v:"Nữa à? Được, thêm lần nữa nhé."},
+   {i:"🐻",w:"Chơi giả vờ",e:"The bear is sleeping. Shh.",p:"/ðə ber ɪz ˈsliːpɪŋ ʃ/",v:"Bạn gấu đang ngủ. Suỵt."},
+   {i:"🎪",w:"Thu hút bé",e:"Look what mommy can do!",p:"/lʊk wʌt ˈmɑːmi kæn duː/",v:"Nhìn mẹ làm được gì này!"},
+   {i:"🙌",w:"Ăn mừng",e:"High five!",p:"/haɪ faɪv/",v:"Đập tay nào!"},
+   {i:"😟",w:"Bé ném đồ",e:"Don't throw the toy. It can break.",p:"/doʊnt θroʊ ðə tɔɪ ɪt kæn breɪk/",v:"Đừng ném đồ chơi. Vỡ mất đó."},
+   {i:"⏳",w:"Báo sắp hết giờ",e:"A little more, then we stop.",p:"/ə ˈlɪtl mɔːr ðen wiː stɑːp/",v:"Chơi chút nữa rồi mình nghỉ nhé."},
+   {i:"🥰",w:"Nói với bé",e:"Mommy loves playing with you.",p:"/ˈmɑːmi lʌvz ˈpleɪɪŋ wɪð juː/",v:"Mẹ thích chơi với con lắm."}
+  ],
   V:[{i:"⚽",w:"ball",p:"/bɔːl/",v:"quả bóng"},{i:"🚗",w:"car",p:"/kɑːr/",v:"ô tô"},{i:"🧸",w:"teddy bear",p:"/ˈtedi ber/",v:"gấu bông"},{i:"🧱",w:"blocks",p:"/blɑːks/",v:"xếp hình"}]},
 
  {id:"t8",e:"🧺",vi:"Cất dọn đồ chơi",en:"Clean up",
@@ -252,7 +582,22 @@ const G = [
    {i:"🤝",w:"Làm cùng bé",e:"Let's do it together.",p:"/lets duː ɪt təˈɡeðər/",v:"Mình cùng làm nào."},
    {i:"🔍",w:"Hỏi để bé nghĩ",e:"Where does this go?",p:"/wer dʌz ðɪs ɡoʊ/",v:"Cái này để đâu nhỉ?"},
    {i:"✨",w:"Dọn xong",e:"The room is tidy now.",p:"/ðə ruːm ɪz ˈtaɪdi naʊ/",v:"Phòng gọn gàng rồi."},
-   {i:"👏",w:"Cảm ơn bé",e:"Thank you for helping!",p:"/ˈθæŋk juː fɔːr ˈhelpɪŋ/",v:"Cảm ơn con đã giúp mẹ!"}],
+   {i:"👏",w:"Cảm ơn bé",e:"Thank you for helping!",p:"/ˈθæŋk juː fɔːr ˈhelpɪŋ/",v:"Cảm ơn con đã giúp mẹ!"},
+   {i:"🎵",w:"Biến việc dọn thành trò",e:"Clean up, clean up, everybody clean up.",p:"/kliːn ʌp kliːn ʌp ˈevribɑːdi kliːn ʌp/",v:"Dọn dẹp, dọn dẹp, cả nhà cùng dọn."},
+   {i:"🧸",w:"Hỏi để bé nhớ chỗ",e:"Where does the bear sleep?",p:"/wer dʌz ðə ber sliːp/",v:"Bạn gấu ngủ ở đâu nhỉ?"},
+   {i:"🧱",w:"Nhặt đồ",e:"Pick up the blocks, please.",p:"/pɪk ʌp ðə blɑːks pliːz/",v:"Nhặt khối xếp hình lên nào."},
+   {i:"🏁",w:"Thi đua với bé",e:"Let's see who is faster.",p:"/lets siː huː ɪz ˈfæstər/",v:"Xem ai nhanh hơn nào."},
+   {i:"🔢",w:"Vừa dọn vừa đếm",e:"Can you count them?",p:"/kæn juː kaʊnt ðem/",v:"Con đếm được không?"},
+   {i:"📚",w:"Phân loại",e:"Books go on the shelf.",p:"/bʊks ɡoʊ ɑːn ðə ʃelf/",v:"Sách để lên giá nhé."},
+   {i:"🚗",w:"Phân loại",e:"Cars go in this basket.",p:"/kɑːrz ɡoʊ ɪn ðɪs ˈbæskɪt/",v:"Ô tô bỏ vào giỏ này."},
+   {i:"👀",w:"Sót đồ",e:"One more toy on the floor.",p:"/wʌn mɔːr tɔɪ ɑːn ðə flɔːr/",v:"Còn một món trên sàn kìa."},
+   {i:"💪",w:"Khuyến khích",e:"You can do it by yourself.",p:"/juː kæn duː ɪt baɪ jɔːrˈself/",v:"Con tự làm được mà."},
+   {i:"🙏",w:"Nhờ bé",e:"Mommy needs your help.",p:"/ˈmɑːmi niːdz jɔːr help/",v:"Mẹ cần con giúp."},
+   {i:"⏰",w:"Dạy nề nếp",e:"We clean up before dinner.",p:"/wiː kliːn ʌp bɪˈfɔːr ˈdɪnər/",v:"Dọn xong rồi mới ăn cơm nhé."},
+   {i:"🦶",w:"Giải thích lý do",e:"Now the floor is safe.",p:"/naʊ ðə flɔːr ɪz seɪf/",v:"Giờ sàn nhà an toàn rồi."},
+   {i:"🌟",w:"Cùng ngắm thành quả",e:"Look how clean it is!",p:"/lʊk haʊ kliːn ɪt ɪz/",v:"Nhìn sạch chưa này!"},
+   {i:"🤗",w:"Khen hai mẹ con",e:"Good teamwork!",p:"/ɡʊd ˈtiːmwɜːrk/",v:"Hai mẹ con phối hợp giỏi quá!"}
+  ],
   V:[{i:"🧺",w:"clean up",p:"/kliːn ʌp/",v:"dọn dẹp"},{i:"📦",w:"box",p:"/bɑːks/",v:"cái hộp"},{i:"🧸",w:"toy",p:"/tɔɪ/",v:"đồ chơi"},{i:"🛋️",w:"room",p:"/ruːm/",v:"căn phòng"}]},
 
  {id:"t9",e:"📖",vi:"Đọc sách cùng mẹ",en:"Reading together",
@@ -262,7 +607,22 @@ const G = [
    {i:"👉",w:"Cho bé tương tác",e:"Point to the dog.",p:"/pɔɪnt tuː ðə dɔːɡ/",v:"Chỉ con chó xem nào."},
    {i:"❓",w:"Hỏi về tranh",e:"What is the bear doing?",p:"/wʌt ɪz ðə ber ˈduːɪŋ/",v:"Bạn gấu đang làm gì thế?"},
    {i:"📄",w:"Cho bé lật trang",e:"Turn the page.",p:"/tɜːrn ðə peɪdʒ/",v:"Lật trang đi con."},
-   {i:"🔚",w:"Đọc hết",e:"The end. Read it again?",p:"/ði end riːd ɪt əˈɡen/",v:"Hết rồi. Đọc lại nữa nhé?"}],
+   {i:"🔚",w:"Đọc hết",e:"The end. Read it again?",p:"/ði end riːd ɪt əˈɡen/",v:"Hết rồi. Đọc lại nữa nhé?"},
+   {i:"📕",w:"Cho bé chọn sách",e:"Pick a book you like.",p:"/pɪk ə bʊk juː laɪk/",v:"Chọn quyển con thích đi."},
+   {i:"👀",w:"Cùng xem tranh",e:"Look at the picture.",p:"/lʊk æt ðə ˈpɪktʃər/",v:"Nhìn bức tranh này nào."},
+   {i:"🐘",w:"Hỏi tên con vật",e:"What animal is this?",p:"/wʌt ˈænɪml ɪz ðɪs/",v:"Con gì đây nhỉ?"},
+   {i:"🔊",w:"Dạy tiếng kêu",e:"What sound does it make?",p:"/wʌt saʊnd dʌz ɪt meɪk/",v:"Nó kêu thế nào?"},
+   {i:"🎨",w:"Hỏi màu",e:"What color is the ball?",p:"/wʌt ˈkʌlər ɪz ðə bɔːl/",v:"Quả bóng màu gì?"},
+   {i:"👶",w:"Đọc cảm xúc nhân vật",e:"The baby is crying.",p:"/ðə ˈbeɪbi ɪz ˈkraɪɪŋ/",v:"Em bé đang khóc."},
+   {i:"😊",w:"Hỏi cảm xúc",e:"Is he happy or sad?",p:"/ɪz hiː ˈhæpi ɔːr sæd/",v:"Bạn ấy vui hay buồn?"},
+   {i:"🤏",w:"Bé mạnh tay",e:"Careful, don't tear the page.",p:"/ˈkerfl doʊnt ter ðə peɪdʒ/",v:"Cẩn thận, đừng làm rách trang nhé."},
+   {i:"🔍",w:"Trò tìm đồ",e:"Can you find the cat?",p:"/kæn juː faɪnd ðə kæt/",v:"Con tìm được con mèo không?"},
+   {i:"👉",w:"Cho bé chỉ",e:"Show me the moon.",p:"/ʃoʊ miː ðə muːn/",v:"Chỉ mặt trăng cho mẹ xem."},
+   {i:"🗣️",w:"Tập nói theo",e:"Say it with mommy.",p:"/seɪ ɪt wɪð ˈmɑːmi/",v:"Nói cùng mẹ nào."},
+   {i:"❓",w:"Kích thích tư duy",e:"What happens next?",p:"/wʌt ˈhæpənz nekst/",v:"Tiếp theo sẽ thế nào nhỉ?"},
+   {i:"🧠",w:"Bé thuộc truyện",e:"You remember this story!",p:"/juː rɪˈmembər ðɪs ˈstɔːri/",v:"Con nhớ chuyện này rồi này!"},
+   {i:"📚",w:"Cất sách",e:"Let's put the book back.",p:"/lets pʊt ðə bʊk bæk/",v:"Mình cất sách về chỗ nào."}
+  ],
   V:[{i:"📖",w:"book",p:"/bʊk/",v:"quyển sách"},{i:"📄",w:"page",p:"/peɪdʒ/",v:"trang"},{i:"🖼️",w:"picture",p:"/ˈpɪktʃər/",v:"bức tranh"},{i:"📚",w:"story",p:"/ˈstɔːri/",v:"câu chuyện"}]},
 
  {id:"t10",e:"🎨",vi:"Màu sắc, hình khối, đếm số",en:"Colors & counting",
@@ -272,7 +632,22 @@ const G = [
    {i:"🔢",w:"Đếm đồ chơi",e:"Let's count: one, two, three.",p:"/lets kaʊnt wʌn tuː θriː/",v:"Mình đếm nào: một, hai, ba."},
    {i:"⭕",w:"Dạy hình khối",e:"This is a circle.",p:"/ðɪs ɪz ə ˈsɜːrkl/",v:"Đây là hình tròn."},
    {i:"📏",w:"So sánh",e:"Big or small?",p:"/bɪɡ ɔːr smɔːl/",v:"To hay nhỏ?"},
-   {i:"🎉",w:"Bé trả lời đúng",e:"You are so smart!",p:"/juː ɑːr soʊ smɑːrt/",v:"Con thông minh quá!"}],
+   {i:"🎉",w:"Bé trả lời đúng",e:"You are so smart!",p:"/juː ɑːr soʊ smɑːrt/",v:"Con thông minh quá!"},
+   {i:"🟢",w:"Dạy màu",e:"This one is green.",p:"/ðɪs wʌn ɪz ɡriːn/",v:"Cái này màu xanh lá."},
+   {i:"🟡",w:"Cho bé đi tìm",e:"Find something yellow.",p:"/faɪnd ˈsʌmθɪŋ ˈjeloʊ/",v:"Tìm đồ màu vàng nào."},
+   {i:"🔢",w:"Đếm cùng bé",e:"How many? One, two!",p:"/haʊ ˈmeni wʌn tuː/",v:"Mấy cái nào? Một, hai!"},
+   {i:"✋",w:"Đếm ngón tay",e:"Count your fingers.",p:"/kaʊnt jɔːr ˈfɪŋɡərz/",v:"Đếm ngón tay con nào."},
+   {i:"⬜",w:"Dạy hình",e:"This is a square.",p:"/ðɪs ɪz ə skwer/",v:"Đây là hình vuông."},
+   {i:"🔺",w:"Dạy hình",e:"This is a triangle.",p:"/ðɪs ɪz ə ˈtraɪæŋɡl/",v:"Đây là hình tam giác."},
+   {i:"🐘",w:"So sánh",e:"That one is big.",p:"/ðæt wʌn ɪz bɪɡ/",v:"Cái kia to."},
+   {i:"🐜",w:"So sánh",e:"This one is small.",p:"/ðɪs wʌn ɪz smɔːl/",v:"Cái này bé."},
+   {i:"🧺",w:"Trò phân loại",e:"Let's sort the colors.",p:"/lets sɔːrt ðə ˈkʌlərz/",v:"Mình xếp theo màu nào."},
+   {i:"🍎",w:"Liên hệ đời thực",e:"The apple is red too.",p:"/ði ˈæpl ɪz red tuː/",v:"Quả táo cũng màu đỏ này."},
+   {i:"👕",w:"Hỏi về đồ của bé",e:"What color is your shirt?",p:"/wʌt ˈkʌlər ɪz jɔːr ʃɜːrt/",v:"Áo con màu gì?"},
+   {i:"➕",w:"Khái niệm thêm",e:"One more makes three.",p:"/wʌn mɔːr meɪks θriː/",v:"Thêm một cái là ba."},
+   {i:"🙌",w:"So sánh giống khác",e:"Same or different?",p:"/seɪm ɔːr ˈdɪfrənt/",v:"Giống hay khác nhau?"},
+   {i:"🎉",w:"Bé trả lời đúng",e:"That's right! Well done.",p:"/ðæts raɪt wel dʌn/",v:"Đúng rồi! Giỏi lắm."}
+  ],
   V:[{i:"🔴",w:"red",p:"/red/",v:"màu đỏ"},{i:"🔵",w:"blue",p:"/bluː/",v:"màu xanh"},{i:"🟡",w:"yellow",p:"/ˈjeloʊ/",v:"màu vàng"},{i:"🔢",w:"count",p:"/kaʊnt/",v:"đếm"}]},
 
  {id:"t11",e:"🎵",vi:"Hát và nhảy",en:"Sing & dance",
@@ -282,7 +657,22 @@ const G = [
    {i:"💃",w:"Nhảy cùng bé",e:"Dance with mommy.",p:"/dæns wɪð ˈmɑːmi/",v:"Nhảy với mẹ nào."},
    {i:"🦶",w:"Vận động",e:"Stomp your feet!",p:"/stɑːmp jɔːr fiːt/",v:"Giậm chân nào!"},
    {i:"🔁",w:"Bé đòi thêm",e:"One more time!",p:"/wʌn mɔːr taɪm/",v:"Thêm lần nữa nào!"},
-   {i:"🤩",w:"Kết thúc",e:"That was fun!",p:"/ðæt wɑːz fʌn/",v:"Vui quá đi mất!"}],
+   {i:"🤩",w:"Kết thúc",e:"That was fun!",p:"/ðæt wɑːz fʌn/",v:"Vui quá đi mất!"},
+   {i:"🎶",w:"Cho bé chọn bài",e:"What song do you want?",p:"/wʌt sɔːŋ duː juː wɑːnt/",v:"Con muốn nghe bài gì?"},
+   {i:"🕺",w:"Làm mẫu",e:"Follow mommy. Like this!",p:"/ˈfɑːloʊ ˈmɑːmi laɪk ðɪs/",v:"Làm theo mẹ. Như này này!"},
+   {i:"🙆",w:"Động tác đơn giản",e:"Hands up, hands down.",p:"/hændz ʌp hændz daʊn/",v:"Tay lên, tay xuống."},
+   {i:"🔄",w:"Động tác",e:"Turn around.",p:"/tɜːrn əˈraʊnd/",v:"Xoay một vòng nào."},
+   {i:"🦘",w:"Vận động mạnh",e:"Jump, jump, jump!",p:"/dʒʌmp dʒʌmp dʒʌmp/",v:"Nhảy, nhảy, nhảy!"},
+   {i:"🎼",w:"Hát cùng bé",e:"Sing with mommy: la la la!",p:"/sɪŋ wɪð ˈmɑːmi lɑː lɑː lɑː/",v:"Hát cùng mẹ: la la la!"},
+   {i:"⚡",w:"Đổi nhịp",e:"Faster! Now slower!",p:"/ˈfæstər naʊ ˈsloʊər/",v:"Nhanh hơn! Giờ chậm lại!"},
+   {i:"🤫",w:"Dạy điều chỉnh giọng",e:"Now very quietly.",p:"/naʊ ˈveri ˈkwaɪətli/",v:"Giờ thật khẽ nào."},
+   {i:"📢",w:"Dạy điều chỉnh giọng",e:"Now very loud!",p:"/naʊ ˈveri laʊd/",v:"Giờ thật to nào!"},
+   {i:"🎤",w:"Cho bé thể hiện",e:"Your turn to sing.",p:"/jɔːr tɜːrn tuː sɪŋ/",v:"Đến lượt con hát."},
+   {i:"🥁",w:"Gõ nhịp",e:"Let's make music. Bang bang!",p:"/lets meɪk ˈmjuːzɪk bæŋ bæŋ/",v:"Mình chơi nhạc nào. Bùm bùm!"},
+   {i:"🌟",w:"Khen bé",e:"You are a good dancer.",p:"/juː ɑːr ə ɡʊd ˈdænsər/",v:"Con nhảy giỏi quá."},
+   {i:"😅",w:"Bé mệt",e:"Let's take a rest.",p:"/lets teɪk ə rest/",v:"Mình nghỉ chút nào."},
+   {i:"🫂",w:"Kết thúc",e:"Come here, my little star.",p:"/kʌm hɪr maɪ ˈlɪtl stɑːr/",v:"Lại đây nào, ngôi sao nhỏ của mẹ."}
+  ],
   V:[{i:"🎤",w:"sing",p:"/sɪŋ/",v:"hát"},{i:"🎵",w:"song",p:"/sɔːŋ/",v:"bài hát"},{i:"👏",w:"clap",p:"/klæp/",v:"vỗ tay"},{i:"💃",w:"dance",p:"/dæns/",v:"nhảy múa"}]},
 
  {id:"t12",e:"🧹",vi:"Giúp mẹ việc nhà",en:"Helping mommy",
@@ -292,7 +682,22 @@ const G = [
    {i:"🍽️",w:"Dọn bàn ăn",e:"Give me the bowl, please.",p:"/ɡɪv miː ðə boʊl pliːz/",v:"Đưa mẹ cái bát nào."},
    {i:"🚪",w:"Việc nhỏ vừa sức",e:"Close the door, please.",p:"/kloʊz ðə dɔːr pliːz/",v:"Đóng cửa giúp mẹ nhé."},
    {i:"💪",w:"Khen bé",e:"You are a big helper!",p:"/juː ɑːr ə bɪɡ ˈhelpər/",v:"Con là trợ thủ của mẹ đó!"},
-   {i:"🙏",w:"Cảm ơn",e:"Thank you so much.",p:"/ˈθæŋk juː soʊ mʌtʃ/",v:"Cảm ơn con nhiều nhé."}],
+   {i:"🙏",w:"Cảm ơn",e:"Thank you so much.",p:"/ˈθæŋk juː soʊ mʌtʃ/",v:"Cảm ơn con nhiều nhé."},
+   {i:"🧺",w:"Nhờ bé cầm đồ",e:"Can you carry this?",p:"/kæn juː ˈkæri ðɪs/",v:"Con cầm cái này được không?"},
+   {i:"🧦",w:"Gấp quần áo",e:"Give me the socks.",p:"/ɡɪv miː ðə sɑːks/",v:"Đưa mẹ đôi tất nào."},
+   {i:"🍳",w:"Mẹ đang nấu",e:"Mommy is cooking. Stay back.",p:"/ˈmɑːmi ɪz ˈkʊkɪŋ steɪ bæk/",v:"Mẹ đang nấu ăn. Đứng ra xa nhé."},
+   {i:"🔥",w:"Cảnh báo nguy hiểm",e:"Hot! Don't touch.",p:"/hɑːt doʊnt tʌtʃ/",v:"Nóng! Đừng sờ vào."},
+   {i:"🧹",w:"Quét nhà",e:"Let's sweep the floor.",p:"/lets swiːp ðə flɔːr/",v:"Mình quét nhà nào."},
+   {i:"🌱",w:"Tưới cây",e:"Let's water the plants.",p:"/lets ˈwɔːtər ðə plænts/",v:"Mình tưới cây nào."},
+   {i:"🗑️",w:"Bỏ rác",e:"Throw this in the trash.",p:"/θroʊ ðɪs ɪn ðə træʃ/",v:"Bỏ cái này vào thùng rác nhé."},
+   {i:"🍽️",w:"Sau bữa ăn",e:"Put your bowl in the sink.",p:"/pʊt jɔːr boʊl ɪn ðə sɪŋk/",v:"Để bát vào bồn rửa nhé."},
+   {i:"🔍",w:"Nhờ bé tìm",e:"Can you find the other sock?",p:"/kæn juː faɪnd ði ˈʌðər sɑːk/",v:"Tìm chiếc tất còn lại giúp mẹ nhé?"},
+   {i:"📱",w:"Nhờ lấy đồ",e:"Bring me my phone, please.",p:"/brɪŋ miː maɪ foʊn pliːz/",v:"Lấy điện thoại cho mẹ nào."},
+   {i:"🚪",w:"Mẹ bận tay",e:"Wait here for mommy.",p:"/weɪt hɪr fɔːr ˈmɑːmi/",v:"Đứng đây chờ mẹ nhé."},
+   {i:"🙌",w:"Làm xong",e:"We did it together.",p:"/wiː dɪd ɪt təˈɡeðər/",v:"Hai mẹ con làm xong rồi."},
+   {i:"👏",w:"Khen bé",e:"You are so helpful today.",p:"/juː ɑːr soʊ ˈhelpfl təˈdeɪ/",v:"Hôm nay con ngoan quá."},
+   {i:"🎈",w:"Phần thưởng",e:"Now we can play.",p:"/naʊ wiː kæn pleɪ/",v:"Xong rồi, giờ mình chơi nhé."}
+  ],
   V:[{i:"🤝",w:"help",p:"/help/",v:"giúp đỡ"},{i:"🧺",w:"basket",p:"/ˈbæskɪt/",v:"cái giỏ"},{i:"🚪",w:"door",p:"/dɔːr/",v:"cửa"},{i:"🥣",w:"bowl",p:"/boʊl/",v:"cái bát"}]},
 
  {id:"t13",e:"🍚",vi:"Bữa trưa",en:"Lunch",
@@ -302,7 +707,22 @@ const G = [
    {i:"🥣",w:"Giới thiệu món",e:"This is rice and soup.",p:"/ðɪs ɪz raɪs ænd suːp/",v:"Đây là cơm và canh."},
    {i:"🥄",w:"Tập tự xúc",e:"Hold your spoon.",p:"/hoʊld jɔːr spuːn/",v:"Cầm cái thìa đi con."},
    {i:"🍲",w:"Bé ăn hết",e:"Do you want more?",p:"/duː juː wɑːnt mɔːr/",v:"Con ăn thêm không?"},
-   {i:"🧻",w:"Ăn xong",e:"Let me wipe your mouth.",p:"/let miː waɪp jɔːr maʊθ/",v:"Để mẹ lau miệng cho con."}],
+   {i:"🧻",w:"Ăn xong",e:"Let me wipe your mouth.",p:"/let miː waɪp jɔːr maʊθ/",v:"Để mẹ lau miệng cho con."},
+   {i:"🍗",w:"Giới thiệu món",e:"Look, we have chicken.",p:"/lʊk wiː hæv ˈtʃɪkɪn/",v:"Nhìn kìa, có thịt gà này."},
+   {i:"🥬",w:"Nhắc ăn rau",e:"Eat your vegetables too.",p:"/iːt jɔːr ˈvedʒtəblz tuː/",v:"Ăn cả rau nữa nhé."},
+   {i:"🥕",w:"Dụ bé thử món",e:"Try this. It's sweet.",p:"/traɪ ðɪs ɪts swiːt/",v:"Ăn thử đi. Ngọt lắm."},
+   {i:"♨️",w:"Canh nóng",e:"Blow first. It's hot.",p:"/bloʊ fɜːrst ɪts hɑːt/",v:"Thổi trước đã. Nóng đó."},
+   {i:"😬",w:"Nhắc nhai",e:"Chew slowly.",p:"/tʃuː ˈsloʊli/",v:"Nhai chậm thôi."},
+   {i:"🥤",w:"Giữa bữa",e:"Sip your water.",p:"/sɪp jɔːr ˈwɔːtər/",v:"Uống một ngụm nước nào."},
+   {i:"🥄",w:"Sắp hết bữa",e:"Just one more spoon.",p:"/dʒʌst wʌn mɔːr spuːn/",v:"Thêm một thìa nữa thôi."},
+   {i:"🧸",w:"Bé mang đồ chơi",e:"No toys at the table.",p:"/noʊ tɔɪz æt ðə ˈteɪbl/",v:"Không mang đồ chơi lên bàn ăn nhé."},
+   {i:"😋",w:"Hỏi bé",e:"Is it delicious?",p:"/ɪz ɪt dɪˈlɪʃəs/",v:"Có ngon không con?"},
+   {i:"🤷",w:"Bé không thích món",e:"You don't like it? That's okay.",p:"/juː doʊnt laɪk ɪt ðæts oʊˈkeɪ/",v:"Con không thích à? Không sao."},
+   {i:"🍚",w:"Nhắc ăn hết",e:"Finish your rice, please.",p:"/ˈfɪnɪʃ jɔːr raɪs pliːz/",v:"Ăn hết cơm nhé con."},
+   {i:"🧻",w:"Ăn xong",e:"Wipe your hands.",p:"/waɪp jɔːr hændz/",v:"Lau tay đi con."},
+   {i:"🪑",w:"Rời bàn",e:"Get down carefully.",p:"/ɡet daʊn ˈkerfli/",v:"Xuống ghế cẩn thận nhé."},
+   {i:"🙏",w:"Dạy biết ơn",e:"Thank you for the food.",p:"/ˈθæŋk juː fɔːr ðə fuːd/",v:"Con cảm ơn bữa cơm ạ."}
+  ],
   V:[{i:"🍚",w:"rice",p:"/raɪs/",v:"cơm"},{i:"🍲",w:"soup",p:"/suːp/",v:"canh, súp"},{i:"🥄",w:"spoon",p:"/spuːn/",v:"cái thìa"},{i:"😋",w:"yummy",p:"/ˈjʌmi/",v:"ngon"}]},
 
  {id:"t14",e:"😴",vi:"Ngủ trưa",en:"Nap time",
@@ -312,7 +732,22 @@ const G = [
    {i:"🧸",w:"Đồ ngủ quen thuộc",e:"Do you want your teddy bear?",p:"/duː juː wɑːnt jɔːr ˈtedi ber/",v:"Con muốn ôm gấu bông không?"},
    {i:"🤫",w:"Bé còn nghịch",e:"Shh, be quiet.",p:"/ʃ biː ˈkwaɪət/",v:"Suỵt, im lặng nào."},
    {i:"🤱",w:"Bé bám mẹ",e:"Mommy will stay with you.",p:"/ˈmɑːmi wɪl steɪ wɪð juː/",v:"Mẹ nằm cạnh con nhé."},
-   {i:"😌",w:"Ru bé",e:"Close your eyes. Sleep well.",p:"/kloʊz jɔːr aɪz sliːp wel/",v:"Nhắm mắt lại. Ngủ ngon nhé."}],
+   {i:"😌",w:"Ru bé",e:"Close your eyes. Sleep well.",p:"/kloʊz jɔːr aɪz sliːp wel/",v:"Nhắm mắt lại. Ngủ ngon nhé."},
+   {i:"🪟",w:"Chuẩn bị phòng",e:"Let's close the curtains.",p:"/lets kloʊz ðə ˈkɜːrtnz/",v:"Mình kéo rèm lại nào."},
+   {i:"🔇",w:"Tạo không khí",e:"The room is quiet now.",p:"/ðə ruːm ɪz ˈkwaɪət naʊ/",v:"Phòng yên tĩnh rồi."},
+   {i:"🧣",w:"Đắp chăn",e:"Do you want your blanket?",p:"/duː juː wɑːnt jɔːr ˈblæŋkɪt/",v:"Con muốn đắp chăn không?"},
+   {i:"🤱",w:"Vỗ về bé",e:"Mommy will pat your back.",p:"/ˈmɑːmi wɪl pæt jɔːr bæk/",v:"Mẹ vỗ lưng cho con nhé."},
+   {i:"🎵",w:"Hát ru",e:"Let me sing you a lullaby.",p:"/let miː sɪŋ juː ə ˈlʌləbaɪ/",v:"Để mẹ hát ru cho con."},
+   {i:"😌",w:"Giúp bé thư giãn",e:"Take a deep breath.",p:"/teɪk ə diːp breθ/",v:"Hít thở sâu nào."},
+   {i:"🧸",w:"Bé còn muốn chơi",e:"Teddy is sleeping too.",p:"/ˈtedi ɪz ˈsliːpɪŋ tuː/",v:"Bạn gấu cũng ngủ rồi."},
+   {i:"🙊",w:"Bé nói chuyện",e:"No more talking now.",p:"/noʊ mɔːr ˈtɔːkɪŋ naʊ/",v:"Thôi không nói chuyện nữa nhé."},
+   {i:"⏰",w:"Trấn an bé",e:"Just a short nap.",p:"/dʒʌst ə ʃɔːrt næp/",v:"Ngủ một giấc ngắn thôi."},
+   {i:"🎈",w:"Hứa hẹn",e:"We will play after your nap.",p:"/wiː wɪl pleɪ ˈæftər jɔːr næp/",v:"Ngủ dậy mình chơi tiếp nhé."},
+   {i:"💤",w:"Câu ru cuối",e:"Sweet dreams, my baby.",p:"/swiːt driːmz maɪ ˈbeɪbi/",v:"Ngủ ngon nhé con yêu."},
+   {i:"🌞",w:"Đánh thức bé",e:"Wake up. Nap time is over.",p:"/weɪk ʌp næp taɪm ɪz ˈoʊvər/",v:"Dậy nào. Hết giờ ngủ trưa rồi."},
+   {i:"🥱",w:"Bé vừa dậy",e:"Did you have a nice nap?",p:"/dɪd juː hæv ə naɪs næp/",v:"Con ngủ ngon không?"},
+   {i:"🤗",w:"Bé còn ngái ngủ",e:"Come, let's get up slowly.",p:"/kʌm lets ɡet ʌp ˈsloʊli/",v:"Nào, mình từ từ dậy nhé."}
+  ],
   V:[{i:"😴",w:"nap",p:"/næp/",v:"giấc ngủ ngắn"},{i:"🤫",w:"quiet",p:"/ˈkwaɪət/",v:"yên lặng"},{i:"🛌",w:"pillow",p:"/ˈpɪloʊ/",v:"cái gối"},{i:"👀",w:"eyes",p:"/aɪz/",v:"mắt"}]}
 ]},
 
@@ -326,6 +761,30 @@ const G = [
    {i:"🛵",w:"Ngồi lên xe",e:"Sit still on the bike.",p:"/sɪt stɪl ɑːn ðə baɪk/",v:"Ngồi yên trên xe nhé."},
    {i:"🤗",w:"Trước khi chạy xe",e:"Hold mommy tight.",p:"/hoʊld ˈmɑːmi taɪt/",v:"Ôm chặt mẹ vào."}],
   V:[{i:"🪖",w:"helmet",p:"/ˈhelmɪt/",v:"mũ bảo hiểm"},{i:"🛵",w:"motorbike",p:"/ˈmoʊtərbaɪk/",v:"xe máy"},{i:"🌳",w:"outside",p:"/ˌaʊtˈsaɪd/",v:"bên ngoài"},{i:"🧢",w:"hat",p:"/hæt/",v:"cái mũ"}]},
+
+ {id:"tc",e:"🚗",vi:"Ngồi ô tô, ngắm xe cộ",en:"In the car",
+  L:[
+   {i:"🚗",w:"Ra tới xe",e:"Let's get in the car.",p:"/lets ɡet ɪn ðə kɑːr/",v:"Mình lên xe nào."},
+   {i:"💺",w:"Ngồi ghế sau",e:"Sit in your car seat.",p:"/sɪt ɪn jɔːr kɑːr siːt/",v:"Ngồi vào ghế của con nào."},
+   {i:"🔒",w:"Cài dây an toàn",e:"Buckle up. Click!",p:"/ˈbʌkl ʌp klɪk/",v:"Cài dây an toàn nào. Tách!"},
+   {i:"🚪",w:"Bé nghịch cửa",e:"Don't open the door.",p:"/doʊnt ˈoʊpən ðə dɔːr/",v:"Đừng mở cửa con nhé."},
+   {i:"🪟",w:"Xe bắt đầu chạy",e:"Look out the window.",p:"/lʊk aʊt ðə ˈwɪndoʊ/",v:"Nhìn ra ngoài cửa sổ đi con."},
+   {i:"🚦",w:"Xe dừng đèn đỏ",e:"The car is stopping. Red light.",p:"/ðə kɑːr ɪz ˈstɑːpɪŋ red laɪt/",v:"Xe dừng lại rồi. Đèn đỏ."},
+   {i:"🚌",w:"Thấy xe buýt",e:"That's a big bus.",p:"/ðæts ə bɪɡ bʌs/",v:"Kia là xe buýt to."},
+   {i:"🚚",w:"Thấy xe tải",e:"Look, a big truck!",p:"/lʊk ə bɪɡ trʌk/",v:"Nhìn kìa, xe tải to!"},
+   {i:"🏗️",w:"Đi qua công trường",e:"That's a crane. It lifts things up.",p:"/ðæts ə kreɪn ɪt lɪfts θɪŋz ʌp/",v:"Kia là cần cẩu. Nó nhấc đồ lên cao."},
+   {i:"🚜",w:"Thấy máy xúc",e:"An excavator! It digs the ground.",p:"/ən ˈekskəveɪtər ɪt dɪɡz ðə ɡraʊnd/",v:"Máy xúc kìa! Nó đào đất."},
+   {i:"🛻",w:"Xe trộn bê tông",e:"The mixer truck goes round and round.",p:"/ðə ˈmɪksər trʌk ɡoʊz raʊnd ænd raʊnd/",v:"Xe trộn bê tông quay vòng vòng."},
+   {i:"🚒",w:"Xe cứu hoả",e:"A fire truck! Wee-oo, wee-oo!",p:"/ə ˈfaɪər trʌk wiː uː wiː uː/",v:"Xe cứu hoả! U u u!"},
+   {i:"🚑",w:"Xe cứu thương",e:"An ambulance is coming.",p:"/ən ˈæmbjələns ɪz ˈkʌmɪŋ/",v:"Xe cứu thương tới kìa."},
+   {i:"🚲",w:"Xe đạp bên đường",e:"Look at that bicycle.",p:"/lʊk æt ðæt ˈbaɪsɪkl/",v:"Nhìn cái xe đạp kìa."},
+   {i:"🎨",w:"Hỏi màu xe",e:"What color is that car?",p:"/wʌt ˈkʌlər ɪz ðæt kɑːr/",v:"Xe kia màu gì con?"},
+   {i:"🔢",w:"Trò chơi trên xe",e:"Let's count the trucks.",p:"/lets kaʊnt ðə trʌks/",v:"Mình đếm xe tải nào."},
+   {i:"🎵",w:"Đường xa, bé chán",e:"Let's sing a song in the car.",p:"/lets sɪŋ ə sɔːŋ ɪn ðə kɑːr/",v:"Mình hát một bài trên xe nào."},
+   {i:"🤢",w:"Bé say xe",e:"Do you feel sick? Look far away.",p:"/duː juː fiːl sɪk lʊk fɑːr əˈweɪ/",v:"Con thấy khó chịu à? Nhìn ra xa nhé."},
+   {i:"🥤",w:"Giữa đường",e:"Do you want some water?",p:"/duː juː wɑːnt sʌm ˈwɔːtər/",v:"Con uống nước không?"},
+   {i:"🛑",w:"Xe đỗ, tới nơi",e:"We are here. Wait for mommy.",p:"/wiː ɑːr hɪr weɪt fɔːr ˈmɑːmi/",v:"Đến nơi rồi. Chờ mẹ nhé."}],
+  V:[{i:"🚗",w:"car",p:"/kɑːr/",v:"ô tô"},{i:"🚌",w:"bus",p:"/bʌs/",v:"xe buýt"},{i:"🚚",w:"truck",p:"/trʌk/",v:"xe tải"},{i:"🏗️",w:"crane",p:"/kreɪn/",v:"cần cẩu"},{i:"🚜",w:"excavator",p:"/ˈekskəveɪtər/",v:"máy xúc"},{i:"🚒",w:"fire truck",p:"/ˈfaɪər trʌk/",v:"xe cứu hoả"},{i:"🚑",w:"ambulance",p:"/ˈæmbjələns/",v:"xe cứu thương"},{i:"💺",w:"car seat",p:"/kɑːr siːt/",v:"ghế trẻ em"}]},
 
  {id:"t16",e:"🚦",vi:"An toàn trên đường",en:"Street safety",
   L:[
@@ -504,16 +963,235 @@ const G = [
 ];
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LIMIT = 6;
+const deck = {};   // bộ bài của từng chủ đề, dùng cho nút 🔄
+
+/* ---------- Lưu trạng thái (localStorage, có dự phòng) ---------- */
+const mem = {};
+/* Tất cả project trên <user>.github.io dùng chung một kho localStorage,
+   nên đặt tiền tố riêng để không đụng dữ liệu của project khác.
+   Vẫn đọc khoá cũ không tiền tố để dữ liệu đã lưu trước đây không mất. */
+const NS = "efm:";
+const store = {
+  get(k){
+    try {
+      const v = localStorage.getItem(NS + k);
+      if(v !== null) return v;
+      const old = localStorage.getItem(k);          // dữ liệu từ bản cũ
+      if(old !== null) localStorage.setItem(NS + k, old);
+      return old;
+    } catch(e){ return k in mem ? mem[k] : null; }
+  },
+  set(k,v){ try { localStorage.setItem(NS + k, v); } catch(e){ mem[k] = v; } }
+};
+
+/* ---------- Nền sáng / tối ---------- */
+const root = document.documentElement, themeBtn = document.getElementById("themeBtn");
+function setTheme(t){
+  root.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "☀️" : "🌙";
+  store.set("theme", t);
+}
+setTheme(store.get("theme") || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+themeBtn.onclick = () => setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+
+/* ---------- Nhật ký câu đã nói ---------- */
+const KEY = {};
+const ck = (t, l) => t.id + "|" + l.e;
+let log = {};
+try { log = JSON.parse(store.get("log") || "{}") || {}; } catch(e){ log = {}; }
+
+const pad = n => String(n).padStart(2, "0");
+const dstr = d => d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+let today = dstr(new Date());
+
+function toggleCheck(k){
+  const arr = log[today] ? log[today].slice() : [];
+  const i = arr.indexOf(k);
+  if(i > -1) arr.splice(i, 1); else arr.push(k);
+  if(arr.length) log[today] = arr; else delete log[today];
+  store.set("log", JSON.stringify(log));
+  syncChecks();
+}
+function streak(){
+  let s = 0;
+  const d = new Date();
+  if(!log[dstr(d)]) d.setDate(d.getDate() - 1);
+  while(log[dstr(d)]){ s++; d.setDate(d.getDate() - 1); }
+  return s;
+}
+function syncChecks(){
+  const set = log[today] || [];
+  document.querySelectorAll(".card").forEach(c => {
+    const on = set.indexOf(c.dataset.k) > -1;
+    c.classList.toggle("done", on);
+    const b = c.querySelector(".chk");
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  Object.keys(T).forEach(id => {
+    const el = T[id].el;
+    const all = el.querySelectorAll(".card").length;
+    const n = el.querySelectorAll(".card.done").length;
+    const badge = el.querySelector(".tdone");
+    badge.hidden = n === 0;
+    badge.textContent = "✓ " + n + "/" + all;
+  });
+  document.getElementById("todayNum").textContent = set.length;
+  const st = streak();
+  document.getElementById("todaySub").textContent = set.length
+    ? (st > 1 ? "Chuỗi " + st + " ngày liên tiếp" : "Sang ngày mới sẽ tự đặt lại")
+    : "Nói xong câu nào thì bấm ✓ ở câu đó";
+}
+function checkDay(){
+  const t = dstr(new Date());
+  if(t !== today){ today = t; syncChecks(); }
+}
+setInterval(checkDay, 30000);
+document.addEventListener("visibilitychange", () => { if(!document.hidden) checkDay(); });
+
+function fmtDate(s){
+  const y = +s.slice(0,4), m = +s.slice(5,7), d = +s.slice(8,10);
+  const yest = dstr(new Date(Date.now() - 864e5));
+  if(s === today) return "Hôm nay, " + pad(d) + "/" + pad(m);
+  if(s === yest) return "Hôm qua, " + pad(d) + "/" + pad(m);
+  const w = ["Chủ nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"][new Date(y, m-1, d).getDay()];
+  return w + ", " + pad(d) + "/" + pad(m) + "/" + y;
+}
+function hitem(k, ds){
+  const o = KEY[k];
+  const en = o ? o.l.e : k.split("|")[1];
+  const vi = o ? o.l.v + " · " + o.t.vi : "";
+  return '<div class="hitem">' +
+    (ds ? '<span class="hcnt">' + ds.length + " lần" + '</span>' : "") +
+    '<b>' + esc(en) + '</b><span>' + esc(vi) + '</span>' +
+    (ds ? '<span class="hdates">' + ds.slice(0,8).map(x => x.slice(8) + "/" + x.slice(5,7)).join(" · ") + (ds.length > 8 ? " …" : "") + '</span>' : "") +
+    '</div>';
+}
+let htab = "day";
+let calM = new Date(); calM.setDate(1); calM.setHours(0,0,0,0);
+let openDays = null;   // null = dùng mặc định (hôm nay + hôm qua)
+
+const MON = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6",
+             "Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
+function calHTML(){
+  const y = calM.getFullYear(), m = calM.getMonth();
+  const ndays = new Date(y, m + 1, 0).getDate();
+  const lead = (new Date(y, m, 1).getDay() + 6) % 7;   // tuần bắt đầu từ Thứ Hai
+  let cells = "";
+  for(let i = 0; i < lead; i++) cells += '<span class="calcell empty"></span>';
+  for(let dd = 1; dd <= ndays; dd++){
+    const ds = y + "-" + pad(m + 1) + "-" + pad(dd);
+    const c = (log[ds] || []).length;
+    const lv = !c ? "" : " lv" + (c >= 8 ? 4 : c >= 5 ? 3 : c >= 3 ? 2 : 1);
+    cells += '<button class="calcell' + lv + (ds === today ? " istoday" : "") + '"' +
+      (c ? ' data-d="' + ds + '" aria-label="' + dd + " tháng " + (m+1) + ", " + c + ' câu"' : ' disabled') + '>' +
+      (c ? '<span class="ccount">' + c + '</span>' : "") + '<span class="cnum">' + dd + '</span></button>';
+  }
+  const now = new Date();
+  const isNow = y === now.getFullYear() && m === now.getMonth();
+  return '<div class="cal">' +
+    '<div class="calhead"><button class="calnav" data-step="-1" aria-label="Tháng trước">‹</button>' +
+    '<b>' + MON[m] + " " + y + '</b>' +
+    '<button class="calnav" data-step="1" aria-label="Tháng sau"' + (isNow ? " disabled" : "") + '>›</button></div>' +
+    '<div class="caldow">' + ["T2","T3","T4","T5","T6","T7","CN"].map(x => "<span>" + x + "</span>").join("") + '</div>' +
+    '<div class="calgrid">' + cells + '</div>' +
+    '<div class="callegend">' +
+      '<span><i class="lv1"></i>1–2 câu</span><span><i class="lv2"></i>3–4</span>' +
+      '<span><i class="lv3"></i>5–7</span><span><i class="lv4"></i>8+</span></div></div>';
+}
+function defaultOpen(){
+  return [today, dstr(new Date(Date.now() - 864e5))];
+}
+function renderHist(){
+  const body = document.getElementById("hbody");
+  const dates = Object.keys(log).filter(d => log[d] && log[d].length).sort().reverse();
+  const hits = dates.reduce((a, d) => a + log[d].length, 0);
+  document.getElementById("hstat").textContent = dates.length
+    ? dates.length + " ngày · " + hits + " lượt · chuỗi hiện tại " + streak() + " ngày"
+    : "Chưa có dữ liệu nào";
+  if(htab !== "day"){
+    const map = {};
+    dates.forEach(d => log[d].forEach(k => { (map[k] = map[k] || []).push(d); }));
+    body.innerHTML = dates.length
+      ? Object.keys(map).sort((a, b) => map[b].length - map[a].length || (map[a][0] < map[b][0] ? 1 : -1))
+          .map(k => hitem(k, map[k])).join("")
+      : '<p class="emptyfav">Chưa tích câu nào.</p>';
+    return;
+  }
+  const open = openDays || defaultOpen();
+  body.innerHTML = calHTML() + (dates.length
+    ? dates.slice(0, 60).map(d =>
+        '<div class="hday' + (open.indexOf(d) > -1 ? " open" : "") + '" id="hd-' + d + '">' +
+          '<button class="hdate" data-day="' + d + '"><span class="hchev">▸</span>' +
+            esc(fmtDate(d)) + ' <span>· ' + log[d].length + ' câu</span></button>' +
+          '<div class="hdaybody">' + log[d].map(k => hitem(k)).join("") + '</div>' +
+        '</div>').join("")
+    : '<p class="emptyfav">Chưa tích câu nào. Sau khi nói một câu với bé, bấm ✓ ở câu đó.</p>');
+}
+document.getElementById("hbody").addEventListener("click", e => {
+  const nav = e.target.closest(".calnav");
+  if(nav){
+    calM.setMonth(calM.getMonth() + (+nav.dataset.step));
+    renderHist();
+    return;
+  }
+  const cell = e.target.closest(".calcell[data-d]");
+  if(cell){
+    const d = cell.dataset.d;
+    openDays = (openDays || defaultOpen()).slice();
+    if(openDays.indexOf(d) < 0) openDays.push(d);
+    renderHist();
+    const el = document.getElementById("hd-" + d);
+    if(el){
+      if(el.scrollIntoView) el.scrollIntoView({block:"nearest", behavior:"smooth"});
+      el.classList.add("flash");
+      setTimeout(() => el.classList.remove("flash"), 1000);
+    }
+    return;
+  }
+  const head = e.target.closest(".hdate");
+  if(head){
+    const d = head.dataset.day;
+    const box = head.closest(".hday");
+    box.classList.toggle("open");
+    openDays = [...document.querySelectorAll(".hday.open")].map(x => x.id.slice(3));
+    return;
+  }
+});
+
+/* ---------- Dựng nội dung ---------- */
 const content = document.getElementById("content");
 const chips = document.getElementById("chips");
 const slist = document.getElementById("slist");
+const favList = document.getElementById("favList");
+const favSec = document.getElementById("favSec");
+const favWrap = document.getElementById("favWrap");
+const q = document.getElementById("q");
+const clearBtn = document.getElementById("clear");
+const empty = document.getElementById("empty");
+const T = {};
 let step = 0;
+
+function cardHTML(l, t){
+  const k = ck(t, l);
+  KEY[k] = {t: t, l: l};
+  return '<article class="card" data-k="' + esc(k) + '" data-s="' + esc((l.e + " " + l.v + " " + l.w + " " + t.vi + " " + t.en).toLowerCase()) + '">' +
+    '<div class="ctop"><span class="ci">' + l.i + '</span><span class="when">' + esc(l.w) + '</span></div>' +
+    '<p class="en">' + esc(l.e) + '</p>' +
+    '<p class="ipa">' + esc(l.p) + '</p>' +
+    '<p class="vi">' + esc(l.v) + '</p>' +
+    '<div class="acts">' +
+      '<button class="play" data-say="' + esc(l.e) + '">🔊 Nghe</button>' +
+      '<button class="play ghost" data-say="' + esc(l.e) + '" data-slow="1">🐢</button>' +
+      '<button class="chk" aria-label="Đánh dấu đã nói hôm nay" aria-pressed="false">✓</button>' +
+    '</div></article>';
+}
 
 G.forEach(g => {
   const chip = document.createElement("button");
-  chip.className = "chip"; chip.type = "button";
+  chip.className = "chip"; chip.type = "button"; chip.dataset.g = g.id;
   chip.textContent = g.e + " " + g.name;
-  chip.dataset.g = g.id;
   chip.style.setProperty("--c", g.c);
   chip.onclick = () => jump(g.id);
   chips.appendChild(chip);
@@ -522,52 +1200,217 @@ G.forEach(g => {
   lab.className = "sgroup"; lab.textContent = g.e + " " + g.name;
   slist.appendChild(lab);
   const box = document.createElement("div");
-  box.className = "slist";
-  slist.appendChild(box);
+  box.className = "slist"; slist.appendChild(box);
 
   const sec = document.createElement("section");
   sec.className = "group"; sec.id = g.id; sec.style.setProperty("--accent", g.c);
-  let html = '<div class="ghead"><span class="ge">' + g.e + '</span><h2>' + esc(g.name) + '</h2></div>' +
-             '<p class="gsub">' + esc(g.sub) + '</p><div class="grule"></div>';
+  sec.innerHTML = '<div class="ghead"><span class="ge">' + g.e + '</span><h2>' + esc(g.name) + '</h2></div>' +
+                  '<p class="gsub">' + esc(g.sub) + '</p><div class="grule"></div><div class="tlist"></div>';
+  const list = sec.querySelector(".tlist");
 
   g.topics.forEach(t => {
     step++;
-    const n = String(step).padStart(2, "0");
-    const it = document.createElement("button");
-    it.className = "sitem"; it.type = "button";
-    it.innerHTML = '<span class="n">' + t.e + '</span>' + esc(t.vi);
-    it.onclick = () => { closeAll(); jump(t.id); };
+    const many = t.L.length > LIMIT;
+    const el = document.createElement("section");
+    el.className = "topic"; el.id = t.id; el.dataset.order = step;
+    el.style.setProperty("--accent", g.c);
+    el.innerHTML =
+      '<div class="thead">' +
+        '<span class="tstep">' + String(step).padStart(2,"0") + '</span>' +
+        '<h3 class="tname">' + esc(t.vi) + '</h3>' +
+        '<span class="ten">' + esc(t.en) + '</span>' +
+        '<span class="tctl">' +
+          '<span class="tdone" hidden></span>' +
+          (many ? '<button class="ctl shuffle" title="Đổi câu khác" aria-label="Đổi câu khác">🔄</button>' +
+                  '<button class="ctl showall">Xem tất cả (' + t.L.length + ')</button>' : '') +
+          '<button class="ctl fav" aria-label="Ghim chủ đề" aria-pressed="false">☆</button>' +
+        '</span>' +
+      '</div>' +
+      '<div class="grid">' + t.L.map(l => cardHTML(l, t)).join("") + '</div>' +
+      '<div class="vocab"><p class="vlabel">Từ mới</p><div class="vgrid">' +
+        t.V.map(v => '<button class="word" data-say="' + esc(v.w) + '" data-s="' + esc((v.w + " " + v.v + " " + t.vi).toLowerCase()) + '">' +
+          '<span class="wi">' + v.i + '</span><span class="wt"><b>' + esc(v.w) + '</b>' +
+          '<span class="wp">' + esc(v.p) + '</span><span class="wv">' + esc(v.v) + '</span></span></button>').join("") +
+      '</div></div>';
+    list.appendChild(el);
+    T[t.id] = {t: t, el: el, home: list, group: g};
+
+    const it = document.createElement("div");
+    it.className = "sitem";
+    it.innerHTML = '<button class="sgo" data-id="' + t.id + '"><span class="n">' + t.e + '</span>' + esc(t.vi) + '</button>' +
+                   '<button class="sfav" data-id="' + t.id + '" aria-label="Ghim chủ đề">☆</button>';
     box.appendChild(it);
 
-    html += '<section class="topic" id="' + t.id + '">' +
-      '<div class="thead"><span class="tstep">' + n + '</span><h3 class="tname">' + esc(t.vi) + '</h3><span class="ten">' + esc(t.en) + '</span></div>' +
-      '<div class="grid">' +
-      t.L.map(l =>
-        '<article class="card" data-s="' + esc((l.e + " " + l.v + " " + l.w + " " + t.vi + " " + t.en).toLowerCase()) + '">' +
-          '<div class="ctop"><span class="ci">' + l.i + '</span><span class="when">' + esc(l.w) + '</span></div>' +
-          '<p class="en">' + esc(l.e) + '</p>' +
-          '<p class="ipa">' + esc(l.p) + '</p>' +
-          '<p class="vi">' + esc(l.v) + '</p>' +
-          '<div class="acts">' +
-            '<button class="play" data-say="' + esc(l.e) + '">🔊 Nghe</button>' +
-            '<button class="play ghost" data-say="' + esc(l.e) + '" data-slow="1">🐢</button>' +
-          '</div></article>').join("") +
-      '</div>' +
-      '<div class="vocab"><p class="vlabel">Từ mới</p><div class="vgrid">' +
-        t.V.map(v =>
-          '<button class="word" data-say="' + esc(v.w) + '" data-s="' + esc((v.w + " " + v.v + " " + t.vi).toLowerCase()) + '">' +
-            '<span class="wi">' + v.i + '</span><span class="wt"><b>' + esc(v.w) + '</b>' +
-            '<span class="wp">' + esc(v.p) + '</span><span class="wv">' + esc(v.v) + '</span></span></button>').join("") +
-      '</div></div></section>';
+    applyLimit(el);
+    // 6 câu đầu đã hiện sẵn -> bỏ chúng ra khỏi bộ bài để lần bấm 🔄 đầu tiên ra toàn câu mới
+    if(many) deck[t.id] = shuffled(allIdx(t.L.length).slice(LIMIT));
   });
-  sec.innerHTML = html;
   content.appendChild(sec);
 });
 
+/* ---------- Hiện 6 câu / đổi câu / xem tất cả ---------- */
+/* Không bốc ngẫu nhiên độc lập mỗi lần (kiểu đó trung bình lặp 1,8/6 câu).
+   Thay bằng kiểu chia bài: xáo cả bộ rồi rút lần lượt, hết bộ mới xáo lại,
+   nên phải xem hết mọi câu của chủ đề rồi mới gặp lại câu cũ. */
+function shuffled(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function allIdx(n){ const a = []; for(let i = 0; i < n; i++) a.push(i); return a; }
+function drawNext(sec, total){
+  const id = sec.id;
+  if(!deck[id]) deck[id] = shuffled(allIdx(total));
+  const out = [];
+  while(out.length < LIMIT && out.length < total){
+    if(!deck[id].length) deck[id] = shuffled(allIdx(total)).filter(i => out.indexOf(i) < 0);
+    const i = deck[id].shift();
+    if(out.indexOf(i) < 0) out.push(i);
+  }
+  return out.sort((a, b) => a - b);
+}
+function popCards(sec){
+  const all = [...sec.querySelectorAll(".card")];
+  all.forEach(c => { c.classList.remove("pop"); c.style.animationDelay = ""; });
+  void sec.offsetWidth;   // ép trình duyệt tính lại để animation chạy lại từ đầu
+  all.filter(c => c.style.display !== "none").forEach((c, i) => {
+    c.style.animationDelay = Math.min(i, 5) * 80 + "ms";
+    c.classList.add("pop");
+  });
+}
+function applyLimit(sec, random){
+  const cards = [...sec.querySelectorAll(".card")];
+  let keep;
+  if(sec.dataset.all === "1" || cards.length <= LIMIT){
+    keep = allIdx(cards.length);
+  } else if(random){
+    keep = drawNext(sec, cards.length);
+  } else {
+    keep = allIdx(cards.length).slice(0, LIMIT);
+  }
+  cards.forEach((c, i) => c.dataset.lim = keep.indexOf(i) > -1 ? "1" : "0");
+  paint(sec);
+}
+function paint(sec){
+  const k = q.value.trim().toLowerCase();
+  sec.querySelectorAll(".card").forEach(c => {
+    const hit = !k || c.dataset.s.indexOf(k) > -1;
+    c.style.display = hit && (k || c.dataset.lim === "1") ? "" : "none";
+  });
+}
+
+/* ---------- Chủ đề yêu thích ---------- */
+let favs = [];
+try { favs = JSON.parse(store.get("favs") || "[]") || []; } catch(e){ favs = []; }
+
+function toggleFav(id){
+  favs = favs.indexOf(id) > -1 ? favs.filter(x => x !== id) : favs.concat(id);
+  store.set("favs", JSON.stringify(favs));
+  syncFavs();
+}
+function restore(o){
+  const next = [...o.home.children].find(c => +c.dataset.order > +o.el.dataset.order);
+  o.home.insertBefore(o.el, next || null);
+}
+function syncFavs(){
+  Object.keys(T).forEach(id => {
+    const o = T[id], on = favs.indexOf(id) > -1, b = o.el.querySelector(".fav");
+    b.textContent = on ? "★" : "☆";
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    if(on && o.el.parentElement !== favWrap) favWrap.appendChild(o.el);
+    if(!on && o.el.parentElement === favWrap) restore(o);
+  });
+  favs.forEach(id => { if(T[id]) favWrap.appendChild(T[id].el); });
+  favSec.hidden = favWrap.children.length === 0;
+  document.querySelectorAll(".group").forEach(g =>
+    g.classList.toggle("gempty", g.querySelector(".tlist").children.length === 0));
+  document.querySelectorAll(".sfav").forEach(b => {
+    const on = favs.indexOf(b.dataset.id) > -1;
+    b.textContent = on ? "★" : "☆";
+    b.classList.toggle("on", on);
+  });
+  favList.innerHTML = favs.length
+    ? '<p class="sgroup">⭐ Yêu thích</p><div class="slist">' + favs.filter(id => T[id]).map(id =>
+        '<div class="sitem"><button class="sgo" data-id="' + id + '"><span class="n">' + T[id].t.e + '</span>' +
+        esc(T[id].t.vi) + '</button><button class="sfav on" data-id="' + id + '" aria-label="Bỏ ghim">★</button></div>').join("") + '</div>'
+    : '';
+}
+
+/* ---------- Bấm ---------- */
+document.addEventListener("click", e => {
+  const cb = e.target.closest(".chk");
+  if(cb){ checkDay(); toggleCheck(cb.closest(".card").dataset.k); return; }
+  const tb = e.target.closest(".tab");
+  if(tb){
+    htab = tb.dataset.tab;
+    document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === tb));
+    renderHist();
+    return;
+  }
+  const sh = e.target.closest(".shuffle");
+  if(sh){
+    const sec = sh.closest(".topic");
+    sh.classList.remove("spin"); void sh.offsetWidth; sh.classList.add("spin");
+    applyLimit(sec, true);
+    popCards(sec);
+    return;
+  }
+  const sa = e.target.closest(".showall");
+  if(sa){
+    const sec = sa.closest(".topic"), on = sec.dataset.all === "1";
+    sec.dataset.all = on ? "0" : "1";
+    sa.textContent = on ? "Xem tất cả (" + sec.querySelectorAll(".card").length + ")" : "Thu gọn";
+    applyLimit(sec);
+    return;
+  }
+  const fv = e.target.closest(".fav");
+  if(fv){ toggleFav(fv.closest(".topic").id); return; }
+  const sf = e.target.closest(".sfav");
+  if(sf){ toggleFav(sf.dataset.id); return; }
+  const sg = e.target.closest(".sgo");
+  if(sg){ closeAll(); jump(sg.dataset.id); return; }
+  const b = e.target.closest("[data-say]");
+  if(b) speak(b.dataset.say, b.dataset.slow, b);
+});
+
+function barH(){
+  const b = document.querySelector(".bar");
+  return b ? b.getBoundingClientRect().height : 0;
+}
+function targetTop(el){
+  const y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  return Math.max(0, el.getBoundingClientRect().top + y - barH() - 10);
+}
+function scrollToY(y, smooth){
+  try { window.scrollTo({top: y, behavior: smooth ? "smooth" : "auto"}); }
+  catch(e){ window.scrollTo(0, y); }
+}
+let jumpSeq = 0;
 function jump(id){
   const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  if(!el) return;
+  // đang lọc tìm kiếm mà chủ đề bị ẩn thì xoá bộ lọc trước
+  if(q.value && el.style.display === "none"){
+    q.value = "";
+    q.dispatchEvent(new Event("input"));
+  }
+  const my = ++jumpSeq;
+  // chờ bảng trượt đóng xong rồi mới cuộn, tránh lệch vị trí
+  setTimeout(() => { if(my === jumpSeq) scrollToY(targetTop(el), true); }, 60);
+  // chốt lại đích sau khi cuộn xong: font/emoji tải xong hoặc layout đổi làm trượt đích
+  setTimeout(() => {
+    if(my !== jumpSeq) return;
+    const want = targetTop(el), now = window.pageYOffset || document.documentElement.scrollTop || 0;
+    if(Math.abs(now - want) > 6) scrollToY(want, false);
+  }, 700);
 }
+// người dùng tự vuốt thì huỷ lệnh chốt vị trí đang chờ, không giật trang dưới tay họ
+["touchstart","wheel","keydown"].forEach(ev =>
+  window.addEventListener(ev, () => { jumpSeq++; }, {passive:true}));
 function markChip(gid){
   [...chips.children].forEach(c => {
     const on = c.dataset.g === gid;
@@ -576,12 +1419,12 @@ function markChip(gid){
     c.style.borderColor = on ? c.style.getPropertyValue("--c") : "var(--line)";
   });
   const a = [...chips.children].find(c => c.dataset.g === gid);
-  if(a) a.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+  if(a && a.scrollIntoView) a.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
 }
 
 /* ---------- Giọng đọc ---------- */
 const GOOD = /natural|neural|enhanced|premium|siri|samantha|ava|allison|zoe|serena|nicky|aria|jenny|emma|libby|sonia|google us english|google uk english/i;
-const BAD  = /compact|espeak|pico|robot/i;
+const BAD = /compact|espeak|pico|robot/i;
 let voices = [], voice = null, rate = 0.9;
 const sel = document.getElementById("voiceSel");
 
@@ -596,20 +1439,31 @@ function score(v){
 }
 function loadVoices(){
   voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
-  voices.sort((a,b) => score(b) - score(a));
-  sel.innerHTML = voices.map((v,i) =>
+  voices.sort((a, b) => score(b) - score(a));
+  sel.innerHTML = voices.map((v, i) =>
     '<option value="' + i + '">' + (score(v) >= 10 ? "⭐ " : "") + esc(v.name) + " — " + esc(v.lang) + "</option>"
   ).join("") || '<option>Máy chưa có giọng tiếng Anh nào</option>';
-  voice = voices[0] || null;
+  const want = store.get("voice");                  // giọng đã chọn lần trước
+  const i = want ? voices.findIndex(v => v.name === want) : -1;
+  voice = voices[i > -1 ? i : 0] || null;
+  if(i > -1) sel.value = String(i);
 }
-if("speechSynthesis" in window){
-  loadVoices();
-  speechSynthesis.onvoiceschanged = loadVoices;
-}
-sel.onchange = () => { voice = voices[+sel.value] || null; speak("Good morning, baby!"); };
+if("speechSynthesis" in window){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+sel.onchange = () => {
+  voice = voices[+sel.value] || null;
+  store.set("voice", voice ? voice.name : "");
+  speak("Good morning, baby!");
+};
 
 const rateEl = document.getElementById("rateSel"), rateVal = document.getElementById("rateVal");
-rateEl.oninput = () => { rate = +rateEl.value; rateVal.textContent = rate.toFixed(2); };
+rate = parseFloat(store.get("rate")) || 0.9;        // tốc độ đã chỉnh lần trước
+rateEl.value = String(rate);
+rateVal.textContent = rate.toFixed(2);
+rateEl.oninput = () => {
+  rate = +rateEl.value;
+  rateVal.textContent = rate.toFixed(2);
+  store.set("rate", String(rate));
+};
 
 function speak(text, slow, btn){
   if(!("speechSynthesis" in window)){ alert("Trình duyệt này không đọc được. Thử mở bằng Chrome hoặc Safari."); return; }
@@ -622,59 +1476,77 @@ function speak(text, slow, btn){
   if(btn){ btn.classList.add("speaking"); u.onend = u.onerror = () => btn.classList.remove("speaking"); }
   speechSynthesis.speak(u);
 }
-document.addEventListener("click", e => {
-  const b = e.target.closest("[data-say]");
-  if(!b) return;
-  speak(b.dataset.say, b.dataset.slow, b);
-});
 document.getElementById("testBtn").onclick = () => speak("Good morning, baby! Did you sleep well?");
 
 /* ---------- Tìm kiếm ---------- */
-const q = document.getElementById("q"), clearBtn = document.getElementById("clear"), empty = document.getElementById("empty");
 q.addEventListener("input", () => {
   const k = q.value.trim().toLowerCase();
   clearBtn.classList.toggle("on", !!k);
   let total = 0;
-  document.querySelectorAll(".group").forEach(gsec => {
-    let gHits = 0;
-    gsec.querySelectorAll(".topic").forEach(t => {
-      let hits = 0;
-      t.querySelectorAll(".card").forEach(el => {
-        const ok = !k || el.dataset.s.includes(k);
-        el.style.display = ok ? "" : "none";
-        if(ok) hits++;
-      });
-      let vHits = 0;
-      t.querySelectorAll(".word").forEach(el => {
-        const ok = !k || el.dataset.s.includes(k);
-        el.style.display = ok ? "" : "none";
-        if(ok) vHits++;
-      });
-      t.querySelector(".vocab").style.display = vHits ? "" : "none";
-      const show = hits + vHits > 0;
-      t.style.display = show ? "" : "none";
-      if(show) gHits++;
-      total += hits + vHits;
+  Object.keys(T).forEach(id => {
+    const el = T[id].el;
+    paint(el);
+    const hits = [...el.querySelectorAll(".card")].filter(c => c.style.display !== "none").length;
+    let vHits = 0;
+    el.querySelectorAll(".word").forEach(w => {
+      const ok = !k || w.dataset.s.indexOf(k) > -1;
+      w.style.display = ok ? "" : "none";
+      if(ok) vHits++;
     });
-    gsec.style.display = gHits ? "" : "none";
+    el.querySelector(".vocab").style.display = vHits ? "" : "none";
+    const show = hits + vHits > 0;
+    el.style.display = show ? "" : "none";
+    total += hits + vHits;
   });
+  document.querySelectorAll(".group").forEach(g => {
+    const any = [...g.querySelectorAll(".topic")].some(t => t.style.display !== "none");
+    g.style.display = any ? "" : "none";
+  });
+  favSec.style.display = [...favWrap.children].some(t => t.style.display !== "none") ? "" : "none";
   empty.hidden = total > 0;
 });
 clearBtn.onclick = () => { q.value = ""; q.dispatchEvent(new Event("input")); q.focus(); };
 
-/* ---------- Sheets ---------- */
-const sheet = document.getElementById("sheet"), vsheet = document.getElementById("vsheet"), scrim = document.getElementById("scrim");
-function closeAll(){ sheet.classList.remove("on"); vsheet.classList.remove("on"); scrim.classList.remove("on"); }
+/* ---------- Bảng trượt ---------- */
+const sheet = document.getElementById("sheet"), vsheet = document.getElementById("vsheet"),
+      hsheet = document.getElementById("hsheet"), isheet = document.getElementById("isheet"),
+      scrim = document.getElementById("scrim");
+function closeAll(){ [sheet, vsheet, hsheet, isheet].forEach(x => x.classList.remove("on")); scrim.classList.remove("on"); }
 document.getElementById("menuBtn").onclick = () => { closeAll(); sheet.classList.add("on"); scrim.classList.add("on"); };
+document.getElementById("infoBtn").onclick = () => { closeAll(); isheet.classList.add("on"); scrim.classList.add("on"); };
 document.getElementById("setBtn").onclick = () => { closeAll(); vsheet.classList.add("on"); scrim.classList.add("on"); };
+document.getElementById("histBtn").onclick = () => { checkDay(); renderHist(); closeAll(); hsheet.classList.add("on"); scrim.classList.add("on"); };
+document.getElementById("hclear").onclick = () => {
+  if(!confirm("Xoá toàn bộ lịch sử đã tích? Không khôi phục lại được.")) return;
+  log = {};
+  store.set("log", "{}");
+  syncChecks();
+  renderHist();
+};
 scrim.onclick = closeAll;
 document.addEventListener("keydown", e => { if(e.key === "Escape") closeAll(); });
 
-const obs = new IntersectionObserver(es => {
-  es.forEach(en => { if(en.isIntersecting) markChip(en.target.id); });
-}, {rootMargin:"-140px 0px -70% 0px"});
-document.querySelectorAll(".group").forEach(s => obs.observe(s));
+if("IntersectionObserver" in window){
+  const obs = new IntersectionObserver(es => {
+    es.forEach(en => { if(en.isIntersecting) markChip(en.target.id); });
+  }, {rootMargin:"-140px 0px -70% 0px"});
+  document.querySelectorAll(".group").forEach(s => obs.observe(s));
+}
 markChip("g1");
+/* ---------- Dữ liệu mẫu 7 ngày (chỉ nạp khi chưa có lịch sử thật) ---------- */
+/* Dọn nốt dữ liệu mẫu của bản trước (chạy một lần rồi thôi) */
+(function(){
+  let ds = [];
+  try { ds = JSON.parse(store.get("demoDays") || "[]") || []; } catch(e){ ds = []; }
+  if(ds.length){
+    ds.forEach(d => { delete log[d]; });
+    store.set("log", JSON.stringify(log));
+  }
+  try { localStorage.removeItem("efm:demoDays"); localStorage.removeItem("demoDays"); } catch(e){}
+})();
+
+syncFavs();
+syncChecks();
 </script>
 </body>
 </html>
