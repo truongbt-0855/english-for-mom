@@ -127,7 +127,7 @@ body{transition:background .2s,color .2s}
 .ctl{border:1.5px solid var(--line);background:var(--card);color:var(--soft);border-radius:999px;padding:4px 9px;font-size:11.5px;font-weight:600;line-height:1.5}
 .ctl.fav{font-size:14px;padding:2px 8px;color:var(--soft)}
 .ctl.fav.on{color:var(--sun);border-color:var(--sun);background:color-mix(in srgb,var(--sun) 12%,transparent)}
-.ctl.shuffle{font-size:13px;padding:3px 9px}
+.ctl.shuffle,.ctl.showall{font-size:13px;padding:3px 9px}
 .ctl:active{transform:translateY(1px)}
 /* nút quay một vòng rồi nảy nhẹ */
 .spin{animation:spin .85s cubic-bezier(.34,1.35,.5,1)}
@@ -146,6 +146,9 @@ body{transition:background .2s,color .2s}
 .card.pop{animation:cardIn .78s cubic-bezier(.25,.9,.35,1) both}
 .card.pop:nth-child(odd){--rot:-2.5deg}
 .card.pop:nth-child(even){--rot:2.5deg}
+/* thẻ câu thu nhỏ dần rồi mới ẩn khi bấm thu gọn */
+@keyframes cardOut{to{opacity:0;transform:translateY(14px) scale(.88)}}
+.card.out{animation:cardOut .28s ease both;pointer-events:none}
 /* emoji bật ra sau thẻ một nhịp */
 @keyframes emojiPop{
   0%{transform:scale(0) rotate(-30deg)}
@@ -189,6 +192,21 @@ body{transition:background .2s,color .2s}
   border:2px solid var(--paper);
 }
 .hbadge[hidden]{display:none}
+/* nảy lên khi vừa tích thêm câu */
+.hbadge.pop{animation:badgePop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes badgePop{
+  0%{transform:scale(1)}
+  35%{transform:scale(1.6)}
+  65%{transform:scale(.85)}
+  100%{transform:scale(1)}
+}
+.icobtn.pop{animation:calRing .5s ease}
+@keyframes calRing{
+  0%,100%{transform:rotate(0)}
+  25%{transform:rotate(-11deg)}
+  55%{transform:rotate(9deg)}
+  80%{transform:rotate(-4deg)}
+}
 
 /* ---------- Bảng lịch sử ---------- */
 .tabs{display:flex;gap:7px;margin-bottom:12px}
@@ -1017,6 +1035,13 @@ function toggleCheck(k){
   if(arr.length) log[today] = arr; else delete log[today];
   store.set("log", JSON.stringify(log));
   syncChecks();
+  if(i === -1) popTodayBadge();
+}
+/* làm badge 📅 nảy lên khi vừa tích thêm câu */
+function popTodayBadge(){
+  [document.getElementById("todayNum"), document.getElementById("histBtn")].forEach(x => {
+    x.classList.remove("pop"); void x.offsetWidth; x.classList.add("pop");
+  });
 }
 function streak(){
   let s = 0;
@@ -1227,7 +1252,7 @@ G.forEach(g => {
         '<span class="tctl">' +
           '<span class="tdone" hidden></span>' +
           (many ? '<button class="ctl shuffle" title="Đổi câu khác" aria-label="Đổi câu khác">🔄</button>' +
-                  '<button class="ctl showall">Xem tất cả (' + t.L.length + ')</button>' : '') +
+                  '<button class="ctl showall" title="Xem tất cả (' + t.L.length + ')" aria-label="Xem tất cả (' + t.L.length + ')">👀</button>' : '') +
           '<button class="ctl fav" aria-label="Ghim chủ đề" aria-pressed="false">☆</button>' +
         '</span>' +
       '</div>' +
@@ -1277,11 +1302,11 @@ function drawNext(sec, total){
   }
   return out.sort((a, b) => a - b);
 }
-function popCards(sec){
+function popCards(sec, only){
   const all = [...sec.querySelectorAll(".card")];
   all.forEach(c => { c.classList.remove("pop"); c.style.animationDelay = ""; });
   void sec.offsetWidth;   // ép trình duyệt tính lại để animation chạy lại từ đầu
-  all.filter(c => c.style.display !== "none").forEach((c, i) => {
+  all.filter(c => c.style.display !== "none" && (!only || only.indexOf(c) > -1)).forEach((c, i) => {
     c.style.animationDelay = Math.min(i, 5) * 80 + "ms";
     c.classList.add("pop");
   });
@@ -1368,8 +1393,22 @@ document.addEventListener("click", e => {
   if(sa){
     const sec = sa.closest(".topic"), on = sec.dataset.all === "1";
     sec.dataset.all = on ? "0" : "1";
-    sa.textContent = on ? "Xem tất cả (" + sec.querySelectorAll(".card").length + ")" : "Thu gọn";
-    applyLimit(sec);
+    const label = on ? "Xem tất cả (" + sec.querySelectorAll(".card").length + ")" : "Thu gọn";
+    sa.textContent = on ? "👀" : "🔼";
+    sa.title = label; sa.setAttribute("aria-label", label);
+    const vis = c => c.style.display !== "none";
+    const cards = [...sec.querySelectorAll(".card")];
+    if(on){
+      // thu gọn: các câu sắp ẩn thu nhỏ dần, hết animation mới ẩn hẳn
+      const going = cards.slice(LIMIT).filter(vis);
+      going.forEach(c => { c.classList.remove("pop"); c.style.animationDelay = ""; c.classList.add("out"); });
+      setTimeout(() => { going.forEach(c => c.classList.remove("out")); applyLimit(sec); }, 300);
+    } else {
+      // mở rộng: chỉ những câu mới hiện ra xổ vào
+      const before = cards.filter(vis);
+      applyLimit(sec);
+      popCards(sec, cards.filter(c => vis(c) && before.indexOf(c) === -1));
+    }
     return;
   }
   const fv = e.target.closest(".fav");
