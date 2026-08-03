@@ -22,11 +22,11 @@ button{cursor:pointer;color:var(--ink)}
 :focus-visible{outline:3px solid var(--berry);outline-offset:2px;border-radius:6px}
 
 .bar{position:sticky;top:0;z-index:40;background:rgba(239,242,233,.95);backdrop-filter:blur(8px) saturate(140%);border-bottom:1px solid var(--line);padding:9px 12px 0;padding-top:calc(9px + env(safe-area-inset-top))}
-.brandrow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.brandrow{display:flex;align-items:center;gap:6px;margin-bottom:8px}
 .mark{width:31px;height:31px;flex:none;border-radius:11px;background:var(--sun);display:grid;place-items:center;font-size:17px;transform:rotate(-6deg)}
-.brand{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:17px;line-height:1.15;flex:1}
-.brand small{display:block;font-family:"Be Vietnam Pro",sans-serif;font-weight:400;font-size:11px;color:var(--soft)}
-.icobtn{border:1.5px solid var(--line);background:var(--card);width:34px;height:34px;border-radius:11px;font-size:16px;display:grid;place-items:center;flex:none}
+.brand{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:16px;line-height:1.15;flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-right:2px}
+.brand small{display:block;font-family:"Be Vietnam Pro",sans-serif;font-weight:400;font-size:10.5px;color:var(--soft);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.icobtn{position:relative;border:1.5px solid var(--line);background:var(--card);width:32px;height:32px;border-radius:10px;font-size:15px;display:grid;place-items:center;flex:none}
 .tools{display:flex;gap:7px}
 .search{position:relative;flex:1}
 .search .mag{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.4}
@@ -180,12 +180,15 @@ body{transition:background .2s,color .2s}
 .tdone[hidden]{display:none}
 
 /* ---------- Thanh hôm nay ---------- */
-.today{display:flex;align-items:center;gap:11px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:11px 13px;margin-bottom:20px;box-shadow:var(--shadow)}
-.tnum{font-family:"Baloo 2",sans-serif;font-size:24px;font-weight:800;color:var(--leaf);line-height:1;flex:none;min-width:26px;text-align:center}
-.tlab{flex:1;min-width:0}
-.tlab b{display:block;font-size:13px}
-.tlab small{display:block;font-size:11.5px;color:var(--soft)}
-.histbtn{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:600;white-space:nowrap;flex:none}
+/* huy hiệu số câu đã nói hôm nay, gắn trên nút 📅 */
+.hbadge{
+  position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;padding:0 4px;
+  border-radius:999px;background:var(--berry);color:#fff;
+  font-size:9.5px;font-weight:700;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--paper);
+}
+.hbadge[hidden]{display:none}
 
 /* ---------- Bảng lịch sử ---------- */
 .tabs{display:flex;gap:7px;margin-bottom:12px}
@@ -275,6 +278,7 @@ body{transition:background .2s,color .2s}
     </div>
     <button class="icobtn" id="infoBtn" aria-label="Hướng dẫn sử dụng">ℹ️</button>
     <button class="icobtn" id="themeBtn" aria-label="Đổi nền sáng tối">🌙</button>
+    <button class="icobtn" id="histBtn" aria-label="Lịch sử luyện tập">📅<span class="hbadge" id="todayNum" hidden>0</span></button>
     <button class="icobtn" id="setBtn" aria-label="Cài đặt giọng đọc">⚙️</button>
   </div>
   <div class="tools">
@@ -289,11 +293,6 @@ body{transition:background .2s,color .2s}
 </header>
 
 <main>
-  <div class="today">
-    <span class="tnum" id="todayNum">0</span>
-    <div class="tlab"><b>câu đã nói hôm nay</b><small id="todaySub">Nói xong câu nào thì bấm ✓ ở câu đó</small></div>
-    <button class="histbtn" id="histBtn">📅 Lịch sử</button>
-  </div>
   <section id="favSec" hidden>
     <div class="favhead"><span class="ge">⭐</span><h2>Chủ đề yêu thích</h2></div>
     <p class="gsub">Bấm ngôi sao ở chủ đề bất kỳ để ghim lên đây</p>
@@ -341,6 +340,12 @@ body{transition:background .2s,color .2s}
     <div class="hrow"><span class="hi">🔤</span><div><b>Ô từ mới</b>Bấm thẳng vào ô từ mới cũng nghe được phát âm.</div></div>
     <div class="hrow"><span class="hi">⚙️</span><div><b>Giọng đọc</b>Đổi giọng và tốc độ. Trong đó có hướng dẫn tải giọng chất lượng cao cho máy.</div></div>
     <div class="hrow"><span class="hi">🌙</span><div><b>Nền sáng / tối</b>Dùng nền tối khi dỗ bé ngủ cho đỡ chói mắt.</div></div>
+  </div>
+
+  <p class="sgroup">Theo dõi tiến độ</p>
+  <div class="howto">
+    <div class="hrow"><span class="hi">✓</span><div><b>Đánh dấu câu đã nói</b>Nói xong câu nào với bé thì bấm ✓ ở góc câu đó. Mỗi chủ đề hiện số câu đã nói trong ngày.</div></div>
+    <div class="hrow"><span class="hi">📅</span><div><b>Lịch sử</b>Số nhỏ màu hồng trên nút là số câu đã nói hôm nay. Bấm vào xem lịch cả tháng, ngày càng đậm là ngày nói càng nhiều.</div></div>
   </div>
 
   <p class="sgroup">Mẹo dạy bé 2 tuổi</p>
@@ -1037,11 +1042,11 @@ function syncChecks(){
     badge.hidden = n === 0;
     badge.textContent = "✓ " + n + "/" + all;
   });
-  document.getElementById("todayNum").textContent = set.length;
-  const st = streak();
-  document.getElementById("todaySub").textContent = set.length
-    ? (st > 1 ? "Chuỗi " + st + " ngày liên tiếp" : "Sang ngày mới sẽ tự đặt lại")
-    : "Nói xong câu nào thì bấm ✓ ở câu đó";
+  const badgeToday = document.getElementById("todayNum");
+  badgeToday.textContent = set.length;
+  badgeToday.hidden = set.length === 0;
+  document.getElementById("histBtn").setAttribute("aria-label",
+    set.length ? "Lịch sử luyện tập, hôm nay " + set.length + " câu" : "Lịch sử luyện tập");
 }
 function checkDay(){
   const t = dstr(new Date());
