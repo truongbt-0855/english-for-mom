@@ -1,0 +1,16 @@
+{
+  "name": "Mẹ nói tiếng Anh với con",
+  "short_name": "Tiếng Anh",
+  "description": "Một ngày của bé — câu tiếng Anh đơn giản cho mẹ nói với con",
+  "lang": "vi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EFF2E9",
+  "theme_color": "#EFF2E9",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
