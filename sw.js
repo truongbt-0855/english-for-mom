@@ -1,6 +1,7 @@
 /* Service worker: cho phép cài app + dùng offline */
-const CACHE = "efm-v1";
-const ASSETS = ["./", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png"];
+const CACHE = "efm-v2";
+const ASSETS = ["./", "game_universe.html", "manifest.webmanifest", "manifest-universe.webmanifest",
+                "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -19,11 +20,12 @@ self.addEventListener("fetch", e => {
   if(req.method !== "GET") return;
 
   // Trang chính: lấy từ mạng để luôn có bản mới, rớt mạng thì dùng bản đã lưu
+  // Lưu theo đúng trang được mở, để index.html và game_universe.html không lẫn vào nhau
   if(req.mode === "navigate"){
     e.respondWith(
       fetch(req)
-        .then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put("./", cp)); return r; })
-        .catch(() => caches.match("./"))
+        .then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); return r; })
+        .catch(() => caches.match(req).then(hit => hit || caches.match("./")))
     );
     return;
   }

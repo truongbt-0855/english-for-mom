@@ -1,0 +1,17 @@
+{
+  "name": "Word Space — Game học từ mới",
+  "short_name": "Word Space",
+  "description": "Game ôn từ vựng tiếng Anh theo chủ đề cho học sinh lớp 4 — câu nào cũng có hình minh hoạ, có nhạc và giọng đọc",
+  "lang": "vi",
+  "start_url": "game_universe.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#140B33",
+  "theme_color": "#140B33",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
