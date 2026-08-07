@@ -1,7 +1,11 @@
 /* Service worker: cho phép cài app + dùng offline */
-const CACHE = "efm-v2";
+const CACHE = "efm-v3";
 const ASSETS = ["./", "game_universe.html", "manifest.webmanifest", "manifest-universe.webmanifest",
-                "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png"];
+                "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png",
+                // ảnh thật của NASA dùng trong game — lưu sẵn để chơi offline
+                "img/observatory.jpg", "img/spacecraft.jpg", "img/probe.jpg", "img/asteroid.jpg",
+                "img/meteorite.jpg", "img/galaxy.jpg", "img/solarsystem.jpg", "img/universe.jpg",
+                "img/surface.jpg"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
