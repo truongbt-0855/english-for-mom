@@ -12,6 +12,8 @@ const FILE = path.resolve(target);
 if (!fs.existsSync(FILE)) { console.error("Không thấy file: " + FILE); process.exit(2); }
 const DIR = path.dirname(FILE);
 const IMGDIR = path.join(DIR, "img");
+// sw.js và trang chủ nằm ở gốc repo — file game nằm trong moon/ nên phải lùi một cấp
+const ROOT = fs.existsSync(path.join(DIR, "sw.js")) ? DIR : path.dirname(DIR);
 
 const html = fs.readFileSync(FILE, "utf8");
 const m = html.match(/<script>([\s\S]*)<\/script>/);
@@ -286,15 +288,22 @@ sec("[8] Đường dẫn & deploy");
   const f0 = fail;
   [...html.matchAll(/(?:href|src)="(\/[^"/][^"]*)"/g)].forEach((x) =>
     bad(`đường dẫn tuyệt đối "${x[1]}" sẽ vỡ trên GitHub project site`));
-  const sw = path.join(DIR, "sw.js");
+  const rel = path.relative(ROOT, FILE).replace(/\\/g, "/");   // vd "moon/universe.html"
+  const relImg = path.relative(ROOT, IMGDIR).replace(/\\/g, "/");
+  const sw = path.join(ROOT, "sw.js");
   if (fs.existsSync(sw)) {
     const s = fs.readFileSync(sw, "utf8");
-    const base = path.basename(FILE);
-    if (!s.includes(base)) bad(`sw.js chưa liệt kê ${base} → không chạy offline được`);
+    if (!s.includes(rel)) bad(`sw.js chưa liệt kê ${rel} → không chạy offline được`);
     G.WORDS.filter((w) => w.photo).forEach((w) => {
-      if (!s.includes("img/" + w.photo)) bad(`sw.js chưa liệt kê img/${w.photo}`);
+      if (!s.includes(relImg + "/" + w.photo)) bad(`sw.js chưa liệt kê ${relImg}/${w.photo}`);
     });
-    if (fail === f0) ok("sw.js đã cache đủ file game và ảnh");
+    if (fail === f0) ok(`sw.js đã cache đủ ${rel} và ảnh`);
+  } else bad("không tìm thấy sw.js ở gốc repo");
+  // trang chủ phải có thẻ dẫn tới game này, nếu không sẽ không ai vào được
+  const home = path.join(ROOT, "index.html");
+  if (fs.existsSync(home)) {
+    if (!fs.readFileSync(home, "utf8").includes(rel)) bad(`trang chủ index.html chưa có thẻ dẫn tới ${rel}`);
+    else ok("trang chủ đã có thẻ dẫn tới game này");
   }
   const mani = (html.match(/rel="manifest" href="([^"]+)"/) || [])[1];
   if (mani) {

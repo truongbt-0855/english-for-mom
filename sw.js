@@ -1,11 +1,17 @@
 /* Service worker: cho phép cài app + dùng offline */
-const CACHE = "efm-v3";
-const ASSETS = ["./", "game_universe.html", "manifest.webmanifest", "manifest-universe.webmanifest",
-                "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png",
-                // ảnh thật của NASA dùng trong game — lưu sẵn để chơi offline
-                "img/observatory.jpg", "img/spacecraft.jpg", "img/probe.jpg", "img/asteroid.jpg",
-                "img/meteorite.jpg", "img/galaxy.jpg", "img/solarsystem.jpg", "img/universe.jpg",
-                "img/surface.jpg"];
+const CACHE = "efm-v4";
+const ASSETS = [
+  // trang chủ
+  "./", "manifest-home.webmanifest", "manifest.webmanifest",
+  "icons/icon-192.png", "icons/icon-512.png", "icons/icon-180.png",
+  // phần của Mít
+  "mit/", "mit/index.html",
+  // phần của Moon — mỗi chủ đề thêm 1 dòng html + các ảnh của nó
+  "moon/universe.html", "moon/manifest-universe.webmanifest",
+  "moon/img/observatory.jpg", "moon/img/spacecraft.jpg", "moon/img/probe.jpg",
+  "moon/img/asteroid.jpg", "moon/img/meteorite.jpg", "moon/img/galaxy.jpg",
+  "moon/img/solarsystem.jpg", "moon/img/universe.jpg", "moon/img/surface.jpg",
+];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -24,7 +30,7 @@ self.addEventListener("fetch", e => {
   if(req.method !== "GET") return;
 
   // Trang chính: lấy từ mạng để luôn có bản mới, rớt mạng thì dùng bản đã lưu
-  // Lưu theo đúng trang được mở, để index.html và game_universe.html không lẫn vào nhau
+  // Lưu theo đúng trang được mở, để trang chủ, mit/ và các game trong moon/ không lẫn nhau
   if(req.mode === "navigate"){
     e.respondWith(
       fetch(req)

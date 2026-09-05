@@ -5,7 +5,23 @@ description: Tạo một file game HTML ôn từ vựng tiếng Anh cho học si
 
 # Tạo game ôn từ vựng cho bé lớp 4
 
-User dán danh sách từ mới → sinh ra **một file `game_<chuđề>.html` tự chứa**, chạy offline, cài được về điện thoại.
+User dán danh sách từ mới → sinh ra **một file `moon/<chuđề>.html` tự chứa**, chạy offline, cài được về điện thoại.
+
+## Cấu trúc repo
+
+```
+index.html                       TRANG CHỦ — chia 2 phần, có mảng MOON liệt kê chủ đề
+manifest.webmanifest             manifest cũ, start_url trỏ mit/ (giữ cho app đã cài)
+manifest-home.webmanifest        manifest của trang chủ
+sw.js                            service worker chung cho cả repo
+icons/                           icon dùng chung
+mit/index.html                   phần của Mít (bé 2 tuổi) — KHÔNG đụng vào
+moon/<chuđề>.html                phần của Moon (lớp 4) — mỗi chủ đề một file  ← nơi làm việc
+moon/img/                        ảnh thật dùng chung cho các game của Moon
+moon/manifest-<chuđề>.webmanifest
+```
+
+Hai bé, hai phần riêng: **Mít** (2 tuổi, câu cho mẹ nói) và **Moon** (lớp 4, game từ vựng). Skill này chỉ làm phần của Moon.
 
 ## Yêu cầu bất di bất dịch của user
 
@@ -20,25 +36,32 @@ User dán danh sách từ mới → sinh ra **một file `game_<chuđề>.html` 
 
 ### Bước 1 — Đặt tên chủ đề
 
-Nhìn danh sách từ, tự suy ra chủ đề. Đặt `game_<slug>.html` ở gốc repo (`game_universe.html`, `game_animals.html`...). Slug tiếng Anh, không dấu, thường một từ.
+Nhìn danh sách từ, tự suy ra chủ đề. Đặt `moon/<slug>.html` (`moon/universe.html`, `moon/animals.html`...). Slug tiếng Anh, không dấu, thường một từ.
 
 ### Bước 2 — Copy game mới nhất làm nền
 
 ```bash
-ls -t game_*.html | head -1        # file mới nhất = bản có đủ mọi bản vá
-cp game_universe.html game_<slug>.html
+ls -t moon/*.html | head -1        # file mới nhất = bản có đủ mọi bản vá
+cp moon/universe.html moon/<slug>.html
+cp moon/manifest-universe.webmanifest moon/manifest-<slug>.webmanifest
 ```
 
 **Không viết lại engine từ đầu.** File cũ đã chứa: 9 kiểu câu hỏi, gợi ý 3 mức, nhạc WebAudio, chấm giọng đọc, game ghép hình, màn kết quả, và các bản vá đã tốn công tìm ra. Chỉ thay phần dữ liệu.
 
-Chỉ cần sửa 4 chỗ:
+Cần sửa 5 chỗ:
 
 | Chỗ | Sửa gì |
 |---|---|
 | `const TOPIC={...}` | `id`, `name`, `vi`, `em`, và toàn bộ `words[]` |
 | `const ART={...}` | Hình SVG cho các từ không có ảnh thật |
-| `<title>`, `.logo`, `.hero` | Tên và emoji chủ đề |
-| `manifest-<slug>.webmanifest` | Copy từ manifest cũ, đổi `name` và `start_url` |
+| `<title>`, `.logo`, `.hero`, thẻ `<link rel="manifest">` | Tên và emoji chủ đề |
+| `moon/manifest-<slug>.webmanifest` | Đổi `name`, `description`, `start_url` thành `<slug>.html` |
+| **`index.html` — mảng `MOON`** | Thêm đúng một dòng, nếu không sẽ không ai vào được game |
+
+```js
+// trong index.html, mảng MOON
+{ file:"moon/animals.html", em:"🦁", en:"Animals", vi:"Động vật", n:18 },
+```
 
 ### Bước 3 — Viết dữ liệu từ
 
@@ -58,7 +81,7 @@ Script tải ứng viên về `<scratchpad>/anh/` và tạo `contact-sheet.html`
 Chọn xong thì cắt 4:3 và nén:
 
 ```bash
-node .claude/skills/game-tu-vung/scripts/nen-anh.js <thư mục đã chọn> img
+node .claude/skills/game-tu-vung/scripts/nen-anh.js <thư mục đã chọn> moon/img
 ```
 
 Ảnh nguồn ~150KB → sau khi nén ~25KB. Cả bộ nên dưới 300KB.
@@ -76,15 +99,15 @@ Hai loại từ luôn phải vẽ, đừng mất công tìm ảnh:
 ### Bước 6 — Kiểm tra
 
 ```bash
-node .claude/skills/game-tu-vung/scripts/kiem-tra.js game_<slug>.html
+node .claude/skills/game-tu-vung/scripts/kiem-tra.js moon/<slug>.html
 ```
 
-9 nhóm test. Phải xanh hết mới đi tiếp.
+9 nhóm test. Phải xanh hết mới đi tiếp. Test tự kiểm luôn cả `sw.js` lẫn thẻ trên trang chủ nên quên bước nào nó báo ngay.
 
 Rồi chạy thật trong trình duyệt — test tĩnh không bắt được lỗi vòng chơi:
 
 ```bash
-node .claude/skills/game-tu-vung/scripts/tu-choi.js game_<slug>.html
+node .claude/skills/game-tu-vung/scripts/tu-choi.js moon/<slug>.html
 ```
 
 Script tự chơi hết một lượt, kiểm tra không kẹt câu, không lỗi console, điểm giảm đúng bậc theo gợi ý.
@@ -93,9 +116,12 @@ Cuối cùng chụp màn hình bằng Chrome headless và **tự nhìn** — tes
 
 ### Bước 7 — Deploy
 
-1. Thêm file game + thư mục `img/` vào `ASSETS` trong `sw.js`, **tăng số version cache** (`efm-v3` → `efm-v4`), nếu không máy cũ sẽ giữ bản cache cũ.
+1. Thêm `moon/<slug>.html`, `moon/manifest-<slug>.webmanifest` và từng file `moon/img/*.jpg` vào `ASSETS` trong `sw.js`, **tăng số version cache** (`efm-v4` → `efm-v5`), nếu không máy cũ sẽ giữ bản cache cũ.
 2. Commit, push lên `main`.
 3. Đợi Pages build rồi **verify link thật bằng curl + chụp màn hình**, đừng chỉ tin là đã push.
+
+Link công khai: `https://truongbt-0855.github.io/english-for-mom/moon/<slug>.html`
+(project site → có tên repo ở giữa; mọi đường dẫn trong file phải là **tương đối**)
 
 ## Những lỗi đã từng mắc — đừng lặp lại
 
@@ -111,7 +137,7 @@ Cuối cùng chụp màn hình bằng Chrome headless và **tự nhìn** — tes
 
 **Viết hoa đầu câu ví dụ.** Từ điền vào chỗ trống có thể nằm ngay đầu câu → `cap()`.
 
-**Đường dẫn phải tương đối.** Repo deploy kiểu project site (`user.github.io/<repo>/`), viết `/sw.js` là vỡ hết.
+**Đường dẫn phải tương đối, và file game nằm sâu một cấp.** Repo deploy kiểu project site (`user.github.io/<repo>/`) nên viết `/sw.js` là vỡ hết. File trong `moon/` phải trỏ `../icons/`, `../sw.js`; riêng ảnh và manifest thì cùng cấp nên vẫn là `img/...` và `manifest-<slug>.webmanifest`. Copy từ file game cũ thì đã đúng sẵn.
 
 ## Khi test báo lỗi
 
