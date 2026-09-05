@@ -784,9 +784,10 @@ const store={
   set(k,v){try{localStorage.setItem("ws_"+k,v)}catch(e){}}
 };
 /* Từ nào có ảnh thật (NASA, public domain) thì dùng ảnh; từ trừu tượng
-   như gravity, diameter, unique... không chụp ảnh được nên vẫn dùng hình vẽ */
+   như gravity, diameter, unique... không chụp ảnh được nên vẫn dùng hình vẽ.
+   Ảnh lỗi (mất mạng, cache hụt) thì tự rơi về hình vẽ, để câu nào cũng còn hình */
 const artOf=w=>w.photo
-  ? `<img class="art" src="img/${w.photo}" alt="" loading="lazy" decoding="async">`
+  ? `<img class="art" src="img/${w.photo}" alt="" loading="lazy" decoding="async" onerror="this.outerHTML=ART['${w.art}']">`
   : (ART[w.art]||"");
 const single=w=>!/\s/.test(w.en);
 /* viết hoa đầu câu — từ điền vào chỗ trống có thể nằm ngay đầu câu */
