@@ -27,6 +27,7 @@ body{background:var(--paper);color:var(--ink);font-family:"Be Vietnam Pro",-appl
 h1,h2,h3{font-family:"Baloo 2","Be Vietnam Pro",sans-serif;font-weight:800;line-height:1.2;margin:0}
 button,select,input{font-family:inherit}
 button{cursor:pointer;color:var(--ink)}
+a{text-decoration:none;color:inherit}
 :focus-visible{outline:3px solid var(--berry);outline-offset:2px;border-radius:6px}
 
 .bar{position:sticky;top:0;z-index:40;background:rgba(239,242,233,.95);backdrop-filter:blur(8px) saturate(140%);border-bottom:1px solid var(--line);padding:9px 12px 0;padding-top:calc(9px + env(safe-area-inset-top))}
@@ -310,7 +311,7 @@ body{transition:background .2s,color .2s}
 
 <header class="bar">
   <div class="brandrow">
-    <div class="mark">🧸</div>
+    <a class="mark" href="../" title="Về trang chọn phần học" aria-label="Về trang chọn phần học">🏠</a>
     <div class="brand">Một ngày của bé — bằng tiếng Anh
       <small>34 chủ đề, xếp theo trình tự sinh hoạt trong ngày</small>
     </div>

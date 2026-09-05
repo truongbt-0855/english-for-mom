@@ -1,5 +1,5 @@
 /* Service worker: cho phép cài app + dùng offline */
-const CACHE = "efm-v6";
+const CACHE = "efm-v7";
 const ASSETS = [
   // trang chủ
   "./", "manifest-home.webmanifest", "manifest.webmanifest",
