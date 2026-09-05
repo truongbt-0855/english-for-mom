@@ -150,8 +150,14 @@ sec("[3] Ảnh thật");
     if (!/^<svg /.test(G.artOf(w))) bad(`${w.en}: artOf không trả về hình vẽ`);
   });
   if (fs.existsSync(IMGDIR)) {
+    // moon/img dùng chung cho mọi chủ đề, nên ảnh "thừa" phải xét theo tất cả game
+    // trong cùng thư mục, không chỉ riêng file đang kiểm tra
     const usedImg = new Set(withPhoto.map((w) => w.photo));
-    fs.readdirSync(IMGDIR).forEach((n) => { if (!usedImg.has(n)) bad(`img/${n} không từ nào dùng tới`); });
+    fs.readdirSync(DIR).filter((n) => /\.html$/.test(n)).forEach((n) => {
+      const src = fs.readFileSync(path.join(DIR, n), "utf8");
+      [...src.matchAll(/photo:\s*"([^"]+)"/g)].forEach((x) => usedImg.add(x[1]));
+    });
+    fs.readdirSync(IMGDIR).forEach((n) => { if (!usedImg.has(n)) bad(`img/${n} không game nào trong ${path.basename(DIR)}/ dùng tới`); });
     const tot = withPhoto.reduce((a, w) => a + fs.statSync(path.join(IMGDIR, w.photo)).size, 0);
     if (tot > 600 * 1024) bad(`ảnh tổng ${Math.round(tot / 1024)}KB — quá nặng cho điện thoại`);
     else if (withPhoto.length) ok(`${withPhoto.length} ảnh thật, tổng ${Math.round(tot / 1024)}KB`);

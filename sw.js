@@ -1,5 +1,5 @@
 /* Service worker: cho phép cài app + dùng offline */
-const CACHE = "efm-v4";
+const CACHE = "efm-v6";
 const ASSETS = [
   // trang chủ
   "./", "manifest-home.webmanifest", "manifest.webmanifest",
@@ -11,6 +11,11 @@ const ASSETS = [
   "moon/img/observatory.jpg", "moon/img/spacecraft.jpg", "moon/img/probe.jpg",
   "moon/img/asteroid.jpg", "moon/img/meteorite.jpg", "moon/img/galaxy.jpg",
   "moon/img/solarsystem.jpg", "moon/img/universe.jpg", "moon/img/surface.jpg",
+  "moon/camping.html", "moon/manifest-camping.webmanifest",
+  "moon/ancient.html", "moon/manifest-ancient.webmanifest",
+  "moon/img/armor.jpg", "moon/img/weapon.jpg", "moon/img/jade.jpg",
+  "moon/img/clay.jpg", "moon/img/tomb.jpg", "moon/img/treasure.jpg",
+  "moon/travel.html", "moon/manifest-travel.webmanifest",
 ];
 
 self.addEventListener("install", e => {

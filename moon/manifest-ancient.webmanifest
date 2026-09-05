@@ -1,0 +1,30 @@
+{
+  "name": "Ancient Words — Game học từ mới",
+  "short_name": "Ancient Words",
+  "description": "Game ôn từ vựng chủ đề Lịch sử cổ đại & Khảo cổ cho học sinh lớp 4 — câu nào cũng có hình minh hoạ, có nhạc và giọng đọc",
+  "lang": "vi",
+  "start_url": "ancient.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2A1A0E",
+  "theme_color": "#2A1A0E",
+  "icons": [
+    {
+      "src": "../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "../icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
